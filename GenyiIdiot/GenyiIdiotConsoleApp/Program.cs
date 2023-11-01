@@ -66,8 +66,7 @@ namespace GenyiIdiotConsoleApp
         }
         static void Main(string[] args)
         {
-            // Не прога а говно, исправьте
-            // Пошел нахуй Бычков
+            
             bool restart = true;
             while (restart == true)
             {
