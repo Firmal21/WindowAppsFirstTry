@@ -32,7 +32,20 @@ namespace GenyiIdiotConsoleApp
                 for (int i = 0; i < countQestions; i++)
                 {
                     WriteLine("Вопрос " + (i + 1) + " - " + questions[RandomList[i]]);
-                    int userAnswer = int.Parse(ReadLine());
+
+                    string userAnswerString = ReadLine();
+                    while (true)
+                    {
+                        bool userAnswerForFool = CheckForFool(userAnswerString);
+                        if (userAnswerForFool == false)   
+                        {
+                            Write("Введи число еблан");
+                            userAnswerString = ReadLine();
+                        }
+                        
+                    }
+
+                    int userAnswer = int.Parse(userAnswerString);
                     if (rightAnswer[RandomList[i]] == userAnswer)
                     {
                         countRightAnswers++;
@@ -97,6 +110,20 @@ namespace GenyiIdiotConsoleApp
             return numbers;
         }
 
+        static bool CheckForFool(string answer)
+        {    
+            int coutn = 0;
+            for (int i = 0; i < answer.Length; i++)
+            {
+                if (!(answer[i] >= '0' && answer[i] <= '9'))
+                {
+                    Write("Пожалуйста, введите число!");
+                    return false;
+                }
+                
+            }
+            return true;
+        }
         static bool GetUserChoise(string message)
         {
             while (true)
