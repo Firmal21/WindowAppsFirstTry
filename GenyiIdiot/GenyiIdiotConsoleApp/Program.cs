@@ -13,7 +13,44 @@ namespace GenyiIdiotConsoleApp
 {
     internal class Program
     {
-        static string[] GetQuestions(int countQuestions)
+       
+        static void Main(string[] args)
+        {
+            
+            
+            while (true)
+            {
+                WriteLine("Введите свое имя");
+                string name = ReadLine();
+                int countQestions = 7;
+                int countRightAnswers = 0;
+                int countDiagnoses = 6;
+                string[] questions = GetQuestions(countQestions);
+                int[] rightAnswer = GetRightAnswers(countQestions);
+                int[] RandomList = Randomize(countQestions);
+
+                for (int i = 0; i < countQestions; i++)
+                {
+                    WriteLine("Вопрос " + (i + 1) + " - " + questions[RandomList[i]]);
+                    int userAnswer = int.Parse(ReadLine());
+                    if (rightAnswer[RandomList[i]] == userAnswer)
+                    {
+                        countRightAnswers++;
+                    }
+                }
+                string[] diagnoses = GetDiagnoses(countDiagnoses);
+                WriteLine($"Количествов правильных ответов: {countRightAnswers}");
+                int diagnosesMark = GetDiagnosesMark(countQestions, countRightAnswers);
+                WriteLine($"{name}, ваш диагноз : {diagnoses[diagnosesMark]} ");
+                bool userChoise = GetUserChoise("Хотите начать тест заново?");
+                if(userChoise ==  false)
+                {
+                    break;
+                }
+                  
+            }
+        }
+         static string[] GetQuestions(int countQuestions)
         {
             string[] questions = new string[countQuestions];
             questions[0] = "Сколько будет два плюс два умноженное на два?";
@@ -21,6 +58,8 @@ namespace GenyiIdiotConsoleApp
             questions[2] = "На двух руках 10 пальцев. Сколько пальцев на 5 руках?";
             questions[3] = "Укол делают каждые полчаса. Сколько нужно минут, чтобы сделать три укола?";
             questions[4] = "Пять свечей горело, две потухли. Сколько свечей осталось?";
+            questions[5] = "У фермера 18 овец, 9 застрелили, сколько овец осталось?";
+            questions[6] = "Два мальчика играли в шашки 2 часа. Сколько времени играл каждый мальчик?";
             return questions;
         }
         static int[] GetRightAnswers(int countQestions)
@@ -31,6 +70,8 @@ namespace GenyiIdiotConsoleApp
             rightAnswer[2] = 25;
             rightAnswer[3] = 60;
             rightAnswer[4] = 2;
+            rightAnswer[5] = 9;
+            rightAnswer[6] = 2;
             return rightAnswer;
         }
         
@@ -81,45 +122,22 @@ namespace GenyiIdiotConsoleApp
                     return true;
                 }
             }
-                    
-
-            
-
         }
-        static void Main(string[] args)
+        static int GetDiagnosesMark(int countQestions, int countRightAnswers)
         {
-            
-            
-            while (true)
-            {
-                WriteLine("Введите свое имя");
-                string name = ReadLine();
-                int countQestions = 5;
-                int countRightAnswers = 0;
-                int countDiagnoses = 6;
-                string[] questions = GetQuestions(countQestions);
-                int[] rightAnswer = GetRightAnswers(countQestions);
-                int[] RandomList = Randomize(countQestions);
-
-                for (int i = 0; i < countQestions; i++)
-                {
-                    WriteLine("Вопрос " + (i + 1) + " - " + questions[RandomList[i]]);
-                    int userAnswer = int.Parse(ReadLine());
-                    if (rightAnswer[RandomList[i]] == userAnswer)
-                    {
-                        countRightAnswers++;
-                    }
-                }
-                string[] diagnoses = GetDiagnoses(countDiagnoses);
-                WriteLine($"Количествов правильных ответов: {countRightAnswers}");
-                WriteLine($"{name}, ваш диагноз : {diagnoses[countRightAnswers]} ");
-                bool userChoise = GetUserChoise("Хотите начать тест заново?");
-                if(userChoise ==  false)
-                {
-                    break;
-                }
-                  
-            }
+            int diagnosesMark = (100/ countQestions) * countRightAnswers;
+            if (diagnosesMark >= 0 && diagnosesMark < 16)
+                return 0;
+            if (diagnosesMark >= 16 && diagnosesMark <= 33)
+                return 1;
+            if (diagnosesMark >= 34 && diagnosesMark <= 50)
+                return 2;
+            if (diagnosesMark >= 51 && diagnosesMark <= 67)
+                return 3;
+            if (diagnosesMark >= 68 && diagnosesMark <= 84)
+                return 4;
+            else
+                return 5;
         }
     }
 }
