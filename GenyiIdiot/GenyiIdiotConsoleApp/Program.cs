@@ -22,7 +22,7 @@ namespace GenyiIdiotConsoleApp
             {
                 WriteLine("Введите свое имя");
                 string name = ReadLine();
-                int countQestions = 7;
+                int countQestions = 8;
                 int countRightAnswers = 0;
                 int countDiagnoses = 6;
                 string[] questions = GetQuestions(countQestions);
@@ -60,6 +60,7 @@ namespace GenyiIdiotConsoleApp
             questions[4] = "Пять свечей горело, две потухли. Сколько свечей осталось?";
             questions[5] = "У фермера 18 овец, 9 застрелили, сколько овец осталось?";
             questions[6] = "Два мальчика играли в шашки 2 часа. Сколько времени играл каждый мальчик?";
+            questions[7] = "Какого цвета потолок? Варианты: 1 - белый, 2 - красный, 3 - полкан, 4 - желлтый";
             return questions;
         }
         static int[] GetRightAnswers(int countQestions)
@@ -72,19 +73,8 @@ namespace GenyiIdiotConsoleApp
             rightAnswer[4] = 2;
             rightAnswer[5] = 9;
             rightAnswer[6] = 2;
+            rightAnswer[7] = 3;
             return rightAnswer;
-        }
-        
-        static string[] GetDiagnoses(int countDiagnoses)
-        {
-            string[] diagnoses = new string[countDiagnoses];
-            diagnoses[0] = "кретин";
-            diagnoses[1] = "идиот";
-            diagnoses[2] = "дурак";
-            diagnoses[3] = "нормальный";
-            diagnoses[4] = "талант";
-            diagnoses[5] = "гений";
-            return diagnoses;
         }
 
         static int[] Randomize(int countQestions)
@@ -123,6 +113,19 @@ namespace GenyiIdiotConsoleApp
                 }
             }
         }
+
+        static string[] GetDiagnoses(int countDiagnoses)
+        {
+            string[] diagnoses = new string[countDiagnoses];
+            diagnoses[0] = "кретин";
+            diagnoses[1] = "идиот";
+            diagnoses[2] = "дурак";
+            diagnoses[3] = "нормальный";
+            diagnoses[4] = "талант";
+            diagnoses[5] = "гений";
+            return diagnoses;
+        }
+
         static int GetDiagnosesMark(int countQestions, int countRightAnswers)
         {
             int diagnosesMark = (100/ countQestions) * countRightAnswers;
