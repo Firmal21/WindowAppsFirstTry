@@ -7,6 +7,7 @@ using static System.Math;
 using static System.Console;
 using System.Threading;
 using System.Reflection.Emit;
+using System.Web;
 
 namespace GenyiIdiotConsoleApp
 {
@@ -55,7 +56,7 @@ namespace GenyiIdiotConsoleApp
                 numbers[c] = count;
                 count++;
             }
-            for (int k = countQestions-1; k >= 1; k--)
+            for (int k = countQestions - 1; k >= 1; k--)
             {
                 int randomIndex = random.Next(k + 1);
                 int tmp = numbers[randomIndex];
@@ -64,11 +65,32 @@ namespace GenyiIdiotConsoleApp
             }
             return numbers;
         }
+
+        static bool GetUserChoise(string message)
+        {
+            while (true)
+            {
+                WriteLine($"{message} Введите да или нет.");
+                string restartAnswer = ReadLine();
+                if (restartAnswer.ToLower().Contains("нет"))
+                {
+                    return false;
+                }
+                if (restartAnswer.ToLower().Contains("да"))
+                {
+                    return true;
+                }
+            }
+                    
+
+            
+
+        }
         static void Main(string[] args)
         {
             
-            bool restart = true;
-            while (restart == true)
+            
+            while (true)
             {
                 WriteLine("Введите свое имя");
                 string name = ReadLine();
@@ -91,12 +113,12 @@ namespace GenyiIdiotConsoleApp
                 string[] diagnoses = GetDiagnoses(countDiagnoses);
                 WriteLine($"Количествов правильных ответов: {countRightAnswers}");
                 WriteLine($"{name}, ваш диагноз : {diagnoses[countRightAnswers]} ");
-                WriteLine("Хотите начать тест заново?");
-                string restartAnswer = ReadLine();
-                if (!restartAnswer.ToLower().Contains("да"))
+                bool userChoise = GetUserChoise("Хотите начать тест заново?");
+                if(userChoise ==  false)
                 {
-                    restart = false;
-                }    
+                    break;
+                }
+                  
             }
         }
     }
