@@ -34,19 +34,9 @@ namespace GenyiIdiotConsoleApp
                     WriteLine("Вопрос " + (i + 1) + " - " + questions[RandomList[i]]);
 
                     string userAnswerString = ReadLine();
-                    while (true)
-                    {
-                        bool userAnswerForFool = CheckForFool(userAnswerString);
-                        if (userAnswerForFool == false)   
-                        {
-                            Write("Введи число еблан");
-                            userAnswerString = ReadLine();
-                        }
-                        
-                    }
-
-                    int userAnswer = int.Parse(userAnswerString);
-                    if (rightAnswer[RandomList[i]] == userAnswer)
+                    int userAnswerForFool = CheckForFool(userAnswerString);
+                    
+                    if (rightAnswer[RandomList[i]] == userAnswerForFool)
                     {
                         countRightAnswers++;
                     }
@@ -110,19 +100,21 @@ namespace GenyiIdiotConsoleApp
             return numbers;
         }
 
-        static bool CheckForFool(string answer)
-        {    
-            int coutn = 0;
-            for (int i = 0; i < answer.Length; i++)
+        static int CheckForFool(string answer)
+        {
+            while (true)
             {
-                if (!(answer[i] >= '0' && answer[i] <= '9'))
-                {
-                    Write("Пожалуйста, введите число!");
-                    return false;
+                if (int.TryParse(answer, out var answerInt))
+                { 
+                    return answerInt;
                 }
+                Write("Пожалуйста, введите число! \n");
+                answer = ReadLine();
                 
             }
-            return true;
+           // int userAnswer = int.Parse(answer);
+            //return userAnswer;
+
         }
         static bool GetUserChoise(string message)
         {
