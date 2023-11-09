@@ -8,6 +8,9 @@ using static System.Console;
 using System.Threading;
 using System.Reflection.Emit;
 using System.Web;
+using System.IO;
+//using System.Text;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace GenyiIdiotConsoleApp
 {
@@ -45,6 +48,7 @@ namespace GenyiIdiotConsoleApp
                 WriteLine($"Количествов правильных ответов: {countRightAnswers}");
                 int diagnosesMark = GetDiagnosesMark(countQestions, countRightAnswers);
                 WriteLine($"{name}, ваш диагноз : {diagnoses[diagnosesMark]} ");
+                SaveTestResults(name, countRightAnswers, diagnoses[diagnosesMark]);
                 bool userChoise = GetUserChoise("Хотите начать тест заново?");
                 if(userChoise ==  false)
                 {
@@ -112,9 +116,6 @@ namespace GenyiIdiotConsoleApp
                 answer = ReadLine();
                 
             }
-           // int userAnswer = int.Parse(answer);
-            //return userAnswer;
-
         }
         static bool GetUserChoise(string message)
         {
@@ -160,6 +161,27 @@ namespace GenyiIdiotConsoleApp
                 return 4;
             else
                 return 5;
+        }
+        static void SaveTestResults(string name, int countRightAnswers, string diagnosesMark)
+        {
+            try
+            {
+                
+                //Open the Fileа
+                StreamWriter sw = new StreamWriter("C:\\Users\\techn\\Desktop\\Code\\Test1.txt", true, Encoding.Default);
+                //Writeout the numbers 1 to 10 on the same line.
+                sw.WriteLine($"Участник {name} ответил верно на {countRightAnswers} вопросов и получил диагноз: {diagnosesMark}");
+                //close the file
+                sw.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Exception: " + e.Message);
+            }
+            finally
+            {
+                Console.WriteLine("Запись результата теста произведена успешно");
+            }
         }
     }
 }
