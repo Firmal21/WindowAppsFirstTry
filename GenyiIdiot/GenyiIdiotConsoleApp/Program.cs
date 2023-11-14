@@ -23,38 +23,45 @@ namespace GenyiIdiotConsoleApp
             
             while (true)
             {
+                int countQestions = 8;
+                int countDiagnoses = 6;
+                int countRightAnswers = 0;
+
                 WriteLine("Введите свое имя");
                 string name = ReadLine();
-                int countQestions = 8;
-                int countRightAnswers = 0;
-                int countDiagnoses = 6;
+
                 string[] questions = GetQuestions(countQestions);
+                string[] diagnoses = GetDiagnoses(countDiagnoses);
                 int[] rightAnswer = GetRightAnswers(countQestions);
-                int[] RandomList = Randomize(countQestions);
+                int[] randomList = Randomize(countQestions);
 
                 for (int i = 0; i < countQestions; i++)
                 {
-                    WriteLine("Вопрос " + (i + 1) + " - " + questions[RandomList[i]]);
+                    WriteLine("Вопрос " + (i + 1) + " - " + questions[randomList[i]]);
 
-                    string userAnswerString = ReadLine();
-                    int userAnswerForFool = CheckForFool(userAnswerString);
+                    //string userAnswerString = ReadLine();
+                    int userAnswerForFool = CheckForFool();
                     
-                    if (rightAnswer[RandomList[i]] == userAnswerForFool)
-                    {
+                    if (rightAnswer[randomList[i]] == userAnswerForFool)
                         countRightAnswers++;
-                    }
+                    
                 }
-                string[] diagnoses = GetDiagnoses(countDiagnoses);
+               
                 WriteLine($"Количествов правильных ответов: {countRightAnswers}");
-                int diagnosesMark = GetDiagnosesMark(countQestions, countRightAnswers);
-                WriteLine($"{name}, ваш диагноз : {diagnoses[diagnosesMark]} ");
-                SaveTestResults(name, countRightAnswers, diagnoses[diagnosesMark]);
+                
+                int userDiagnosis = GetUserDiagnosis(countQestions, countRightAnswers);
+
+                WriteLine($"{name}, ваш диагноз : {diagnoses[userDiagnosis]} ");
+                SaveTestResults(name, countRightAnswers, diagnoses[userDiagnosis]);
+                
+                bool userShowChoise = GetUserChoise("Хотите увидеть предыдущие результаты?");
+                if (userShowChoise == true)
+                    ShowTestResults();
+
                 bool userChoise = GetUserChoise("Хотите начать тест заново?");
+                
                 if(userChoise ==  false)
-                {
                     break;
-                }
-                  
             }
         }
          static string[] GetQuestions(int countQuestions)
@@ -89,11 +96,13 @@ namespace GenyiIdiotConsoleApp
             Random random = new Random();
             int[] numbers = new int[countQestions];
             int count = 0;
+
             for (int c = 0; c < countQestions; c++)
             {
                 numbers[c] = count;
                 count++;
             }
+
             for (int k = countQestions - 1; k >= 1; k--)
             {
                 int randomIndex = random.Next(k + 1);
@@ -101,36 +110,33 @@ namespace GenyiIdiotConsoleApp
                 numbers[randomIndex] = numbers[k];
                 numbers[k] = tmp;
             }
+
             return numbers;
         }
 
-        static int CheckForFool(string answer)
+        static int CheckForFool()
         {
             while (true)
             {
-                if (int.TryParse(answer, out var answerInt))
-                { 
+
+                try
+                {
+                    return int.Parse(ReadLine());
+                }
+                catch(FormatException)
+                {
+                    WriteLine("Пожалуйста, введите число");
+                }
+                catch(OverflowException)
+                {
+                    WriteLine("Вы ввели слишком большое число");
+                }
+                /* 
+                if (long.TryParse(ReadLine(), out var answerInt))
                     return answerInt;
-                }
+
                 Write("Пожалуйста, введите число! \n");
-                answer = ReadLine();
-                
-            }
-        }
-        static bool GetUserChoise(string message)
-        {
-            while (true)
-            {
-                WriteLine($"{message} Введите да или нет.");
-                string restartAnswer = ReadLine();
-                if (restartAnswer.ToLower().Contains("нет"))
-                {
-                    return false;
-                }
-                if (restartAnswer.ToLower().Contains("да"))
-                {
-                    return true;
-                }
+                */
             }
         }
 
@@ -146,41 +152,62 @@ namespace GenyiIdiotConsoleApp
             return diagnoses;
         }
 
-        static int GetDiagnosesMark(int countQestions, int countRightAnswers)
+        static int GetUserDiagnosis(int countQestions, int countRightAnswers)
         {
-            int diagnosesMark = (100/ countQestions) * countRightAnswers;
-            if (diagnosesMark >= 0 && diagnosesMark < 16)
+            int diagnosesPersents = (countRightAnswers * 100) / countQestions;
+
+            if (diagnosesPersents >= 0 && diagnosesPersents < 16)
                 return 0;
-            if (diagnosesMark >= 16 && diagnosesMark <= 33)
+
+            if (diagnosesPersents >= 16 && diagnosesPersents <= 33)
                 return 1;
-            if (diagnosesMark >= 34 && diagnosesMark <= 50)
+
+            if (diagnosesPersents >= 34 && diagnosesPersents <= 50)
                 return 2;
-            if (diagnosesMark >= 51 && diagnosesMark <= 67)
+
+            if (diagnosesPersents >= 51 && diagnosesPersents <= 67)
                 return 3;
-            if (diagnosesMark >= 68 && diagnosesMark <= 84)
+
+            if (diagnosesPersents >= 68 && diagnosesPersents <= 84)
                 return 4;
-            else
+
                 return 5;
         }
         static void SaveTestResults(string name, int countRightAnswers, string diagnosesMark)
         {
-            try
+              StreamWriter sw = new StreamWriter("UserResults.txt", true, Encoding.Default);
+              sw.WriteLine($"{name}#{countRightAnswers}#{diagnosesMark}");
+              sw.Close();
+        }
+        static void ShowTestResults()
+        {
+            StreamReader reader = new StreamReader("UserResults.txt", Encoding.Default);
+            WriteLine("{0:20}, {1:10}, {2:10}", "Имя", "Кол-во верных ответов", "Диагноз");
+            while(!reader.EndOfStream)
             {
-                
-                //Open the Fileа
-                StreamWriter sw = new StreamWriter("C:\\Users\\techn\\Desktop\\Code\\Test1.txt", true, Encoding.Default);
-                //Writeout the numbers 1 to 10 on the same line.
-                sw.WriteLine($"Участник {name} ответил верно на {countRightAnswers} вопросов и получил диагноз: {diagnosesMark}");
-                //close the file
-                sw.Close();
+                string[] value = reader.ReadLine().Split('#');
+                string name = value[0];
+                int countRightAnswers = int.Parse(value[1]);
+                string diagnosesMark = value[2];
+                WriteLine("{0:20}, {1:10}, {2:10}", name, countRightAnswers, diagnosesMark);
             }
-            catch (Exception e)
+           
+            reader.Close();
+        }
+        
+        static bool GetUserChoise(string message)
+        {
+            while (true)
             {
-                Console.WriteLine("Exception: " + e.Message);
-            }
-            finally
-            {
-                Console.WriteLine("Запись результата теста произведена успешно");
+                WriteLine($"{message} Введите да или нет.");
+                string restartAnswer = ReadLine();
+
+                if (restartAnswer.ToLower().Contains("нет"))
+                    return false;
+
+                if (restartAnswer.ToLower().Contains("да"))
+                    return true;
+
             }
         }
     }
