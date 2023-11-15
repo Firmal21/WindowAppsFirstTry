@@ -14,13 +14,12 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace GenyiIdiotConsoleApp
 {
+
     internal class Program
     {
-       
+
         static void Main(string[] args)
-        {
-            
-            
+        { 
             while (true)
             {
                 int countDiagnoses = 6;
@@ -32,68 +31,55 @@ namespace GenyiIdiotConsoleApp
                 var questions = GetQuestions();
                 int countQestions = questions.Count;
                 string[] diagnoses = GetDiagnoses(countDiagnoses);
-                var rightAnswers = GetRightAnswers();
+                //var rightAnswers = GetRightAnswers();
                 var random = new Random();
                 //int[] randomList = Randomize(countQestions);
 
                 for (int i = 0; i < countQestions; i++)
                 {
                     var randomQestionIndex = random.Next(0, questions.Count);
-                    WriteLine("Вопрос " + (i + 1) + " - " + questions[randomQestionIndex]);
+                    WriteLine("Вопрос " + (i + 1) + " - " + questions[randomQestionIndex].Text);
                     int userAnswerForFool = CheckForFool();
-                    
-                    if (rightAnswers[randomQestionIndex] == userAnswerForFool)
+                    var rightAnswers = questions[randomQestionIndex].Answer;
+                    if (rightAnswers == userAnswerForFool)
                         countRightAnswers++;
 
                     questions.RemoveAt(randomQestionIndex);
-                    rightAnswers.RemoveAt(randomQestionIndex);
+                    //questions.RemoveAt(randomQestionIndex);
                 }
-               
+
                 WriteLine($"Количествов правильных ответов: {countRightAnswers}");
-                
+
                 int userDiagnosis = GetUserDiagnosis(countQestions, countRightAnswers);
 
                 WriteLine($"{name}, ваш диагноз : {diagnoses[userDiagnosis]} ");
                 SaveTestResults(name, countRightAnswers, diagnoses[userDiagnosis]);
-                
+
                 bool userShowChoise = GetUserChoise("Хотите увидеть предыдущие результаты?");
                 if (userShowChoise == true)
                     ShowTestResults();
 
                 WriteLine();
                 bool userChoise = GetUserChoise("Хотите начать тест заново?");
-                
-                if(userChoise ==  false)
+
+                if (userChoise == false)
                     break;
             }
         }
-        static List<string> GetQuestions()
+        static List<Question> GetQuestions()
         {
-            var questions = new List<string>();
-            questions.Add("Сколько будет два плюс два умноженное на два?");
-            questions.Add("Бревно нужно распилить на 10 частей. Сколько распилов нужно сделать?");
-            questions.Add("На двух руках 10 пальцев. Сколько пальцев на 5 руках?");
-            questions.Add("Укол делают каждые полчаса. Сколько нужно минут, чтобы сделать три укола?");
-            questions.Add("Пять свечей горело, две потухли. Сколько свечей осталось?");
-            questions.Add("У фермера 18 овец, 9 застрелили, сколько овец осталось?");
-            questions.Add("Два мальчика играли в шашки 2 часа. Сколько времени играл каждый мальчик?");
-            questions.Add("Какого цвета потолок? Варианты: 1 - белый, 2 - красный, 3 - полкан, 4 - желлтый");
+            var questions = new List<Question>();
+            questions.Add(new Question("Сколько будет два плюс два умноженное на два?", 6));
+            questions.Add(new Question("Бревно нужно распилить на 10 частей. Сколько распилов нужно сделать?", 9));
+            questions.Add(new Question("На двух руках 10 пальцев. Сколько пальцев на 5 руках?", 25));
+            questions.Add(new Question("Укол делают каждые полчаса. Сколько нужно минут, чтобы сделать три укола?", 60));
+            questions.Add(new Question("Пять свечей горело, две потухли. Сколько свечей осталось?", 2));
+            questions.Add(new Question("У фермера 18 овец, 9 застрелили, сколько овец осталось?", 9));
+            questions.Add(new Question("Два мальчика играли в шашки 2 часа. Сколько времени играл каждый мальчик?", 2));
+            questions.Add(new Question("Какого цвета потолок? Варианты: 1 - белый, 2 - красный, 3 - полкан, 4 - желлтый", 3));
             return questions;
         }
-        static List<int> GetRightAnswers()
-        {
-            var rightAnswer = new List<int>();
-            rightAnswer.Add(6);
-            rightAnswer.Add(9);
-            rightAnswer.Add(25);
-            rightAnswer.Add(60);
-            rightAnswer.Add(2);
-            rightAnswer.Add(9);
-            rightAnswer.Add(2);
-            rightAnswer.Add(3);
-            return rightAnswer;
-        }
-       
+
         static int CheckForFool()
         {
             while (true)
@@ -103,11 +89,11 @@ namespace GenyiIdiotConsoleApp
                 {
                     return int.Parse(ReadLine());
                 }
-                catch(FormatException)
+                catch (FormatException)
                 {
                     WriteLine("Пожалуйста, введите число");
                 }
-                catch(OverflowException)
+                catch (OverflowException)
                 {
                     WriteLine("Вы ввели слишком большое число");
                 }
@@ -151,19 +137,19 @@ namespace GenyiIdiotConsoleApp
             if (diagnosesPersents >= 68 && diagnosesPersents <= 84)
                 return 4;
 
-                return 5;
+            return 5;
         }
         static void SaveTestResults(string name, int countRightAnswers, string diagnosesMark)
         {
-              StreamWriter sw = new StreamWriter("UserResults.txt", true, Encoding.Default);
-              sw.WriteLine($"{name}#{countRightAnswers}#{diagnosesMark}");
-              sw.Close();
+            StreamWriter sw = new StreamWriter("UserResults.txt", true, Encoding.Default);
+            sw.WriteLine($"{name}#{countRightAnswers}#{diagnosesMark}");
+            sw.Close();
         }
         static void ShowTestResults()
         {
             StreamReader reader = new StreamReader("UserResults.txt", Encoding.Default);
             WriteLine("{0,-20} {1,18} {2,10}", "Имя", "Кол-во верных ответов", "Диагноз");
-            while(!reader.EndOfStream)
+            while (!reader.EndOfStream)
             {
                 string[] value = reader.ReadLine().Split('#');
                 string name = value[0];
@@ -171,10 +157,10 @@ namespace GenyiIdiotConsoleApp
                 string diagnosesMark = value[2];
                 WriteLine("{0,-20} {1,18} {2,12}", name, countRightAnswers, diagnosesMark);
             }
-           
+
             reader.Close();
         }
-        
+
         static bool GetUserChoise(string message)
         {
             while (true)
@@ -195,30 +181,30 @@ namespace GenyiIdiotConsoleApp
                 }
             }
         }
-         /*
-        static int[] Randomize(int countQestions)
-        {
-            Random random = new Random();
-            int[] numbers = new int[countQestions];
-            int count = 0;
+        /*
+       static int[] Randomize(int countQestions)
+       {
+           Random random = new Random();
+           int[] numbers = new int[countQestions];
+           int count = 0;
 
-            for (int c = 0; c < countQestions; c++)
-            {
-                numbers[c] = count;
-                count++;
-            }
+           for (int c = 0; c < countQestions; c++)
+           {
+               numbers[c] = count;
+               count++;
+           }
 
-            for (int k = countQestions - 1; k >= 1; k--)
-            {
-                int randomIndex = random.Next(k + 1);
-                int tmp = numbers[randomIndex];
-                numbers[randomIndex] = numbers[k];
-                numbers[k] = tmp;
-            }
+           for (int k = countQestions - 1; k >= 1; k--)
+           {
+               int randomIndex = random.Next(k + 1);
+               int tmp = numbers[randomIndex];
+               numbers[randomIndex] = numbers[k];
+               numbers[k] = tmp;
+           }
 
-            return numbers;
-        }
-        */
+           return numbers;
+       }
+       */
     }
 }
 
