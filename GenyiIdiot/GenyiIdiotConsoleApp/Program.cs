@@ -23,28 +23,30 @@ namespace GenyiIdiotConsoleApp
             
             while (true)
             {
-                int countQestions = 8;
                 int countDiagnoses = 6;
                 int countRightAnswers = 0;
 
                 WriteLine("Введите свое имя");
                 string name = ReadLine();
 
-                string[] questions = GetQuestions(countQestions);
+                var questions = GetQuestions();
+                int countQestions = questions.Count;
                 string[] diagnoses = GetDiagnoses(countDiagnoses);
-                int[] rightAnswer = GetRightAnswers(countQestions);
-                int[] randomList = Randomize(countQestions);
+                var rightAnswers = GetRightAnswers();
+                var random = new Random();
+                //int[] randomList = Randomize(countQestions);
 
                 for (int i = 0; i < countQestions; i++)
                 {
-                    WriteLine("Вопрос " + (i + 1) + " - " + questions[randomList[i]]);
-
-                    //string userAnswerString = ReadLine();
+                    var randomQestionIndex = random.Next(0, questions.Count);
+                    WriteLine("Вопрос " + (i + 1) + " - " + questions[randomQestionIndex]);
                     int userAnswerForFool = CheckForFool();
                     
-                    if (rightAnswer[randomList[i]] == userAnswerForFool)
+                    if (rightAnswers[randomQestionIndex] == userAnswerForFool)
                         countRightAnswers++;
-                    
+
+                    questions.RemoveAt(randomQestionIndex);
+                    rightAnswers.RemoveAt(randomQestionIndex);
                 }
                
                 WriteLine($"Количествов правильных ответов: {countRightAnswers}");
@@ -58,62 +60,40 @@ namespace GenyiIdiotConsoleApp
                 if (userShowChoise == true)
                     ShowTestResults();
 
+                WriteLine();
                 bool userChoise = GetUserChoise("Хотите начать тест заново?");
                 
                 if(userChoise ==  false)
                     break;
             }
         }
-         static string[] GetQuestions(int countQuestions)
+        static List<string> GetQuestions()
         {
-            string[] questions = new string[countQuestions];
-            questions[0] = "Сколько будет два плюс два умноженное на два?";
-            questions[1] = "Бревно нужно распилить на 10 частей. Сколько распилов нужно сделать?";
-            questions[2] = "На двух руках 10 пальцев. Сколько пальцев на 5 руках?";
-            questions[3] = "Укол делают каждые полчаса. Сколько нужно минут, чтобы сделать три укола?";
-            questions[4] = "Пять свечей горело, две потухли. Сколько свечей осталось?";
-            questions[5] = "У фермера 18 овец, 9 застрелили, сколько овец осталось?";
-            questions[6] = "Два мальчика играли в шашки 2 часа. Сколько времени играл каждый мальчик?";
-            questions[7] = "Какого цвета потолок? Варианты: 1 - белый, 2 - красный, 3 - полкан, 4 - желлтый";
+            var questions = new List<string>();
+            questions.Add("Сколько будет два плюс два умноженное на два?");
+            questions.Add("Бревно нужно распилить на 10 частей. Сколько распилов нужно сделать?");
+            questions.Add("На двух руках 10 пальцев. Сколько пальцев на 5 руках?");
+            questions.Add("Укол делают каждые полчаса. Сколько нужно минут, чтобы сделать три укола?");
+            questions.Add("Пять свечей горело, две потухли. Сколько свечей осталось?");
+            questions.Add("У фермера 18 овец, 9 застрелили, сколько овец осталось?");
+            questions.Add("Два мальчика играли в шашки 2 часа. Сколько времени играл каждый мальчик?");
+            questions.Add("Какого цвета потолок? Варианты: 1 - белый, 2 - красный, 3 - полкан, 4 - желлтый");
             return questions;
         }
-        static int[] GetRightAnswers(int countQestions)
+        static List<int> GetRightAnswers()
         {
-            int[] rightAnswer = new int[countQestions];
-            rightAnswer[0] = 6;
-            rightAnswer[1] = 9;
-            rightAnswer[2] = 25;
-            rightAnswer[3] = 60;
-            rightAnswer[4] = 2;
-            rightAnswer[5] = 9;
-            rightAnswer[6] = 2;
-            rightAnswer[7] = 3;
+            var rightAnswer = new List<int>();
+            rightAnswer.Add(6);
+            rightAnswer.Add(9);
+            rightAnswer.Add(25);
+            rightAnswer.Add(60);
+            rightAnswer.Add(2);
+            rightAnswer.Add(9);
+            rightAnswer.Add(2);
+            rightAnswer.Add(3);
             return rightAnswer;
         }
-
-        static int[] Randomize(int countQestions)
-        {
-            Random random = new Random();
-            int[] numbers = new int[countQestions];
-            int count = 0;
-
-            for (int c = 0; c < countQestions; c++)
-            {
-                numbers[c] = count;
-                count++;
-            }
-
-            for (int k = countQestions - 1; k >= 1; k--)
-            {
-                int randomIndex = random.Next(k + 1);
-                int tmp = numbers[randomIndex];
-                numbers[randomIndex] = numbers[k];
-                numbers[k] = tmp;
-            }
-
-            return numbers;
-        }
-
+       
         static int CheckForFool()
         {
             while (true)
@@ -182,14 +162,14 @@ namespace GenyiIdiotConsoleApp
         static void ShowTestResults()
         {
             StreamReader reader = new StreamReader("UserResults.txt", Encoding.Default);
-            WriteLine("{0:20}, {1:10}, {2:10}", "Имя", "Кол-во верных ответов", "Диагноз");
+            WriteLine("{0,-20} {1,18} {2,10}", "Имя", "Кол-во верных ответов", "Диагноз");
             while(!reader.EndOfStream)
             {
                 string[] value = reader.ReadLine().Split('#');
                 string name = value[0];
                 int countRightAnswers = int.Parse(value[1]);
                 string diagnosesMark = value[2];
-                WriteLine("{0:20}, {1:10}, {2:10}", name, countRightAnswers, diagnosesMark);
+                WriteLine("{0,-20} {1,18} {2,12}", name, countRightAnswers, diagnosesMark);
             }
            
             reader.Close();
@@ -203,13 +183,42 @@ namespace GenyiIdiotConsoleApp
                 string restartAnswer = ReadLine();
 
                 if (restartAnswer.ToLower().Contains("нет"))
+                {
+                    WriteLine();
                     return false;
+                }
 
                 if (restartAnswer.ToLower().Contains("да"))
+                {
+                    WriteLine();
                     return true;
-
+                }
             }
         }
+         /*
+        static int[] Randomize(int countQestions)
+        {
+            Random random = new Random();
+            int[] numbers = new int[countQestions];
+            int count = 0;
+
+            for (int c = 0; c < countQestions; c++)
+            {
+                numbers[c] = count;
+                count++;
+            }
+
+            for (int k = countQestions - 1; k >= 1; k--)
+            {
+                int randomIndex = random.Next(k + 1);
+                int tmp = numbers[randomIndex];
+                numbers[randomIndex] = numbers[k];
+                numbers[k] = tmp;
+            }
+
+            return numbers;
+        }
+        */
     }
 }
 
