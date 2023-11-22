@@ -30,20 +30,6 @@ namespace GenyiIdiotConsoleApp
             return diagnoses[diagnosePoint];
         }
 
-        //public static List<Diagnoses> GetDiagnosesStorage()
-        //{
-        //    var diagnosesList = new List<Diagnoses>();
-
-        //    diagnosesList.Add(new Diagnoses("кретин", 0));
-        //    diagnosesList.Add(new Diagnoses("идиот", 1));
-        //    diagnosesList.Add(new Diagnoses("дурак", 2));
-        //    diagnosesList.Add(new Diagnoses("нормальный", 3));
-        //    diagnosesList.Add(new Diagnoses("талант", 4));
-        //    diagnosesList.Add(new Diagnoses("гений", 5));
-
-        //    return diagnosesList;
-        //}
-
         public static int CalculateUserDiagnose(int countQestions, int countRightAnswers)
         {
             
