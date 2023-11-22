@@ -15,7 +15,7 @@ using static System.Net.Mime.MediaTypeNames;
 namespace GenyiIdiotConsoleApp
 {
 
-    internal class Program
+    internal partial class Program
     {
 
         static void Main(string[] args)
@@ -24,12 +24,13 @@ namespace GenyiIdiotConsoleApp
             {
                 int countDiagnoses = 6;
                 
-                User user = new User();
+                
 
                 WriteLine("Введите свое имя");
-                user.Name = ReadLine();
+                string name = ReadLine();
 
-               
+                User user = new User(name);
+
                 var questions = QuestionsStorage.GetAll();
                 int countQestions = questions.Count;
 
@@ -47,18 +48,18 @@ namespace GenyiIdiotConsoleApp
                     user.Answer = CheckForFool();
                     
                     if (questions[randomQestionIndex].Answer == user.Answer)
-                        user.RightAnswers++;
+                        user.CountRightAnswers++;
 
-                    //questions.RemoveAt(randomQestionIndex);
+                    questions.RemoveAt(randomQestionIndex);
                     
                 }
 
-                WriteLine($"Количествов правильных ответов: {user.RightAnswers}");
+                WriteLine($"Количествов правильных ответов: {user.CountRightAnswers}");
 
-                int userDiagnosis = GetUserDiagnosis(countQestions, user.RightAnswers);
+                int userDiagnosis = GetUserDiagnosis(countQestions, user.CountRightAnswers);
 
                 WriteLine($"{user.Name}, ваш диагноз : {diagnoses[userDiagnosis]} ");
-                SaveTestResults(user.Name, user.RightAnswers, diagnoses[userDiagnosis]);
+                SaveTestResults(user.Name, user.CountRightAnswers, diagnoses[userDiagnosis]);
 
                 bool userShowChoise = GetUserChoise("Хотите увидеть предыдущие результаты?");
                 if (userShowChoise == true)
