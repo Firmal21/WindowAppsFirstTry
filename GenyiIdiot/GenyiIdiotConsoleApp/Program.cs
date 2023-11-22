@@ -14,6 +14,7 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace GenyiIdiotConsoleApp
 {
+
     internal class Program
     {
 
@@ -22,37 +23,42 @@ namespace GenyiIdiotConsoleApp
             while (true)
             {
                 int countDiagnoses = 6;
-                int countRightAnswers = 0;
+                
+                User user = new User();
 
                 WriteLine("Введите свое имя");
-                string name = ReadLine();
+                user.Name = ReadLine();
 
-                var questions = GetQuestions();
+               
+                var questions = QuestionsStorage.GetAll();
                 int countQestions = questions.Count;
+
                 string[] diagnoses = GetDiagnoses(countDiagnoses);
-                //var rightAnswers = GetRightAnswers();
+                
                 var random = new Random();
-                //int[] randomList = Randomize(countQestions);
+                
 
                 for (int i = 0; i < countQestions; i++)
                 {
                     var randomQestionIndex = random.Next(0, questions.Count);
-                    WriteLine("Вопрос " + (i + 1) + " - " + questions[randomQestionIndex].Text);
-                    int userAnswerForFool = CheckForFool();
-                    var rightAnswers = questions[randomQestionIndex].Answer;
-                    if (rightAnswers == userAnswerForFool)
-                        countRightAnswers++;
 
-                    questions.RemoveAt(randomQestionIndex);
+                    WriteLine("Вопрос " + (i + 1) + " - " + questions[randomQestionIndex].Text);
+
+                    user.Answer = CheckForFool();
+                    
+                    if (questions[randomQestionIndex].Answer == user.Answer)
+                        user.RightAnswers++;
+
                     //questions.RemoveAt(randomQestionIndex);
+                    
                 }
 
-                WriteLine($"Количествов правильных ответов: {countRightAnswers}");
+                WriteLine($"Количествов правильных ответов: {user.RightAnswers}");
 
-                int userDiagnosis = GetUserDiagnosis(countQestions, countRightAnswers);
+                int userDiagnosis = GetUserDiagnosis(countQestions, user.RightAnswers);
 
-                WriteLine($"{name}, ваш диагноз : {diagnoses[userDiagnosis]} ");
-                SaveTestResults(name, countRightAnswers, diagnoses[userDiagnosis]);
+                WriteLine($"{user.Name}, ваш диагноз : {diagnoses[userDiagnosis]} ");
+                SaveTestResults(user.Name, user.RightAnswers, diagnoses[userDiagnosis]);
 
                 bool userShowChoise = GetUserChoise("Хотите увидеть предыдущие результаты?");
                 if (userShowChoise == true)
@@ -65,19 +71,7 @@ namespace GenyiIdiotConsoleApp
                     break;
             }
         }
-        static List<Question> GetQuestions()
-        {
-            var questions = new List<Question>();
-            questions.Add(new Question("Сколько будет два плюс два умноженное на два?", 6));
-            questions.Add(new Question("Бревно нужно распилить на 10 частей. Сколько распилов нужно сделать?", 9));
-            questions.Add(new Question("На двух руках 10 пальцев. Сколько пальцев на 5 руках?", 25));
-            questions.Add(new Question("Укол делают каждые полчаса. Сколько нужно минут, чтобы сделать три укола?", 60));
-            questions.Add(new Question("Пять свечей горело, две потухли. Сколько свечей осталось?", 2));
-            questions.Add(new Question("У фермера 18 овец, 9 застрелили, сколько овец осталось?", 9));
-            questions.Add(new Question("Два мальчика играли в шашки 2 часа. Сколько времени играл каждый мальчик?", 2));
-            questions.Add(new Question("Какого цвета потолок? Варианты: 1 - белый, 2 - красный, 3 - полкан, 4 - желлтый", 3));
-            return questions;
-        }
+       
 
         static int CheckForFool()
         {
@@ -180,30 +174,6 @@ namespace GenyiIdiotConsoleApp
                 }
             }
         }
-        /*
-       static int[] Randomize(int countQestions)
-       {
-           Random random = new Random();
-           int[] numbers = new int[countQestions];
-           int count = 0;
-
-           for (int c = 0; c < countQestions; c++)
-           {
-               numbers[c] = count;
-               count++;
-           }
-
-           for (int k = countQestions - 1; k >= 1; k--)
-           {
-               int randomIndex = random.Next(k + 1);
-               int tmp = numbers[randomIndex];
-               numbers[randomIndex] = numbers[k];
-               numbers[k] = tmp;
-           }
-
-           return numbers;
-       }
-       */
     }
 }
 
