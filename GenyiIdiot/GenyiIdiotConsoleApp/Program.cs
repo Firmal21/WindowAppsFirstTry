@@ -14,7 +14,6 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace GenyiIdiotConsoleApp
 {
-
     internal class Program
     {
 
