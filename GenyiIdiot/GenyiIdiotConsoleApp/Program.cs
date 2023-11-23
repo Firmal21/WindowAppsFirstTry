@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using static System.Math;
@@ -9,10 +8,10 @@ using System.Reflection.Emit;
 using System.Web;
 //using System.Text;
 using static System.Net.Mime.MediaTypeNames;
+using static GenyiIdiotConsoleApp.Program;
 
 namespace GenyiIdiotConsoleApp
 {
-
     internal partial class Program
     {
 
@@ -25,7 +24,26 @@ namespace GenyiIdiotConsoleApp
 
                 User user = new User(name);
 
-                var questions = QuestionsStorage.GetAll();
+                if (user.Name.ToLower() == "admin")
+                {
+                    while (true)
+                    {
+                        bool adminChoise = GetUserChoise("Хотите добавить вопрос?");
+                        if (adminChoise == true)
+                        {
+                            WriteLine("Введите вопрос: ");
+                            string question = ReadLine();
+                            Write("Введите ответ: ");
+                            int answer = int.Parse(ReadLine());
+                            QuestonStorage2.AddQuesion(question, answer);
+                        }
+                        bool anotherAdminChoise = GetUserChoise("Хотите добавить вопрос?");
+                        if (anotherAdminChoise == false)
+                            break;
+                    }
+                }
+
+                var questions = QuestonStorage2.GetAllQuestions();
                 int countQestions = questions.Count;
 
                 var random = new Random();
@@ -61,25 +79,14 @@ namespace GenyiIdiotConsoleApp
                     WriteLine();
                     ShowTestResults();
                 }
-               
+
+                
                 bool userChoise = GetUserChoise("Хотите начать тест заново?");
 
                 if (userChoise == false)
                     break;
 
-                if(user.Name.ToLower() == "admin")
-                {
-                    bool adminChoise = GetUserChoise("Хотите добавить вопрос?");
-                    if (userChoise == true)
-                    {
-                        WriteLine("Введите вопрос: ");
-                        string question = ReadLine();
-                        Write("Введите ответ: ");
-                        int answer = int.Parse(ReadLine());
-                        //FileProvider.AddQuestion();
-                    }
-                    
-                }
+                
 
             }
         }
