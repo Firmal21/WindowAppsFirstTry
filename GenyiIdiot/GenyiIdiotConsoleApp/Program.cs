@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using static System.Math;
 using static System.Console;
 using System.Threading;
 using System.Reflection.Emit;
 using System.Web;
-using System.IO;
 //using System.Text;
 using static System.Net.Mime.MediaTypeNames;
 
@@ -18,14 +16,10 @@ namespace GenyiIdiotConsoleApp
     internal partial class Program
     {
 
-        static void Main(string[] args)
+        static void Main()
         { 
             while (true)
             {
-                int countDiagnoses = 6;
-                
-                
-
                 WriteLine("Введите свое имя");
                 string name = ReadLine();
 
@@ -34,10 +28,8 @@ namespace GenyiIdiotConsoleApp
                 var questions = QuestionsStorage.GetAll();
                 int countQestions = questions.Count;
 
-                
                 var random = new Random();
                 
-
                 for (int i = 0; i < countQestions; i++)
                 {
                     var randomQestionIndex = random.Next(0, questions.Count);
@@ -59,18 +51,36 @@ namespace GenyiIdiotConsoleApp
                 user.Diagnoses = Diagnoses.GetDiagnose(userPoints);
                 
 
-                WriteLine($"{user.Name}, ваш диагноз : {user.Diagnoses} ");
+                WriteLine($"{user.Name}, ваш диагноз : {user.Diagnoses}");
                 UserResultStorage.SaveTestResults(user);
 
                 bool userShowChoise = GetUserChoise("Хотите увидеть предыдущие результаты?");
-                if (userShowChoise == true)
-                    ShowTestResults();
 
-                WriteLine();
+                if (userShowChoise == true)
+                {
+                    WriteLine();
+                    ShowTestResults();
+                }
+               
                 bool userChoise = GetUserChoise("Хотите начать тест заново?");
 
                 if (userChoise == false)
                     break;
+
+                if(user.Name.ToLower() == "admin")
+                {
+                    bool adminChoise = GetUserChoise("Хотите добавить вопрос?");
+                    if (userChoise == true)
+                    {
+                        WriteLine("Введите вопрос: ");
+                        string question = ReadLine();
+                        Write("Введите ответ: ");
+                        int answer = int.Parse(ReadLine());
+                        //FileProvider.AddQuestion();
+                    }
+                    
+                }
+
             }
         }
        
@@ -96,24 +106,17 @@ namespace GenyiIdiotConsoleApp
         }
 
 
-
-
-
         static void ShowTestResults()
         {
-            StreamReader reader = new StreamReader("UserResults.txt", Encoding.Default);
+            var result = UserResultStorage.GetUserResults();
+            //StreamReader reader = new StreamReader("UserResults.txt", Encoding.Default);
             WriteLine("{0,-20} {1,18} {2,10}", "Имя", "Кол-во верных ответов", "Диагноз");
-            while (!reader.EndOfStream)
+            foreach (var user in result) 
             {
-                string[] value = reader.ReadLine().Split('#');
-                string name = value[0];
-                int countRightAnswers = int.Parse(value[1]);
-                string diagnosesMark = value[2];
-                WriteLine("{0,-20} {1,18} {2,12}", name, countRightAnswers, diagnosesMark);
+                WriteLine("{0,-20} {1,18} {2,12}", user.Name, user.CountRightAnswers, user.Diagnoses);
             }
-
-            reader.Close();
         }
+
 
         static bool GetUserChoise(string message)
         {
@@ -124,13 +127,13 @@ namespace GenyiIdiotConsoleApp
 
                 if (restartAnswer.ToLower().Contains("нет"))
                 {
-                    WriteLine();
+                    
                     return false;
                 }
 
                 if (restartAnswer.ToLower().Contains("да"))
                 {
-                    WriteLine();
+                    
                     return true;
                 }
             }

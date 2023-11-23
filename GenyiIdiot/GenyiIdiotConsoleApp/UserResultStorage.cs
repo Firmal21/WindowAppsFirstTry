@@ -6,31 +6,29 @@ using System.Collections.Generic;
 
 namespace GenyiIdiotConsoleApp
 {
-
-
     internal partial class Program
     {
         public class UserResultStorage
         {
             public static void SaveTestResults(User user)
             {
-                StreamWriter sw = new StreamWriter("UserResults.txt", true, Encoding.Default);
-                sw.WriteLine($"{user.Name}#{user.CountRightAnswers}#{user.Diagnoses}");
-                sw.Close();
+                var value = $"{user.Name}#{user.CountRightAnswers}#{user.Diagnoses}";
+                FileProvider.Append("userResults.txt", value);
+                
             }
 
             public static List<User> GetUserResults()
             {
-                var reader = new StreamReader("UserResults.txt", Encoding.Default);
+                var value = FileProvider.GetValue("UserResults.txt");
+                var lines = value.Split('\n');
                 var results = new List<User>();
 
-
-                while (!reader.EndOfStream)
+                foreach (var line in lines) 
                 {
-                    string[] value = reader.ReadLine().Split('#');
-                    string name = value[0];
-                    int countRightAnswers = int.Parse(value[1]);
-                    string diagnoses = value[2];
+                    var values = line.Split('#');
+                    string name = values[0];
+                    int countRightAnswers = int.Parse(values[1]);
+                    string diagnoses = values[2];
 
                     var user = new User(name);
                     user.CountRightAnswers = countRightAnswers;
@@ -38,12 +36,9 @@ namespace GenyiIdiotConsoleApp
 
                     results.Add(user);
                 }
-
-                reader.Close();
                 return results;
             }
         }
     }
-    
 }
 
