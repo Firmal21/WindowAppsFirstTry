@@ -9,11 +9,69 @@ using System.Web;
 //using System.Text;
 using static System.Net.Mime.MediaTypeNames;
 using static GenyiIdiotConsoleApp.Program;
+using System.Xml.Serialization;
 
 namespace GenyiIdiotConsoleApp
 {
     internal partial class Program
     {
+        static void AddNewQuestion()
+        {
+            while (true)
+            {
+                bool adminChoise = GetUserChoise("Хотите добавить вопрос?");
+
+                if (adminChoise == true)
+                {
+                    WriteLine("Введите вопрос: ");
+                    string question = ReadLine();
+                    Write("Введите ответ на вопрос: ");
+                    var answer = GetNumber();
+
+                    var newQuestion = new Question(question, answer);
+                    QuestionsStorage.Add(newQuestion);
+                    adminChoise = GetUserChoise("Хотите добавить ещё один вопрос?");
+                }
+                
+                if (adminChoise == false)
+                    break;
+            }
+
+            while (true)
+            {
+                bool adminChoise = GetUserChoise("Хотите удалить сущесвтующий вопрос?");
+
+                if (adminChoise == true)
+                {
+                    RemoveQuestion();
+                }
+                if (adminChoise == false)
+                    break;
+            }
+
+        }
+
+        private static void RemoveQuestion()
+        {
+            WriteLine("Введите номер удаляемого вопроса: ");
+            var questions = QuestionsStorage.GetAllQuestions();
+
+            for(int i = 0; i < questions.Count; i++)
+            {
+                WriteLine((i + 1) + ". " + questions[i].Text);
+            }
+
+            var removeQuestionNumber = GetNumber();
+
+            while(removeQuestionNumber < 1 ||  removeQuestionNumber > questions.Count)
+            {
+                WriteLine("Введите число от 1 до " + questions.Count);
+                removeQuestionNumber = GetNumber();
+            }
+
+            var removeQuestion = questions[removeQuestionNumber - 1];
+            QuestionsStorage.Remove(removeQuestion);
+        }
 
         static void Main()
         { 
@@ -26,24 +84,10 @@ namespace GenyiIdiotConsoleApp
 
                 if (user.Name.ToLower() == "admin")
                 {
-                    while (true)
-                    {
-                        bool adminChoise = GetUserChoise("Хотите добавить вопрос?");
-                        if (adminChoise == true)
-                        {
-                            WriteLine("Введите вопрос: ");
-                            string question = ReadLine();
-                            Write("Введите ответ: ");
-                            int answer = int.Parse(ReadLine());
-                            QuestonStorage2.AddQuesion(question, answer);
-                        }
-                        bool anotherAdminChoise = GetUserChoise("Хотите добавить вопрос?");
-                        if (anotherAdminChoise == false)
-                            break;
-                    }
+                    AddNewQuestion();
                 }
-
-                var questions = QuestonStorage2.GetAllQuestions();
+                
+                var questions = QuestionsStorage.GetAllQuestions();
                 int countQestions = questions.Count;
 
                 var random = new Random();
@@ -54,7 +98,7 @@ namespace GenyiIdiotConsoleApp
 
                     WriteLine("Вопрос " + (i + 1) + " - " + questions[randomQestionIndex].Text);
 
-                    user.Answer = CheckForFool();
+                    user.Answer = GetNumber();
                     
                     if (questions[randomQestionIndex].Answer == user.Answer)
                         user.AcceptRigthAnswer();
@@ -92,11 +136,10 @@ namespace GenyiIdiotConsoleApp
         }
        
 
-        static int CheckForFool()
+        static int GetNumber()
         {
             while (true)
             {
-
                 try
                 {
                     return int.Parse(ReadLine());

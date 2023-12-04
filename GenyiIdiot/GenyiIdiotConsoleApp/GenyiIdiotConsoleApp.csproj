@@ -49,7 +49,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Question.cs" />
     <Compile Include="QuestionsStorage.cs" />
-    <Compile Include="QuestonStorage2.cs" />
     <Compile Include="User.cs" />
     <Compile Include="UserResultStorage.cs" />
   </ItemGroup>

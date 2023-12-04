@@ -2,6 +2,7 @@
 using static System.Console;
 using System.IO;
 using System.Collections.Generic;
+using System;
 //using System.Text;
 
 namespace GenyiIdiotConsoleApp
@@ -13,14 +14,14 @@ namespace GenyiIdiotConsoleApp
             public static void SaveTestResults(User user)
             {
                 var value = $"{user.Name}#{user.CountRightAnswers}#{user.Diagnoses}";
-                FileProvider.Append("userResults.txt", value);
+                FileProvider.Append("UserResults.txt", value);
                 
             }
 
             public static List<User> GetUserResults()
             {
                 var value = FileProvider.GetValue("UserResults.txt");
-                var lines = value.Split('\n');
+                var lines = value.Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
                 var results = new List<User>();
 
                 foreach (var line in lines) 
