@@ -1,77 +1,13 @@
 ﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
-using static System.Math;
 using static System.Console;
-using System.Threading;
-using System.Reflection.Emit;
-using System.Web;
 //using System.Text;
-using static System.Net.Mime.MediaTypeNames;
-using static GenyiIdiotConsoleApp.Program;
-using System.Xml.Serialization;
+using GeniyIdiotClassLibrary;
 
 namespace GenyiIdiotConsoleApp
 {
     internal partial class Program
     {
-        static void AddNewQuestion()
-        {
-            while (true)
-            {
-                bool adminChoise = GetUserChoise("Хотите добавить вопрос?");
-
-                if (adminChoise == true)
-                {
-                    WriteLine("Введите вопрос: ");
-                    string question = ReadLine();
-                    Write("Введите ответ на вопрос: ");
-                    var answer = GetNumber();
-
-                    var newQuestion = new Question(question, answer);
-                    QuestionsStorage.Add(newQuestion);
-                    adminChoise = GetUserChoise("Хотите добавить ещё один вопрос?");
-                }
-                
-                if (adminChoise == false)
-                    break;
-            }
-
-            while (true)
-            {
-                bool adminChoise = GetUserChoise("Хотите удалить сущесвтующий вопрос?");
-
-                if (adminChoise == true)
-                {
-                    RemoveQuestion();
-                }
-                if (adminChoise == false)
-                    break;
-            }
-
-        }
-
-        private static void RemoveQuestion()
-        {
-            WriteLine("Введите номер удаляемого вопроса: ");
-            var questions = QuestionsStorage.GetAllQuestions();
-
-            for(int i = 0; i < questions.Count; i++)
-            {
-                WriteLine((i + 1) + ". " + questions[i].Text);
-            }
-
-            var removeQuestionNumber = GetNumber();
-
-            while(removeQuestionNumber < 1 ||  removeQuestionNumber > questions.Count)
-            {
-                WriteLine("Введите число от 1 до " + questions.Count);
-                removeQuestionNumber = GetNumber();
-            }
-
-            var removeQuestion = questions[removeQuestionNumber - 1];
-            QuestionsStorage.Remove(removeQuestion);
-        }
+       
 
         static void Main()
         { 
@@ -187,6 +123,64 @@ namespace GenyiIdiotConsoleApp
                     return true;
                 }
             }
+        }
+
+        static void AddNewQuestion()
+        {
+            while (true)
+            {
+                bool adminChoise = GetUserChoise("Хотите добавить вопрос?");
+
+                if (adminChoise == true)
+                {
+                    WriteLine("Введите вопрос: ");
+                    string question = ReadLine();
+                    Write("Введите ответ на вопрос: ");
+                    var answer = GetNumber();
+
+                    var newQuestion = new Question(question, answer);
+                    QuestionsStorage.Add(newQuestion);
+                    adminChoise = GetUserChoise("Хотите добавить ещё один вопрос?");
+                }
+
+                if (adminChoise == false)
+                    break;
+            }
+
+            while (true)
+            {
+                bool adminChoise = GetUserChoise("Хотите удалить сущесвтующий вопрос?");
+
+                if (adminChoise == true)
+                {
+                    RemoveQuestion();
+                }
+                if (adminChoise == false)
+                    break;
+            }
+
+        }
+
+        private static void RemoveQuestion()
+        {
+            WriteLine("Введите номер удаляемого вопроса: ");
+            var questions = QuestionsStorage.GetAllQuestions();
+
+            for (int i = 0; i < questions.Count; i++)
+            {
+                WriteLine((i + 1) + ". " + questions[i].Text);
+            }
+
+            var removeQuestionNumber = GetNumber();
+
+            while (removeQuestionNumber < 1 || removeQuestionNumber > questions.Count)
+            {
+                WriteLine("Введите число от 1 до " + questions.Count);
+                removeQuestionNumber = GetNumber();
+            }
+
+            var removeQuestion = questions[removeQuestionNumber - 1];
+            QuestionsStorage.Remove(removeQuestion);
         }
     }
 }

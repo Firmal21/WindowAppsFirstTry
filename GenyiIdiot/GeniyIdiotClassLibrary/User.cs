@@ -1,5 +1,5 @@
 ﻿//using System.Text;
-namespace GenyiIdiotConsoleApp
+namespace GeniyIdiotClassLibrary
 {
     public class User
     {

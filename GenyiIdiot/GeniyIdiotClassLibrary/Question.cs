@@ -2,7 +2,7 @@
 
 using System;
 
-namespace GenyiIdiotConsoleApp
+namespace GeniyIdiotClassLibrary
 {
     public class Question
     {

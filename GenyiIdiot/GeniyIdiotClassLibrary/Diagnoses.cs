@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace GenyiIdiotConsoleApp
+namespace GeniyIdiotClassLibrary
 {
     public class Diagnoses
     {
@@ -16,7 +16,7 @@ namespace GenyiIdiotConsoleApp
         }
 
         public static string GetDiagnose(int diagnosePoint)
-        { 
+        {
             var diagnoses = new Dictionary<int, string>()
             {
                 { 0, "кретин"},
@@ -32,9 +32,9 @@ namespace GenyiIdiotConsoleApp
 
         public static int CalculateUserDiagnose(int countQestions, int countRightAnswers)
         {
-            
-            int diagnosesPersents = (countRightAnswers * 100) / countQestions;
-            
+
+            int diagnosesPersents = countRightAnswers * 100 / countQestions;
+
 
             if (diagnosesPersents >= 0 && diagnosesPersents < 16)
                 return 0;

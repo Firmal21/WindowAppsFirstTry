@@ -3,7 +3,7 @@ using System.IO;
 using System;
 //using System.Text;
 
-namespace GenyiIdiotConsoleApp
+namespace GeniyIdiotClassLibrary
 {
     public class FileProvider
     {

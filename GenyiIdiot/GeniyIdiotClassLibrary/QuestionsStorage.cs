@@ -1,9 +1,10 @@
-﻿using System;
+﻿using GeniyIdiotClassLibrary;
+using System;
 using System.Collections.Generic;
 using System.IO;
 //using System.Text;
 
-namespace GenyiIdiotConsoleApp
+namespace GeniyIdiotClassLibrary
 {
     public class QuestionsStorage
     {
@@ -60,7 +61,7 @@ namespace GenyiIdiotConsoleApp
             FileProvider.Append("Questions.txt", value);
         }
 
-        internal static void Remove(Question removeQuestion)
+        public static void Remove(Question removeQuestion)
         {
             var questions = GetAllQuestions();
 

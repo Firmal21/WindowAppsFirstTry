@@ -3,12 +3,14 @@ using static System.Console;
 using System.IO;
 using System.Collections.Generic;
 using System;
+using GeniyIdiotClassLibrary;
+
 //using System.Text;
 
-namespace GenyiIdiotConsoleApp
+
+namespace GeniyIdiotClassLibrary
 {
-    internal partial class Program
-    {
+   
         public class UserResultStorage
         {
             public static void SaveTestResults(User user)
@@ -40,6 +42,6 @@ namespace GenyiIdiotConsoleApp
                 return results;
             }
         }
-    }
+    
 }
 
