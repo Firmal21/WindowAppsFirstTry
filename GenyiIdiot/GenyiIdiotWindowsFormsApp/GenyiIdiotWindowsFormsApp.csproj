@@ -46,11 +46,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminForm.Designer.cs">
+      <DependentUpon>AdminForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MenuForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MenuForm.Designer.cs">
+      <DependentUpon>MenuForm.cs</DependentUpon>
     </Compile>
     <Compile Include="NameForm.cs">
       <SubType>Form</SubType>
@@ -58,11 +70,23 @@
     <Compile Include="NameForm.Designer.cs">
       <DependentUpon>NameForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="NamesBase.cs" />
+    <Compile Include="UserResultsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserResultsForm.Designer.cs">
+      <DependentUpon>UserResultsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UsersActions.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AdminForm.resx">
+      <DependentUpon>AdminForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MenuForm.resx">
+      <DependentUpon>MenuForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NameForm.resx">
       <DependentUpon>NameForm.cs</DependentUpon>
@@ -77,6 +101,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UserResultsForm.resx">
+      <DependentUpon>UserResultsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -102,6 +129,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\71a3bb30bf9b3d9665e98813e420c046.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\UserResults.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\UserResults.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

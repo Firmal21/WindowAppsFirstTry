@@ -33,6 +33,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.closeButton = new System.Windows.Forms.Label();
             this.nextButton = new System.Windows.Forms.Button();
+            this.menuButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // userNameTextBox
@@ -94,12 +95,31 @@
             this.nextButton.UseVisualStyleBackColor = false;
             this.nextButton.Click += new System.EventHandler(this.nextButton_Click);
             // 
+            // menuButton
+            // 
+            this.menuButton.BackColor = System.Drawing.Color.MediumSlateBlue;
+            this.menuButton.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+            this.menuButton.FlatAppearance.BorderSize = 3;
+            this.menuButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Red;
+            this.menuButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gray;
+            this.menuButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.menuButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.menuButton.ForeColor = System.Drawing.Color.Black;
+            this.menuButton.Location = new System.Drawing.Point(1, 4);
+            this.menuButton.Name = "menuButton";
+            this.menuButton.Size = new System.Drawing.Size(75, 40);
+            this.menuButton.TabIndex = 12;
+            this.menuButton.Text = "Меню";
+            this.menuButton.UseVisualStyleBackColor = false;
+            this.menuButton.Click += new System.EventHandler(this.menuButton_Click);
+            // 
             // NameForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Thistle;
             this.ClientSize = new System.Drawing.Size(405, 264);
+            this.Controls.Add(this.menuButton);
             this.Controls.Add(this.nextButton);
             this.Controls.Add(this.closeButton);
             this.Controls.Add(this.label1);
@@ -123,5 +143,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label closeButton;
         private System.Windows.Forms.Button nextButton;
+        private System.Windows.Forms.Button menuButton;
     }
 }

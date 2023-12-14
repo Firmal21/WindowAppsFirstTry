@@ -7,6 +7,7 @@ namespace GeniyIdiotClassLibrary
         public int CountRightAnswers { get; set; }
         public int Answer { get; set; }
         public string Diagnoses { get; set; }
+        public static bool Choise { get; set; }
 
         public User(string name)
         {

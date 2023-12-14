@@ -14,9 +14,12 @@ namespace GenyiIdiotWindowsFormsApp
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new NameForm());
+            
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                Application.Run(new NameForm());
+                
+            
         }
     }
 }

@@ -16,7 +16,7 @@ namespace GenyiIdiotWindowsFormsApp
 
     public partial class NameForm : Form
     {
-        //public User user;
+        private User user;
         
         public NameForm()
         {
@@ -38,7 +38,7 @@ namespace GenyiIdiotWindowsFormsApp
         {
             //userName = userNameTextBox.Text;
 
-            NamesBase.Name = userNameTextBox.Text;
+            UsersActions.Name = userNameTextBox.Text;
             this.Hide();
             MainForm mainForm = new MainForm();
             mainForm.Show();
@@ -58,6 +58,13 @@ namespace GenyiIdiotWindowsFormsApp
         private void NameForm_MouseDown(object sender, MouseEventArgs e)
         {
             lastPoint = new Point(e.X, e.Y);
+        }
+
+        private void menuButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            MenuForm menuForm = new MenuForm();
+            menuForm.Show();
         }
     }
 }

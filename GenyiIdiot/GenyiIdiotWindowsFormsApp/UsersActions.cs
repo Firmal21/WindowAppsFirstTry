@@ -1,7 +1,9 @@
 ﻿namespace GenyiIdiotWindowsFormsApp
 {
-    static class NamesBase
+    static class UsersActions
     {
         public static string Name { get; set; }
+
+
     }
 }

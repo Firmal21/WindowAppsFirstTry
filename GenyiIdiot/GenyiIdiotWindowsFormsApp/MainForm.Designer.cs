@@ -35,6 +35,7 @@
             this.closeButton = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.menuButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -48,7 +49,7 @@
             this.nextButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.nextButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.nextButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.nextButton.Location = new System.Drawing.Point(12, 130);
+            this.nextButton.Location = new System.Drawing.Point(8, 180);
             this.nextButton.Name = "nextButton";
             this.nextButton.Size = new System.Drawing.Size(172, 87);
             this.nextButton.TabIndex = 0;
@@ -60,7 +61,7 @@
             // 
             this.questionNumberLabel.AutoSize = true;
             this.questionNumberLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.questionNumberLabel.Location = new System.Drawing.Point(8, 4);
+            this.questionNumberLabel.Location = new System.Drawing.Point(8, 35);
             this.questionNumberLabel.Name = "questionNumberLabel";
             this.questionNumberLabel.Size = new System.Drawing.Size(92, 20);
             this.questionNumberLabel.TabIndex = 1;
@@ -70,7 +71,7 @@
             // 
             this.questionTextLabel.AutoSize = true;
             this.questionTextLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.questionTextLabel.Location = new System.Drawing.Point(8, 24);
+            this.questionTextLabel.Location = new System.Drawing.Point(8, 55);
             this.questionTextLabel.Name = "questionTextLabel";
             this.questionTextLabel.Size = new System.Drawing.Size(131, 20);
             this.questionTextLabel.TabIndex = 2;
@@ -78,7 +79,7 @@
             // 
             // userAnswerTextBox
             // 
-            this.userAnswerTextBox.Location = new System.Drawing.Point(12, 104);
+            this.userAnswerTextBox.Location = new System.Drawing.Point(8, 154);
             this.userAnswerTextBox.Name = "userAnswerTextBox";
             this.userAnswerTextBox.Size = new System.Drawing.Size(172, 20);
             this.userAnswerTextBox.TabIndex = 3;
@@ -102,7 +103,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::GenyiIdiotWindowsFormsApp.Properties.Resources._71a3bb30bf9b3d9665e98813e420c046;
-            this.pictureBox1.Location = new System.Drawing.Point(190, 104);
+            this.pictureBox1.Location = new System.Drawing.Point(186, 154);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(194, 113);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -123,12 +124,31 @@
             this.label1.Text = "X";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
+            // menuButton
+            // 
+            this.menuButton.BackColor = System.Drawing.Color.MediumSlateBlue;
+            this.menuButton.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+            this.menuButton.FlatAppearance.BorderSize = 3;
+            this.menuButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Red;
+            this.menuButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gray;
+            this.menuButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.menuButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.menuButton.ForeColor = System.Drawing.Color.Black;
+            this.menuButton.Location = new System.Drawing.Point(-2, -6);
+            this.menuButton.Name = "menuButton";
+            this.menuButton.Size = new System.Drawing.Size(75, 40);
+            this.menuButton.TabIndex = 11;
+            this.menuButton.Text = "Меню";
+            this.menuButton.UseVisualStyleBackColor = false;
+            this.menuButton.Click += new System.EventHandler(this.menuButton_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Thistle;
-            this.ClientSize = new System.Drawing.Size(611, 231);
+            this.ClientSize = new System.Drawing.Size(611, 279);
+            this.Controls.Add(this.menuButton);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.closeButton);
@@ -158,6 +178,7 @@
         private System.Windows.Forms.Label closeButton;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button menuButton;
     }
 }
 

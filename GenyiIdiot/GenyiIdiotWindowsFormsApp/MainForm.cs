@@ -13,8 +13,7 @@ namespace GenyiIdiotWindowsFormsApp
     {
         private List<Question> questions;
         private Question currentQuestion;
-        private User user;
-       // private NamesBase userName;
+        private User user;      
         private int countQuestions;
         private int questionNumber;
         public MainForm()
@@ -26,7 +25,8 @@ namespace GenyiIdiotWindowsFormsApp
         {
             questions = QuestionsStorage.GetAllQuestions();
            
-            user = new User(NamesBase.Name);
+            user = new User(UsersActions.Name);
+             
             countQuestions = questions.Count;
             ShowNextQuestion();
         }
@@ -37,19 +37,23 @@ namespace GenyiIdiotWindowsFormsApp
             var randomIndex = random.Next(0, questions.Count);
             
             currentQuestion = questions[randomIndex];
-
             questionTextLabel.Text = currentQuestion.Text;
             questionNumber++;
             questionNumberLabel.Text = "Вопрос - " + questionNumber;
-
         }
+
 
         private void nextButton_Click(object sender, EventArgs e)
         {
-            var userAnswer = Int32.Parse(userAnswerTextBox.Text);
+            var userAnswer = (userAnswerTextBox.Text);
+            
+            if (!(int.TryParse(userAnswer, out var answerInt)))
+            {
+                MessageBox.Show("Пожалуйста, введите число");
+                return;
+            }
            
-
-            if (currentQuestion.Answer == userAnswer)
+            if (currentQuestion.Answer == Int32.Parse(userAnswer))
                 user.AcceptRigthAnswer();
 
             questions.Remove(currentQuestion);
@@ -61,11 +65,50 @@ namespace GenyiIdiotWindowsFormsApp
                 user.Diagnoses = Diagnoses.GetDiagnose(userPoints);
 
                 MessageBox.Show(user.Name + ", ваш диагноз: " + user.Diagnoses);
+                UserResultStorage.SaveTestResults(user);
+
+                string resultsMessage = "Хотите увидеть прошлые результаты?";
+                string resultsCaption = "Конец теста";
+                MessageBoxButtons resultsButtons = MessageBoxButtons.YesNo;
+                DialogResult showResult;
+                showResult = MessageBox.Show(resultsMessage, resultsCaption, resultsButtons);
+                if (showResult == DialogResult.Yes)
+                {
+                    this.Hide();
+                    UserResultsForm userResultsForm = new UserResultsForm();
+                    userResultsForm.Show();
+                }
+                else
+                {
+
+                
+                    string message = "Хотите начать тест заново?";
+                    string caption = "Конец теста";
+                    MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+                    DialogResult result;
+                    result = MessageBox.Show(message, caption, buttons);
+                    if(result == DialogResult.Yes)
+                    {
+                            this.Hide();
+                            NameForm nameForm = new NameForm();
+                            nameForm.Show();   
+                    }
+
+                    else Application.Exit();
+                }
+
                 return;
+
+
+
             }
 
             ShowNextQuestion() ;
         }
+
+
+
+        //ДАЛЬШЕ КНОПОЧКИ ХУЕПОЧКИ МОЖНО НЕ ГЛЯДЕТЬ
 
         private void closeAppLabel_Click(object sender, EventArgs e)
         {
@@ -102,6 +145,13 @@ namespace GenyiIdiotWindowsFormsApp
         private void label1_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void menuButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            MenuForm menuForm = new MenuForm();
+            menuForm.Show();
         }
     }
 }
