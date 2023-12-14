@@ -131,9 +131,6 @@
     <None Include="Resources\71a3bb30bf9b3d9665e98813e420c046.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\UserResults.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="bin\Debug\UserResults.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

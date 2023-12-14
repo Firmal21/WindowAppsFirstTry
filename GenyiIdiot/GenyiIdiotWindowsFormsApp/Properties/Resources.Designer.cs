@@ -69,21 +69,5 @@ namespace GenyiIdiotWindowsFormsApp.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Геннадий#2#идиот
-        ///в#2#идиот
-        ///ву#2#идиот
-        ///sd#2#идиот
-        ///sc#2#идиот
-        ///sd#2#идиот
-        ///ds#2#идиот
-        ///.
-        /// </summary>
-        internal static string UserResults {
-            get {
-                return ResourceManager.GetString("UserResults", resourceCulture);
-            }
-        }
     }
 }

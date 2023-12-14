@@ -19,9 +19,14 @@ namespace GenyiIdiotWindowsFormsApp
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            textBox1.Text = Properties.Resources.UserResults;
-            textBox1.SelectionStart = 0;
-            textBox1.SelectionLength = 0;
+            //textBox1.Text = Properties.Resources.UserResults;
+            //textBox1.SelectionStart = 0;
+            //textBox1.SelectionLength = 0;
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
