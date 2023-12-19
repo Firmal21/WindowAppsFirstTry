@@ -19,8 +19,14 @@ namespace GeniyIdiotClassLibrary
                 FileProvider.Append("UserResults.txt", value);
                 
             }
+        public static void SaveTestResultsForWindowsForms(User user)
+        {
+            var value = $"{user.Name} {user.CountRightAnswers} {user.Diagnoses}";
+            FileProvider.Append("UserResults.txt", value);
 
-            public static List<User> GetUserResults()
+        }
+
+        public static List<User> GetUserResults()
             {
                 var value = FileProvider.GetValue("UserResults.txt");
                 var lines = value.Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);

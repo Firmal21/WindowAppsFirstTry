@@ -69,5 +69,16 @@ namespace GenyiIdiotWindowsFormsApp.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Жигалиафф 5 нормальный
+        ///вы 1 кретин
+        ///.
+        /// </summary>
+        internal static string UserResults {
+            get {
+                return ResourceManager.GetString("UserResults", resourceCulture);
+            }
+        }
     }
 }

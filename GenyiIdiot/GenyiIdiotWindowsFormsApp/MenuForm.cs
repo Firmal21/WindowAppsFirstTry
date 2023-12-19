@@ -33,5 +33,12 @@ namespace GenyiIdiotWindowsFormsApp
             NameForm nameForm = new NameForm();
             nameForm.Show();
         }
+
+        private void ResultstButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            UserResultsForm userResultsForm = new UserResultsForm();
+            userResultsForm.Show();
+        }
     }
 }

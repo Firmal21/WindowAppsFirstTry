@@ -33,9 +33,8 @@
             this.questionTextLabel = new System.Windows.Forms.Label();
             this.userAnswerTextBox = new System.Windows.Forms.TextBox();
             this.closeButton = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.menuButton = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -91,38 +90,12 @@
             this.closeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.closeButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.closeButton.ForeColor = System.Drawing.Color.Red;
-            this.closeButton.Location = new System.Drawing.Point(659, 7);
+            this.closeButton.Location = new System.Drawing.Point(572, 9);
             this.closeButton.Name = "closeButton";
             this.closeButton.Size = new System.Drawing.Size(27, 25);
-            this.closeButton.TabIndex = 6;
+            this.closeButton.TabIndex = 10;
             this.closeButton.Text = "X";
-            this.closeButton.Click += new System.EventHandler(this.closeAppLabel_Click);
-            this.closeButton.MouseEnter += new System.EventHandler(this.closeButton_MouseEnter);
-            this.closeButton.MouseLeave += new System.EventHandler(this.closeButton_MouseLeave);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::GenyiIdiotWindowsFormsApp.Properties.Resources._71a3bb30bf9b3d9665e98813e420c046;
-            this.pictureBox1.Location = new System.Drawing.Point(186, 154);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(194, 113);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 7;
-            this.pictureBox1.TabStop = false;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.ForeColor = System.Drawing.Color.Red;
-            this.label1.Location = new System.Drawing.Point(572, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(27, 25);
-            this.label1.TabIndex = 10;
-            this.label1.Text = "X";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+            this.closeButton.Click += new System.EventHandler(this.label1_Click);
             // 
             // menuButton
             // 
@@ -142,16 +115,25 @@
             this.menuButton.UseVisualStyleBackColor = false;
             this.menuButton.Click += new System.EventHandler(this.menuButton_Click);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::GenyiIdiotWindowsFormsApp.Properties.Resources._71a3bb30bf9b3d9665e98813e420c046;
+            this.pictureBox1.Location = new System.Drawing.Point(186, 154);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(194, 113);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 7;
+            this.pictureBox1.TabStop = false;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Thistle;
-            this.ClientSize = new System.Drawing.Size(611, 279);
+            this.ClientSize = new System.Drawing.Size(676, 279);
             this.Controls.Add(this.menuButton);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.closeButton);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.userAnswerTextBox);
             this.Controls.Add(this.questionTextLabel);
             this.Controls.Add(this.questionNumberLabel);
@@ -175,9 +157,8 @@
         private System.Windows.Forms.Label questionNumberLabel;
         private System.Windows.Forms.Label questionTextLabel;
         private System.Windows.Forms.TextBox userAnswerTextBox;
-        private System.Windows.Forms.Label closeButton;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label closeButton;
         private System.Windows.Forms.Button menuButton;
     }
 }

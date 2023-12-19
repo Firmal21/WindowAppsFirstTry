@@ -31,7 +31,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.nextButton = new System.Windows.Forms.Button();
+            this.ResultsButton = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -68,22 +68,23 @@
             this.label3.TabIndex = 13;
             this.label3.Text = "Выберите, что хотите сделать:";
             // 
-            // nextButton
+            // ResultsButton
             // 
-            this.nextButton.BackColor = System.Drawing.Color.LightPink;
-            this.nextButton.FlatAppearance.BorderColor = System.Drawing.Color.Red;
-            this.nextButton.FlatAppearance.BorderSize = 0;
-            this.nextButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightGreen;
-            this.nextButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
-            this.nextButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.nextButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.nextButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.nextButton.Location = new System.Drawing.Point(258, 89);
-            this.nextButton.Name = "nextButton";
-            this.nextButton.Size = new System.Drawing.Size(234, 38);
-            this.nextButton.TabIndex = 14;
-            this.nextButton.Text = "Посмотреть результаты";
-            this.nextButton.UseVisualStyleBackColor = false;
+            this.ResultsButton.BackColor = System.Drawing.Color.LightPink;
+            this.ResultsButton.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+            this.ResultsButton.FlatAppearance.BorderSize = 0;
+            this.ResultsButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightGreen;
+            this.ResultsButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
+            this.ResultsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ResultsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ResultsButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.ResultsButton.Location = new System.Drawing.Point(258, 89);
+            this.ResultsButton.Name = "ResultsButton";
+            this.ResultsButton.Size = new System.Drawing.Size(234, 38);
+            this.ResultsButton.TabIndex = 14;
+            this.ResultsButton.Text = "Посмотреть результаты";
+            this.ResultsButton.UseVisualStyleBackColor = false;
+            this.ResultsButton.Click += new System.EventHandler(this.ResultstButton_Click);
             // 
             // button1
             // 
@@ -129,7 +130,7 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.nextButton);
+            this.Controls.Add(this.ResultsButton);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -146,7 +147,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button nextButton;
+        private System.Windows.Forms.Button ResultsButton;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
     }

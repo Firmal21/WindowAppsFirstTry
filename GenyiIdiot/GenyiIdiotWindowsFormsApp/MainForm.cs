@@ -65,7 +65,7 @@ namespace GenyiIdiotWindowsFormsApp
                 user.Diagnoses = Diagnoses.GetDiagnose(userPoints);
 
                 MessageBox.Show(user.Name + ", ваш диагноз: " + user.Diagnoses);
-                UserResultStorage.SaveTestResults(user);
+                UserResultStorage.SaveTestResultsForWindowsForms(user);
 
                 string resultsMessage = "Хотите увидеть прошлые результаты?";
                 string resultsCaption = "Конец теста";
