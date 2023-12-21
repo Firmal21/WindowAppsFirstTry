@@ -26,7 +26,15 @@ namespace GenyiIdiotWindowsFormsApp
             questions = QuestionsStorage.GetAllQuestions();
            
             user = new User(UsersActions.Name);
-             
+
+            if(user.Name.ToLower() == "admin")
+            {
+                this.Hide();
+                AdminForm adminForm = new AdminForm();
+                adminForm.Show();
+
+            }
+
             countQuestions = questions.Count;
             ShowNextQuestion();
         }
@@ -72,21 +80,22 @@ namespace GenyiIdiotWindowsFormsApp
                 MessageBoxButtons resultsButtons = MessageBoxButtons.YesNo;
                 DialogResult showResult;
                 showResult = MessageBox.Show(resultsMessage, resultsCaption, resultsButtons);
+                
                 if (showResult == DialogResult.Yes)
                 {
                     this.Hide();
                     UserResultsForm userResultsForm = new UserResultsForm();
                     userResultsForm.Show();
                 }
+
                 else
                 {
-
-                
                     string message = "Хотите начать тест заново?";
                     string caption = "Конец теста";
                     MessageBoxButtons buttons = MessageBoxButtons.YesNo;
                     DialogResult result;
                     result = MessageBox.Show(message, caption, buttons);
+                    
                     if(result == DialogResult.Yes)
                     {
                             this.Hide();
@@ -96,11 +105,7 @@ namespace GenyiIdiotWindowsFormsApp
 
                     else Application.Exit();
                 }
-
                 return;
-
-
-
             }
 
             ShowNextQuestion() ;

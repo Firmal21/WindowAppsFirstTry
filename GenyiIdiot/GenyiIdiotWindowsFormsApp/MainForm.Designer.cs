@@ -90,7 +90,7 @@
             this.closeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.closeButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.closeButton.ForeColor = System.Drawing.Color.Red;
-            this.closeButton.Location = new System.Drawing.Point(572, 9);
+            this.closeButton.Location = new System.Drawing.Point(637, 9);
             this.closeButton.Name = "closeButton";
             this.closeButton.Size = new System.Drawing.Size(27, 25);
             this.closeButton.TabIndex = 10;
