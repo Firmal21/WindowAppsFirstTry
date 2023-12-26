@@ -56,6 +56,7 @@
             this.deleteButton.TabIndex = 13;
             this.deleteButton.Text = "Удалить вопрос";
             this.deleteButton.UseVisualStyleBackColor = true;
+            this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
             // 
             // addButton
             // 
@@ -83,6 +84,7 @@
             this.menuButton.TabIndex = 15;
             this.menuButton.Text = "Меню";
             this.menuButton.UseVisualStyleBackColor = false;
+            this.menuButton.Click += new System.EventHandler(this.menuButton_Click);
             // 
             // AdminForm
             // 

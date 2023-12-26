@@ -25,46 +25,27 @@ namespace GenyiIdiotWindowsFormsApp
 
         private void addButton_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
+            AddQuestionForm addQuestionForm = new AddQuestionForm();
+            addQuestionForm.Show();
+        }
+        private void deleteButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            DeleteQuestionsForm deleteQuestionForm = new DeleteQuestionsForm();
+            deleteQuestionForm.Show();
         }
 
         private void AdminForm_Load(object sender, EventArgs e)
         {
-            //static void AddNewQuestion()
-            //{
-            //    while (true)
-            //    {
-            //        bool adminChoise = GetUserChoise("Хотите добавить вопрос?");
+            
+        }
 
-            //        if (adminChoise == true)
-            //        {
-            //            WriteLine("Введите вопрос: ");
-            //            string question = ReadLine();
-            //            Write("Введите ответ на вопрос: ");
-            //            var answer = GetNumber();
-
-            //            var newQuestion = new Question(question, answer);
-            //            QuestionsStorage.Add(newQuestion);
-            //            adminChoise = GetUserChoise("Хотите добавить ещё один вопрос?");
-            //        }
-
-            //        if (adminChoise == false)
-            //            break;
-            //    }
-
-            //    while (true)
-            //    {
-            //        bool adminChoise = GetUserChoise("Хотите удалить сущесвтующий вопрос?");
-
-            //        if (adminChoise == true)
-            //        {
-            //            RemoveQuestion();
-            //        }
-            //        if (adminChoise == false)
-            //            break;
-            //    }
-
-            //}
+        private void menuButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            MenuForm menuForm = new MenuForm();
+            menuForm.Show();
         }
     }
 }

@@ -40,8 +40,16 @@ namespace GenyiIdiotWindowsFormsApp
 
             UsersActions.Name = userNameTextBox.Text;
             this.Hide();
-            MainForm mainForm = new MainForm();
-            mainForm.Show();
+            if (!(Name == "admin"))
+            {
+                AdminForm adminForm = new AdminForm();
+                adminForm.Show();
+            }
+            else
+            {
+                MainForm mainForm = new MainForm();
+                mainForm.Show();
+            }
         }
 
         Point lastPoint;

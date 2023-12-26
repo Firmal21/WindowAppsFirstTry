@@ -71,8 +71,27 @@ namespace GenyiIdiotWindowsFormsApp.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Сколько будет два плюс два умноженное на два?#6
+        ///Бревно нужно распилить на 10 частей. Сколько распилов нужно сделать?#9
+        ///На двух руках 10 пальцев. Сколько пальцев на 5 руках?#25
+        ///Укол делают каждые полчаса. Сколько нужно минут, чтобы сделать три укола?#90
+        ///Пять свечей горело, две потухли. Сколько свечей осталось?#2
+        ///У фермера 18 овец, 9 застрелили, сколько овец осталось?#9
+        ///Два мальчика играли в шашки 2 часа. Сколько времени играл каждый мальчик?#2
+        ///Какого цвета потолок? Варианты: 1 - белый, 2 - красный, 3  [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string Questions {
+            get {
+                return ResourceManager.GetString("Questions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Жигалиафф 5 нормальный
         ///вы 1 кретин
+        ///выхухоль 1 кретин
+        ///Сережка 0 кретин
+        ///Писюлек 10 талант
         ///.
         /// </summary>
         internal static string UserResults {
