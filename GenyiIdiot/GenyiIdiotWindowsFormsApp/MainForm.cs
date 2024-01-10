@@ -11,11 +11,12 @@ namespace GenyiIdiotWindowsFormsApp
 {
     public partial class MainForm : Form
     {
-        private List<Question> questions;
-        private Question currentQuestion;
-        private User user;      
-        private int countQuestions;
-        private int questionNumber;
+        Game game;
+        //private List<Question> questions;
+        //private Question currentQuestion;
+        //private User user;
+        //private int countQuestions;
+        //private int questionNumber;
 
         public MainForm()
         {
@@ -24,12 +25,10 @@ namespace GenyiIdiotWindowsFormsApp
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
-            questions = QuestionsStorage.GetAllQuestions();
+       
+            var user = new User(UsersActions.Name);
+            game = new Game(user);
            
-            user = new User(UsersActions.Name);
-
-            countQuestions = questions.Count;
             ShowNextQuestion();
         }
 
@@ -45,21 +44,16 @@ namespace GenyiIdiotWindowsFormsApp
                 MessageBox.Show(errorMessage);
                 return;
             }
-     
-            if (currentQuestion.Answer == userAnswer)
-                user.AcceptRigthAnswer();
 
-            questions.Remove(currentQuestion);
+            game.AcceptAnswer(userAnswer);
 
-            var endgame = (questions.Count == 0);
-
-            if(endgame)
+            if(game.End())
             {
-                int userPoints = Diagnoses.CalculateUserDiagnose(countQuestions, user.CountRightAnswers);
-                user.Diagnose = Diagnoses.GetDiagnose(userPoints);
+                
 
-                MessageBox.Show(user.Name + ", ваш диагноз: " + user.Diagnose);
-                UserResultStorage.SaveTestResults(user);
+                var message = game.CalculateDiagnose();
+                MessageBox.Show(message);
+                
 
                 string resultsMessage = "Хотите увидеть прошлые результаты?";
                 string resultsCaption = "Конец теста";
@@ -75,11 +69,11 @@ namespace GenyiIdiotWindowsFormsApp
 
                 else
                 {
-                    string message = "Хотите начать тест заново?";
+                    string restartMessage = "Хотите начать тест заново?";
                     string caption = "Конец теста";
                     MessageBoxButtons buttons = MessageBoxButtons.YesNo;
                     DialogResult result;
-                    result = MessageBox.Show(message, caption, buttons);
+                    result = MessageBox.Show(restartMessage, caption, buttons);
                     
                     if(result == DialogResult.Yes)
                     {
@@ -97,13 +91,11 @@ namespace GenyiIdiotWindowsFormsApp
 
         private void ShowNextQuestion()
         {
-            var random = new Random();
-            var randomIndex = random.Next(0, questions.Count);
+            var currentQuestion = game.GetNextQuestion();
 
-            currentQuestion = questions[randomIndex];
             questionTextLabel.Text = currentQuestion.Text;
-            questionNumber++;
-            questionNumberLabel.Text = "Вопрос - " + questionNumber;
+            
+            questionNumberLabel.Text = game.GetQuestionNumberText();
         }
 
 
