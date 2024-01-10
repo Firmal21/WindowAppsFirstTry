@@ -61,5 +61,12 @@ namespace GenyiIdiotWindowsFormsApp
         {
            
         }
+
+        private void menuButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            MenuForm menuForm = new MenuForm();
+            menuForm.Show();
+        }
     }
 }

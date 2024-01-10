@@ -47,6 +47,33 @@ namespace GenyiIdiotWindowsFormsApp
             }
             var deleteQuestion = questions[Int32.Parse(removeQuestionNumber) - 1];
             QuestionsStorage.Remove(deleteQuestion);
+
+            string resultsMessage = "Хотите удалить ещё один вопрос?";
+            string resultsCaption = "";
+            MessageBoxButtons resultsButtons = MessageBoxButtons.YesNo;
+            DialogResult showResult;
+            showResult = MessageBox.Show(resultsMessage, resultsCaption, resultsButtons);
+
+            if (showResult == DialogResult.Yes)
+            {
+                this.Hide();
+                DeleteQuestionsForm deleteQuestionForm = new DeleteQuestionsForm();
+                deleteQuestionForm.Show();
+            }
+
+            else
+            {
+                this.Hide();
+                AdminForm adminForm = new AdminForm();
+                adminForm.Show();
+            }
+        }
+
+        private void menuButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            MenuForm menuForm = new MenuForm();
+            menuForm.Show();
         }
     }
 }

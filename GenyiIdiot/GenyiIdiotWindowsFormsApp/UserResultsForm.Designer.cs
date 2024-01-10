@@ -28,22 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.menuButton = new System.Windows.Forms.Button();
             this.nextButton = new System.Windows.Forms.Button();
+            this.resultsDataGridView = new System.Windows.Forms.DataGridView();
+            this.NameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RightAnswersColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DiagnosesColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.resultsDataGridView)).BeginInit();
             this.SuspendLayout();
-            // 
-            // textBox1
-            // 
-            this.textBox1.BackColor = System.Drawing.Color.LightPink;
-            this.textBox1.Location = new System.Drawing.Point(12, 2);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBox1.Size = new System.Drawing.Size(336, 436);
-            this.textBox1.TabIndex = 0;
             // 
             // label1
             // 
@@ -95,29 +88,59 @@
             this.nextButton.UseVisualStyleBackColor = false;
             this.nextButton.Click += new System.EventHandler(this.nextButton_Click);
             // 
+            // resultsDataGridView
+            // 
+            this.resultsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.resultsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.NameColumn,
+            this.RightAnswersColumn,
+            this.DiagnosesColumn});
+            this.resultsDataGridView.Location = new System.Drawing.Point(3, 7);
+            this.resultsDataGridView.Name = "resultsDataGridView";
+            this.resultsDataGridView.Size = new System.Drawing.Size(345, 335);
+            this.resultsDataGridView.TabIndex = 14;
+            // 
+            // NameColumn
+            // 
+            this.NameColumn.HeaderText = "Имя";
+            this.NameColumn.Name = "NameColumn";
+            // 
+            // RightAnswersColumn
+            // 
+            this.RightAnswersColumn.HeaderText = "Кол-во правильных ответов";
+            this.RightAnswersColumn.Name = "RightAnswersColumn";
+            // 
+            // DiagnosesColumn
+            // 
+            this.DiagnosesColumn.HeaderText = "Диагноз";
+            this.DiagnosesColumn.Name = "DiagnosesColumn";
+            // 
             // UserResultsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Thistle;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.resultsDataGridView);
             this.Controls.Add(this.nextButton);
             this.Controls.Add(this.menuButton);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
             this.Name = "UserResultsForm";
             this.Text = "UserResultsForm";
             this.Load += new System.EventHandler(this.UserResultsForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.resultsDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button menuButton;
         private System.Windows.Forms.Button nextButton;
+        private System.Windows.Forms.DataGridView resultsDataGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NameColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn RightAnswersColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DiagnosesColumn;
     }
 }

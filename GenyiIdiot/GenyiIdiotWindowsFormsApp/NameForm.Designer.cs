@@ -138,7 +138,7 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox userNameTextBox;
+        public System.Windows.Forms.TextBox userNameTextBox;
         private System.Windows.Forms.Label nameLabel;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label closeButton;

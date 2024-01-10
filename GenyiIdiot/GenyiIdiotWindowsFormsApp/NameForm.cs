@@ -16,31 +16,26 @@ namespace GenyiIdiotWindowsFormsApp
 
     public partial class NameForm : Form
     {
-        private User user;
+        
         
         public NameForm()
         {
             InitializeComponent();
         }
 
-        private void closeButton_Click(object sender, EventArgs e)
+      
+
+        public void NameForm_Load(object sender, EventArgs e)
         {
-            Application.Exit();
+          
         }
 
-        private void NameForm_Load(object sender, EventArgs e)
+        public void nextButton_Click(object sender, EventArgs e)
         {
-          // Name = userNameTextBox.Text;
-           // user = new User(name);
-        }
-
-        private void nextButton_Click(object sender, EventArgs e)
-        {
-            //userName = userNameTextBox.Text;
-
+            
             UsersActions.Name = userNameTextBox.Text;
             this.Hide();
-            if (!(Name == "admin"))
+            if ((UsersActions.Name == "admin"))
             {
                 AdminForm adminForm = new AdminForm();
                 adminForm.Show();
@@ -50,6 +45,12 @@ namespace GenyiIdiotWindowsFormsApp
                 MainForm mainForm = new MainForm();
                 mainForm.Show();
             }
+        }
+
+
+        public void closeButton_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
 
         Point lastPoint;

@@ -29,9 +29,10 @@ namespace GenyiIdiotWindowsFormsApp
 
         private void button1_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            NameForm nameForm = new NameForm();
-            nameForm.Show();
+            //this.Hide();
+            //NameForm nameForm = new NameForm();
+            //nameForm.Show();
+            Application.Restart();
         }
 
         private void ResultstButton_Click(object sender, EventArgs e)
@@ -39,6 +40,11 @@ namespace GenyiIdiotWindowsFormsApp
             this.Hide();
             UserResultsForm userResultsForm = new UserResultsForm();
             userResultsForm.Show();
+        }
+
+        private void MenuForm_Load(object sender, EventArgs e)
+        {
+             
         }
     }
 }

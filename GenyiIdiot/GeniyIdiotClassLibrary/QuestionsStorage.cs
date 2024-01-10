@@ -8,6 +8,7 @@ namespace GeniyIdiotClassLibrary
 {
     public class QuestionsStorage
     {
+        
         public static List<Question> GetAllQuestions()
         {
             var questions = new List<Question>();
@@ -57,8 +58,10 @@ namespace GeniyIdiotClassLibrary
 
         public static void Add(Question newQuestion)
         {
+            
             var value = $"{newQuestion.Text}#{newQuestion.Answer}";
             FileProvider.Append("Questions.txt", value);
+            
         }
 
         public static void Remove(Question removeQuestion)

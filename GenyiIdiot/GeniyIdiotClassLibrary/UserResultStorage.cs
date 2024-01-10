@@ -15,13 +15,13 @@ namespace GeniyIdiotClassLibrary
         {
             public static void SaveTestResults(User user)
             {
-                var value = $"{user.Name}#{user.CountRightAnswers}#{user.Diagnoses}";
+                var value = $"{user.Name}#{user.CountRightAnswers}#{user.Diagnose}";
                 FileProvider.Append("UserResults.txt", value);
                 
             }
         public static void SaveTestResultsForWindowsForms(User user)
         {
-            var value = $"{user.Name} {user.CountRightAnswers} {user.Diagnoses}";
+            var value = $"{user.Name}{user.CountRightAnswers}{user.Diagnose}";
             FileProvider.Append("UserResults.txt", value);
 
         }
@@ -41,7 +41,7 @@ namespace GeniyIdiotClassLibrary
 
                     var user = new User(name);
                     user.CountRightAnswers = countRightAnswers;
-                    user.Diagnoses = diagnoses;
+                    user.Diagnose = diagnoses;
 
                     results.Add(user);
                 }

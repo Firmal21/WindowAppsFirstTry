@@ -6,13 +6,13 @@ namespace GeniyIdiotClassLibrary
         public string Name { get; set; }
         public int CountRightAnswers { get; set; }
         public int Answer { get; set; }
-        public string Diagnoses { get; set; }
+        public string Diagnose { get; set; }
         public static bool Choise { get; set; }
 
         public User(string name)
         {
             Name = name;
-            Diagnoses = "Неизвестен";
+            Diagnose = "Неизвестен";
         }
         public void AcceptRigthAnswer()
         {

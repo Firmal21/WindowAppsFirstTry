@@ -1,5 +1,5 @@
 ﻿using GeniyIdiotClassLibrary;
-using GenyiIdiotConsoleApp;
+
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -16,6 +16,7 @@ namespace GenyiIdiotWindowsFormsApp
         private User user;      
         private int countQuestions;
         private int questionNumber;
+
         public MainForm()
         {
             InitializeComponent();
@@ -23,57 +24,42 @@ namespace GenyiIdiotWindowsFormsApp
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            
             questions = QuestionsStorage.GetAllQuestions();
            
             user = new User(UsersActions.Name);
-
-            if(user.Name.ToLower() == "admin")
-            {
-                this.Hide();
-                AdminForm adminForm = new AdminForm();
-                adminForm.Show();
-
-            }
 
             countQuestions = questions.Count;
             ShowNextQuestion();
         }
 
-        private void ShowNextQuestion()
-        {
-            var random = new Random();
-            var randomIndex = random.Next(0, questions.Count);
-            
-            currentQuestion = questions[randomIndex];
-            questionTextLabel.Text = currentQuestion.Text;
-            questionNumber++;
-            questionNumberLabel.Text = "Вопрос - " + questionNumber;
-        }
-
-
         private void nextButton_Click(object sender, EventArgs e)
         {
-            var userAnswer = (userAnswerTextBox.Text);
+            UserResultsForm userResultsForm = new UserResultsForm();
+            NameForm nameForm = new NameForm();
+
+            int userAnswer;
             
-            if (!(int.TryParse(userAnswer, out var answerInt)))
+            if(!InputValidator.TryParseToNumber(userAnswerTextBox.Text, out userAnswer, out string errorMessage))
             {
-                MessageBox.Show("Пожалуйста, введите число");
+                MessageBox.Show(errorMessage);
                 return;
             }
-           
-            if (currentQuestion.Answer == Int32.Parse(userAnswer))
+     
+            if (currentQuestion.Answer == userAnswer)
                 user.AcceptRigthAnswer();
 
             questions.Remove(currentQuestion);
 
             var endgame = (questions.Count == 0);
+
             if(endgame)
             {
                 int userPoints = Diagnoses.CalculateUserDiagnose(countQuestions, user.CountRightAnswers);
-                user.Diagnoses = Diagnoses.GetDiagnose(userPoints);
+                user.Diagnose = Diagnoses.GetDiagnose(userPoints);
 
-                MessageBox.Show(user.Name + ", ваш диагноз: " + user.Diagnoses);
-                UserResultStorage.SaveTestResultsForWindowsForms(user);
+                MessageBox.Show(user.Name + ", ваш диагноз: " + user.Diagnose);
+                UserResultStorage.SaveTestResults(user);
 
                 string resultsMessage = "Хотите увидеть прошлые результаты?";
                 string resultsCaption = "Конец теста";
@@ -84,7 +70,6 @@ namespace GenyiIdiotWindowsFormsApp
                 if (showResult == DialogResult.Yes)
                 {
                     this.Hide();
-                    UserResultsForm userResultsForm = new UserResultsForm();
                     userResultsForm.Show();
                 }
 
@@ -98,9 +83,8 @@ namespace GenyiIdiotWindowsFormsApp
                     
                     if(result == DialogResult.Yes)
                     {
-                            this.Hide();
-                            NameForm nameForm = new NameForm();
-                            nameForm.Show();   
+                       this.Hide();
+                       nameForm.Show();   
                     }
 
                     else Application.Exit();
@@ -111,6 +95,16 @@ namespace GenyiIdiotWindowsFormsApp
             ShowNextQuestion() ;
         }
 
+        private void ShowNextQuestion()
+        {
+            var random = new Random();
+            var randomIndex = random.Next(0, questions.Count);
+
+            currentQuestion = questions[randomIndex];
+            questionTextLabel.Text = currentQuestion.Text;
+            questionNumber++;
+            questionNumberLabel.Text = "Вопрос - " + questionNumber;
+        }
 
 
         //ДАЛЬШЕ КНОПОЧКИ ХУЕПОЧКИ МОЖНО НЕ ГЛЯДЕТЬ

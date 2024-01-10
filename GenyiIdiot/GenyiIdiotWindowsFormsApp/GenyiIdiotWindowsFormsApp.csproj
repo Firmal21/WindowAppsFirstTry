@@ -140,10 +140,6 @@
       <Project>{3b0c5664-6f0f-4228-9273-15d7cadf7969}</Project>
       <Name>GeniyIdiotClassLibrary</Name>
     </ProjectReference>
-    <ProjectReference Include="..\GenyiIdiotConsoleApp\GenyiIdiotConsoleApp.csproj">
-      <Project>{9832D7DD-AF0D-47FA-8557-007CE0832BE6}</Project>
-      <Name>GenyiIdiotConsoleApp</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\71a3bb30bf9b3d9665e98813e420c046.jpg" />

@@ -34,6 +34,7 @@
             this.newQuestionText = new System.Windows.Forms.TextBox();
             this.newQuestionAnswer = new System.Windows.Forms.TextBox();
             this.nextButton = new System.Windows.Forms.Button();
+            this.menuButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -72,7 +73,7 @@
             // 
             this.newQuestionText.Location = new System.Drawing.Point(87, 76);
             this.newQuestionText.Name = "newQuestionText";
-            this.newQuestionText.Size = new System.Drawing.Size(100, 20);
+            this.newQuestionText.Size = new System.Drawing.Size(453, 20);
             this.newQuestionText.TabIndex = 16;
             // 
             // newQuestionAnswer
@@ -100,12 +101,31 @@
             this.nextButton.UseVisualStyleBackColor = false;
             this.nextButton.Click += new System.EventHandler(this.nextButton_Click);
             // 
+            // menuButton
+            // 
+            this.menuButton.BackColor = System.Drawing.Color.MediumSlateBlue;
+            this.menuButton.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+            this.menuButton.FlatAppearance.BorderSize = 3;
+            this.menuButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Red;
+            this.menuButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gray;
+            this.menuButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.menuButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.menuButton.ForeColor = System.Drawing.Color.Black;
+            this.menuButton.Location = new System.Drawing.Point(-1, -6);
+            this.menuButton.Name = "menuButton";
+            this.menuButton.Size = new System.Drawing.Size(75, 40);
+            this.menuButton.TabIndex = 19;
+            this.menuButton.Text = "Меню";
+            this.menuButton.UseVisualStyleBackColor = false;
+            this.menuButton.Click += new System.EventHandler(this.menuButton_Click);
+            // 
             // AddQuestionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Thistle;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.menuButton);
             this.Controls.Add(this.nextButton);
             this.Controls.Add(this.newQuestionAnswer);
             this.Controls.Add(this.newQuestionText);
@@ -129,5 +149,6 @@
         private System.Windows.Forms.TextBox newQuestionText;
         private System.Windows.Forms.TextBox newQuestionAnswer;
         private System.Windows.Forms.Button nextButton;
+        private System.Windows.Forms.Button menuButton;
     }
 }

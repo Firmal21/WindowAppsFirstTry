@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using GeniyIdiotClassLibrary;
 
 namespace GenyiIdiotWindowsFormsApp
 {
@@ -25,9 +26,16 @@ namespace GenyiIdiotWindowsFormsApp
 
         private void UserResultsForm_Load(object sender, EventArgs e)
         {
-            textBox1.Text = Properties.Resources.UserResults;
-            textBox1.SelectionStart = 0;
-            textBox1.SelectionLength = 0;
+            var results = UserResultStorage.GetUserResults();
+
+            foreach(var result in results)
+            {
+                resultsDataGridView.Rows.Add(result.Name, result.CountRightAnswers, result.Diagnose);
+            }
+
+            //textBox1.Text = Properties.Resources.UserResults;
+            //textBox1.SelectionStart = 0;
+            //textBox1.SelectionLength = 0;
         }
 
         private void nextButton_Click(object sender, EventArgs e)

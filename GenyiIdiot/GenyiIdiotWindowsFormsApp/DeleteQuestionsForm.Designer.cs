@@ -52,6 +52,7 @@
             this.menuButton.TabIndex = 16;
             this.menuButton.Text = "Меню";
             this.menuButton.UseVisualStyleBackColor = false;
+            this.menuButton.Click += new System.EventHandler(this.menuButton_Click);
             // 
             // closeButton
             // 

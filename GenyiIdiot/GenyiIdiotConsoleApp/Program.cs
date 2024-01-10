@@ -46,10 +46,10 @@ namespace GenyiIdiotConsoleApp
                 WriteLine($"Количествов правильных ответов: {user.CountRightAnswers}");
 
                 int userPoints = Diagnoses.CalculateUserDiagnose(countQestions, user.CountRightAnswers);
-                user.Diagnoses = Diagnoses.GetDiagnose(userPoints);
+                user.Diagnose = Diagnoses.GetDiagnose(userPoints);
                 
 
-                WriteLine($"{user.Name}, ваш диагноз : {user.Diagnoses}");
+                WriteLine($"{user.Name}, ваш диагноз : {user.Diagnose}");
                 UserResultStorage.SaveTestResults(user);
 
                 bool userShowChoise = GetUserChoise("Хотите увидеть предыдущие результаты?");
@@ -74,21 +74,12 @@ namespace GenyiIdiotConsoleApp
 
         static int GetNumber()
         {
-            while (true)
+            int number;
+            while (!InputValidator.TryParseToNumber(Console.ReadLine(), out  number, out string errorMessage))
             {
-                try
-                {
-                    return int.Parse(ReadLine());
-                }
-                catch (FormatException)
-                {
-                    WriteLine("Пожалуйста, введите число");
-                }
-                catch (OverflowException)
-                {
-                    WriteLine("Вы ввели слишком большое число");
-                }
+                WriteLine(errorMessage);
             }
+            return number;
         }
 
 
@@ -99,7 +90,7 @@ namespace GenyiIdiotConsoleApp
             WriteLine("{0,-20} {1,18} {2,10}", "Имя", "Кол-во верных ответов", "Диагноз");
             foreach (var user in result) 
             {
-                WriteLine("{0,-20} {1,18} {2,12}", user.Name, user.CountRightAnswers, user.Diagnoses);
+                WriteLine("{0,-20} {1,18} {2,12}", user.Name, user.CountRightAnswers, user.Diagnose);
             }
         }
 
