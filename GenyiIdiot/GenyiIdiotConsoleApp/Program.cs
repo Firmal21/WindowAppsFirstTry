@@ -22,36 +22,25 @@ namespace GenyiIdiotConsoleApp
                 {
                     AddNewQuestion();
                 }
-                
-                var questions = QuestionsStorage.GetAllQuestions();
-                int countQestions = questions.Count;
 
-                var random = new Random();
-                
-                for (int i = 0; i < countQestions; i++)
+                var game = new Game(user);
+
+                while(!game.End())
                 {
-                    var randomQestionIndex = random.Next(0, questions.Count);
+                    var currentQuestion = game.GetNextQuestion();
 
-                    WriteLine("Вопрос " + (i + 1) + " - " + questions[randomQestionIndex].Text);
+                    WriteLine(game.GetQuestionNumberText());
+                    WriteLine(currentQuestion.Text);
 
                     user.Answer = GetNumber();
-                    
-                    if (questions[randomQestionIndex].Answer == user.Answer)
-                        user.AcceptRigthAnswer();
 
-                    questions.RemoveAt(randomQestionIndex);
+                    game.AcceptAnswer(user.Answer);
                     
                 }
 
-                WriteLine($"Количествов правильных ответов: {user.CountRightAnswers}");
-
-                int userPoints = Diagnoses.CalculateUserDiagnose(countQestions, user.CountRightAnswers);
-                user.Diagnose = Diagnoses.GetDiagnose(userPoints);
+                var message = game.CalculateDiagnose();
+                WriteLine(message);
                 
-
-                WriteLine($"{user.Name}, ваш диагноз : {user.Diagnose}");
-                UserResultStorage.SaveTestResults(user);
-
                 bool userShowChoise = GetUserChoise("Хотите увидеть предыдущие результаты?");
 
                 if (userShowChoise == true)
@@ -59,15 +48,11 @@ namespace GenyiIdiotConsoleApp
                     WriteLine();
                     ShowTestResults();
                 }
-
                 
                 bool userChoise = GetUserChoise("Хотите начать тест заново?");
 
                 if (userChoise == false)
                     break;
-
-                
-
             }
         }
        
@@ -104,13 +89,11 @@ namespace GenyiIdiotConsoleApp
 
                 if (restartAnswer.ToLower().Contains("нет"))
                 {
-                    
                     return false;
                 }
 
                 if (restartAnswer.ToLower().Contains("да"))
                 {
-                    
                     return true;
                 }
             }

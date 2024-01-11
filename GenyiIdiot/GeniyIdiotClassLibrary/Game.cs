@@ -19,7 +19,6 @@ namespace GeniyIdiotClassLibrary
             this.user = user;
             questions = QuestionsStorage.GetAllQuestions();
             countQuestions = questions.Count;
-
         }
 
         public Question GetNextQuestion()
@@ -50,6 +49,7 @@ namespace GeniyIdiotClassLibrary
         {
             return questions.Count == 0;
         }
+
         public string CalculateDiagnose()
         {
             int userPoints = Diagnoses.CalculateUserDiagnose(countQuestions, user.CountRightAnswers);

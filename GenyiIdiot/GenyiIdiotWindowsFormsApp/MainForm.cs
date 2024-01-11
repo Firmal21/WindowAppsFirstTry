@@ -34,9 +34,6 @@ namespace GenyiIdiotWindowsFormsApp
 
         private void nextButton_Click(object sender, EventArgs e)
         {
-            UserResultsForm userResultsForm = new UserResultsForm();
-            NameForm nameForm = new NameForm();
-
             int userAnswer;
             
             if(!InputValidator.TryParseToNumber(userAnswerTextBox.Text, out userAnswer, out string errorMessage))
@@ -49,12 +46,9 @@ namespace GenyiIdiotWindowsFormsApp
 
             if(game.End())
             {
-                
-
                 var message = game.CalculateDiagnose();
                 MessageBox.Show(message);
                 
-
                 string resultsMessage = "Хотите увидеть прошлые результаты?";
                 string resultsCaption = "Конец теста";
                 MessageBoxButtons resultsButtons = MessageBoxButtons.YesNo;
@@ -63,6 +57,7 @@ namespace GenyiIdiotWindowsFormsApp
                 
                 if (showResult == DialogResult.Yes)
                 {
+                    UserResultsForm userResultsForm = new UserResultsForm();
                     this.Hide();
                     userResultsForm.Show();
                 }
@@ -77,7 +72,8 @@ namespace GenyiIdiotWindowsFormsApp
                     
                     if(result == DialogResult.Yes)
                     {
-                       this.Hide();
+                        NameForm nameForm = new NameForm();
+                        this.Hide();
                        nameForm.Show();   
                     }
 
