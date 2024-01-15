@@ -1,6 +1,7 @@
 ﻿using System.Text;
 using System.IO;
 using System;
+using Newtonsoft.Json.Linq;
 //using System.Text;
 
 namespace GeniyIdiotClassLibrary
@@ -31,6 +32,13 @@ namespace GeniyIdiotClassLibrary
         public static void Clear(string fileName)
         {
             File.WriteAllText(fileName, string.Empty);
+        }
+
+        public static void Replace(string fileName, string value) 
+        {
+            StreamWriter writer = new StreamWriter(fileName, false, Encoding.Default);
+            writer.WriteLine(value);
+            writer.Close();
         }
     }
 }
