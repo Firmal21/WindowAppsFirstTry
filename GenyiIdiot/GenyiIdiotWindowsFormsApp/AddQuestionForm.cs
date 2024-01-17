@@ -33,7 +33,7 @@ namespace GenyiIdiotWindowsFormsApp
                 return;
             }
 
-            var newQuestion = new Question(newQuestionText, Int32.Parse(newQuestionAnswer));
+            var newQuestion = new Questions(newQuestionText, Int32.Parse(newQuestionAnswer));
             QuestionsStorage.Add(newQuestion);
 
             string resultsMessage = "Хотите добавить ещё один вопрос?";

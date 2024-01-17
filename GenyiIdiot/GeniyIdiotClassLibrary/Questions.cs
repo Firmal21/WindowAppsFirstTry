@@ -4,11 +4,11 @@ using System;
 
 namespace GeniyIdiotClassLibrary
 {
-    public class Question
+    public class Questions
     {
         public string Text { get; set; }
         public int Answer { get; set; }
-        public Question(string text, int answer)
+        public Questions(string text, int answer)
         {
             Text = text;
             Answer = answer;

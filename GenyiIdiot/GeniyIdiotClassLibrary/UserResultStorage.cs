@@ -23,13 +23,12 @@ namespace GeniyIdiotClassLibrary
         public static List<User> GetUserResults()
         {
             
-
             if (!FileProvider.Exists(Path))
             {
                 return new List<User>();
             }
 
-            var value = FileProvider.GetValue("Questions.txt");
+            //var value = FileProvider.GetValue("Questions.txt");
             var fileData = FileProvider.GetValue(Path);
             var userResults = JsonConvert.DeserializeObject<List<User>>(fileData);
 
@@ -39,7 +38,7 @@ namespace GeniyIdiotClassLibrary
         static void Save(List<User> userResults)
         {
             var jsonData = JsonConvert.SerializeObject(userResults, Formatting.Indented);
-            FileProvider.Replace("UserResults.json", jsonData);
+            FileProvider.Replace(Path, jsonData);
         }
     }
 }

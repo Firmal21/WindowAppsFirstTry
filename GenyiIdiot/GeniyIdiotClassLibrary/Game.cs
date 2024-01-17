@@ -9,8 +9,8 @@ namespace GeniyIdiotClassLibrary
     public class Game
     {
         User user;
-        List<Question> questions;
-        Question currentQuestion;
+        List<Questions> questions;
+        Questions currentQuestion;
         int countQuestions;
         int questionNumber = 1;
 
@@ -21,7 +21,7 @@ namespace GeniyIdiotClassLibrary
             countQuestions = questions.Count;
         }
 
-        public Question GetNextQuestion()
+        public Questions GetNextQuestion()
         {
             var random = new Random();
             var randomIndex = random.Next(0, questions.Count);
@@ -40,6 +40,12 @@ namespace GeniyIdiotClassLibrary
             questions.Remove(currentQuestion);
         }
 
+        public void RefuseAnsfer()
+        {
+            questions.Remove(currentQuestion);
+        }
+
+
         public string GetQuestionNumberText()
         {
             return "Вопрос " + questionNumber;
@@ -48,6 +54,11 @@ namespace GeniyIdiotClassLibrary
         public bool End()
         {
             return questions.Count == 0;
+        }
+
+        public bool EndForTimer()
+        {
+            return questions.Count == 1;
         }
 
         public string CalculateDiagnose()

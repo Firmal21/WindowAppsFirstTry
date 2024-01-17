@@ -32,7 +32,10 @@ namespace GeniyIdiotClassLibrary
 
         public static int CalculateUserDiagnose(int countQestions, int countRightAnswers)
         {
-
+            if(countQestions == 0) 
+            {
+                countQestions = 1;
+            }
             int diagnosesPersents = countRightAnswers * 100 / countQestions;
 
 

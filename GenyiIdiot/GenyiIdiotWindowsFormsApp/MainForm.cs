@@ -12,6 +12,7 @@ namespace GenyiIdiotWindowsFormsApp
     public partial class MainForm : Form
     {
         Game game;
+        int timeLeft = 5;
         //private List<Question> questions;
         //private Question currentQuestion;
         //private User user;
@@ -25,7 +26,9 @@ namespace GenyiIdiotWindowsFormsApp
 
         private void Form1_Load(object sender, EventArgs e)
         {
-       
+            timer.Enabled = true;
+            timer.Interval = 1000;
+
             var user = new User(UsersActions.Name);
             game = new Game(user);
            
@@ -46,39 +49,7 @@ namespace GenyiIdiotWindowsFormsApp
 
             if(game.End())
             {
-                var message = game.CalculateDiagnose();
-                MessageBox.Show(message);
-                
-                string resultsMessage = "Хотите увидеть прошлые результаты?";
-                string resultsCaption = "Конец теста";
-                MessageBoxButtons resultsButtons = MessageBoxButtons.YesNo;
-                DialogResult showResult;
-                showResult = MessageBox.Show(resultsMessage, resultsCaption, resultsButtons);
-                
-                if (showResult == DialogResult.Yes)
-                {
-                    UserResultsForm userResultsForm = new UserResultsForm();
-                    this.Hide();
-                    userResultsForm.Show();
-                }
-
-                else
-                {
-                    string restartMessage = "Хотите начать тест заново?";
-                    string caption = "Конец теста";
-                    MessageBoxButtons buttons = MessageBoxButtons.YesNo;
-                    DialogResult result;
-                    result = MessageBox.Show(restartMessage, caption, buttons);
-                    
-                    if(result == DialogResult.Yes)
-                    {
-                        NameForm nameForm = new NameForm();
-                        this.Hide();
-                       nameForm.Show();   
-                    }
-
-                    else Application.Exit();
-                }
+                EndGame();
                 return;
             }
 
@@ -92,6 +63,76 @@ namespace GenyiIdiotWindowsFormsApp
             questionTextLabel.Text = currentQuestion.Text;
             
             questionNumberLabel.Text = game.GetQuestionNumberText();
+        }
+
+        private void EndGame()
+        {
+            var message = game.CalculateDiagnose();
+            MessageBox.Show(message);
+
+
+            string resultsMessage = "Хотите увидеть прошлые результаты?";
+            string resultsCaption = "Конец теста";
+            MessageBoxButtons resultsButtons = MessageBoxButtons.YesNo;
+            DialogResult showResult;
+            showResult = MessageBox.Show(resultsMessage, resultsCaption, resultsButtons);
+
+            if (showResult == DialogResult.Yes)
+            {
+                UserResultsForm userResultsForm = new UserResultsForm();
+                this.Hide();
+                userResultsForm.Show();
+            }
+
+            else
+            {
+                string restartMessage = "Хотите начать тест заново?";
+                string caption = "Конец теста";
+                MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+                DialogResult result;
+                result = MessageBox.Show(restartMessage, caption, buttons);
+
+                if (result == DialogResult.Yes)
+                {
+                    NameForm nameForm = new NameForm();
+                    this.Hide();
+                    nameForm.Show();
+                }
+
+                else Application.Exit();
+            }
+        }
+       
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            timeLabel.Text = timeLeft.ToString();
+
+            var questions = QuestionsStorage.GetAllQuestions();
+            var countQuestions = questions.Count;
+
+            if (timeLeft == 0)
+            {
+                if (game.EndForTimer())
+                {
+                    timer.Stop();
+                    EndGame();
+                    
+                }
+                else
+                {
+                    game.RefuseAnsfer();
+                    ShowNextQuestion();
+                    timeLeft = 5;
+                }
+                
+                
+            }
+            else
+            {
+               timeLeft--;
+            }
+
+
         }
 
 
@@ -140,5 +181,8 @@ namespace GenyiIdiotWindowsFormsApp
             MenuForm menuForm = new MenuForm();
             menuForm.Show();
         }
+
+
+       
     }
 }

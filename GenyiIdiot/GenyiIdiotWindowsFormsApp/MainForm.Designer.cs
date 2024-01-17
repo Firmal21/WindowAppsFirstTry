@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.nextButton = new System.Windows.Forms.Button();
             this.questionNumberLabel = new System.Windows.Forms.Label();
             this.questionTextLabel = new System.Windows.Forms.Label();
@@ -35,6 +36,9 @@
             this.closeButton = new System.Windows.Forms.Label();
             this.menuButton = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.timerLabel = new System.Windows.Forms.Label();
+            this.timer = new System.Windows.Forms.Timer(this.components);
+            this.timeLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -125,12 +129,40 @@
             this.pictureBox1.TabIndex = 7;
             this.pictureBox1.TabStop = false;
             // 
+            // timerLabel
+            // 
+            this.timerLabel.AutoSize = true;
+            this.timerLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.timerLabel.Location = new System.Drawing.Point(416, 154);
+            this.timerLabel.Name = "timerLabel";
+            this.timerLabel.Size = new System.Drawing.Size(233, 13);
+            this.timerLabel.TabIndex = 12;
+            this.timerLabel.Text = "Оставшееся время ответа на вопрос:";
+            // 
+            // timer
+            // 
+            this.timer.Enabled = true;
+            this.timer.Interval = 30;
+            this.timer.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // timeLabel
+            // 
+            this.timeLabel.AutoSize = true;
+            this.timeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.timeLabel.Location = new System.Drawing.Point(496, 197);
+            this.timeLabel.Name = "timeLabel";
+            this.timeLabel.Size = new System.Drawing.Size(20, 24);
+            this.timeLabel.TabIndex = 13;
+            this.timeLabel.Text = "0";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Thistle;
             this.ClientSize = new System.Drawing.Size(676, 279);
+            this.Controls.Add(this.timeLabel);
+            this.Controls.Add(this.timerLabel);
             this.Controls.Add(this.menuButton);
             this.Controls.Add(this.closeButton);
             this.Controls.Add(this.pictureBox1);
@@ -160,6 +192,9 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label closeButton;
         private System.Windows.Forms.Button menuButton;
+        private System.Windows.Forms.Label timerLabel;
+        private System.Windows.Forms.Timer timer;
+        private System.Windows.Forms.Label timeLabel;
     }
 }
 

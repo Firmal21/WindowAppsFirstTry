@@ -20,7 +20,7 @@ namespace GenyiIdiotConsoleApp
 
                 if (user.Name.ToLower() == "admin")
                 {
-                    AddNewQuestion();
+                    AdminActions();
                 }
 
                 var game = new Game(user);
@@ -99,7 +99,7 @@ namespace GenyiIdiotConsoleApp
             }
         }
 
-        static void AddNewQuestion()
+        static void AdminActions()
         {
             while (true)
             {
@@ -112,7 +112,7 @@ namespace GenyiIdiotConsoleApp
                     Write("Введите ответ на вопрос: ");
                     var answer = GetNumber();
 
-                    var newQuestion = new Question(question, answer);
+                    var newQuestion = new Questions(question, answer);
                     QuestionsStorage.Add(newQuestion);
                     adminChoise = GetUserChoise("Хотите добавить ещё один вопрос?");
                 }
