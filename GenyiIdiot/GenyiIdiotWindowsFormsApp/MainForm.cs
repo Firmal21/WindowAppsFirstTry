@@ -47,8 +47,11 @@ namespace GenyiIdiotWindowsFormsApp
 
             game.AcceptAnswer(userAnswer);
 
+            timeLeft = 5;
+
             if(game.End())
             {
+                timer.Stop();
                 EndGame();
                 return;
             }
@@ -124,8 +127,6 @@ namespace GenyiIdiotWindowsFormsApp
                     ShowNextQuestion();
                     timeLeft = 5;
                 }
-                
-                
             }
             else
             {

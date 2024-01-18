@@ -51,8 +51,9 @@ namespace GeniyIdiotClassLibrary
         public static void Remove(Questions removeQuestion)
         {
             var questions = GetAllQuestions();
-
+            
             questions.Remove(removeQuestion);
+
             SaveQuestions(questions);
         }
     }

@@ -20,9 +20,22 @@ namespace GenyiIdiotWindowsFormsApp
 
         private void DeleteQuestionsForm_Load(object sender, EventArgs e)
         {
-            questionsTextBox.Text = Properties.Resources.Questions;
-            questionsTextBox.SelectionStart = 0;
-            questionsTextBox.SelectionLength = 0;
+            //questionsTextBox.Text = Properties.Resources.Questions;
+            //questionsTextBox.SelectionStart = 0;
+            //questionsTextBox.SelectionLength = 0;
+
+            var questions = QuestionsStorage.GetAllQuestions();
+
+            foreach(var question in questions)
+            {
+                
+                int number = 0;
+                for (int i = 0; i < deleteDataGridView.Rows.Count; i++)
+                {   
+                    number++;   
+                }
+                deleteDataGridView.Rows.Add(number, question.Text);
+            }
         }
 
         private void closeButton_Click(object sender, EventArgs e)
@@ -49,6 +62,7 @@ namespace GenyiIdiotWindowsFormsApp
             QuestionsStorage.Remove(deleteQuestion);
 
             string resultsMessage = "Хотите удалить ещё один вопрос?";
+
             string resultsCaption = "";
             MessageBoxButtons resultsButtons = MessageBoxButtons.YesNo;
             DialogResult showResult;
