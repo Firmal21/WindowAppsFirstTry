@@ -183,7 +183,21 @@ namespace GenyiIdiotWindowsFormsApp
             menuForm.Show();
         }
 
+        private void menuRestartButton(object sender, EventArgs e)
+        {
+            Application.Restart();
+        }
 
-       
+        private void menuShowResultsButton(object sender, EventArgs e)
+        {
+            this.Hide();
+            UserResultsForm userResultsForm = new UserResultsForm();
+            userResultsForm.Show();
+        }
+
+        private void выйтиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

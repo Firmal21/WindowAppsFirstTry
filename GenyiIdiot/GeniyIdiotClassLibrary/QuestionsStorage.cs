@@ -12,11 +12,10 @@ namespace GeniyIdiotClassLibrary
         public static string Path = "Questions.json";
         public static List<Questions> GetAllQuestions()
         {
-            
+            var questions = new List<Questions>();
 
             if (!FileProvider.Exists(Path))
-            {
-                var questions = new List<Questions>();
+            {    
                 questions.Add(new Questions("Сколько будет два плюс два умноженное на два?", 6));
                 questions.Add(new Questions("Бревно нужно распилить на 10 частей. Сколько распилов нужно сделать?", 9));
                 questions.Add(new Questions("На двух руках 10 пальцев. Сколько пальцев на 5 руках?", 25));
@@ -30,8 +29,8 @@ namespace GeniyIdiotClassLibrary
                 return questions;
             }
             var fileData = FileProvider.GetValue(Path);
-            var questionsList = JsonConvert.DeserializeObject<List<Questions>>(fileData);
-            return questionsList;
+            questions = JsonConvert.DeserializeObject<List<Questions>>(fileData);
+            return questions;
         }
 
         public static void SaveQuestions(List<Questions> questions)
@@ -52,7 +51,16 @@ namespace GeniyIdiotClassLibrary
         {
             var questions = GetAllQuestions();
             
-            questions.Remove(removeQuestion);
+            for(int i = 0; i < questions.Count; i++)
+            {
+                if (questions[i].Text == removeQuestion.Text)
+                {
+                    questions.RemoveAt(i);
+                    break;
+                }
+            }
+
+           // questions.Remove(removeQuestion);
 
             SaveQuestions(questions);
         }

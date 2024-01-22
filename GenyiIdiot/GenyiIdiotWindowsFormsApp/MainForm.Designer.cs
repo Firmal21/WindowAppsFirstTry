@@ -39,7 +39,14 @@
             this.timerLabel = new System.Windows.Forms.Label();
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.timeLabel = new System.Windows.Forms.Label();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.жопичToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.менюДляТебяToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.аЧтоТакМожноБылоToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.выйтиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // nextButton
@@ -94,7 +101,7 @@
             this.closeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.closeButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.closeButton.ForeColor = System.Drawing.Color.Red;
-            this.closeButton.Location = new System.Drawing.Point(637, 9);
+            this.closeButton.Location = new System.Drawing.Point(568, 24);
             this.closeButton.Name = "closeButton";
             this.closeButton.Size = new System.Drawing.Size(27, 25);
             this.closeButton.TabIndex = 10;
@@ -111,7 +118,7 @@
             this.menuButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.menuButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.menuButton.ForeColor = System.Drawing.Color.Black;
-            this.menuButton.Location = new System.Drawing.Point(-2, -6);
+            this.menuButton.Location = new System.Drawing.Point(601, 46);
             this.menuButton.Name = "menuButton";
             this.menuButton.Size = new System.Drawing.Size(75, 40);
             this.menuButton.TabIndex = 11;
@@ -155,12 +162,59 @@
             this.timeLabel.TabIndex = 13;
             this.timeLabel.Text = "0";
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.жопичToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(676, 24);
+            this.menuStrip1.TabIndex = 15;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // жопичToolStripMenuItem
+            // 
+            this.жопичToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.менюДляТебяToolStripMenuItem,
+            this.аЧтоТакМожноБылоToolStripMenuItem,
+            this.выйтиToolStripMenuItem});
+            this.жопичToolStripMenuItem.Name = "жопичToolStripMenuItem";
+            this.жопичToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
+            this.жопичToolStripMenuItem.Text = "Меню";
+            // 
+            // менюДляТебяToolStripMenuItem
+            // 
+            this.менюДляТебяToolStripMenuItem.Name = "менюДляТебяToolStripMenuItem";
+            this.менюДляТебяToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
+            this.менюДляТебяToolStripMenuItem.Text = "Перезапустить игру";
+            this.менюДляТебяToolStripMenuItem.Click += new System.EventHandler(this.menuRestartButton);
+            // 
+            // аЧтоТакМожноБылоToolStripMenuItem
+            // 
+            this.аЧтоТакМожноБылоToolStripMenuItem.Name = "аЧтоТакМожноБылоToolStripMenuItem";
+            this.аЧтоТакМожноБылоToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
+            this.аЧтоТакМожноБылоToolStripMenuItem.Text = "Увидеть результаты";
+            this.аЧтоТакМожноБылоToolStripMenuItem.Click += new System.EventHandler(this.menuShowResultsButton);
+            // 
+            // выйтиToolStripMenuItem
+            // 
+            this.выйтиToolStripMenuItem.Name = "выйтиToolStripMenuItem";
+            this.выйтиToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
+            this.выйтиToolStripMenuItem.Text = "Выйти";
+            this.выйтиToolStripMenuItem.Click += new System.EventHandler(this.выйтиToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Thistle;
             this.ClientSize = new System.Drawing.Size(676, 279);
+            this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.timeLabel);
             this.Controls.Add(this.timerLabel);
             this.Controls.Add(this.menuButton);
@@ -172,12 +226,15 @@
             this.Controls.Add(this.nextButton);
             this.ForeColor = System.Drawing.Color.Black;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
             this.Text = "Гений Идиот";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseMove);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -195,6 +252,12 @@
         private System.Windows.Forms.Label timerLabel;
         private System.Windows.Forms.Timer timer;
         private System.Windows.Forms.Label timeLabel;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem жопичToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem менюДляТебяToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem аЧтоТакМожноБылоToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem выйтиToolStripMenuItem;
     }
 }
 

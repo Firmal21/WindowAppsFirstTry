@@ -25,15 +25,15 @@ namespace GenyiIdiotWindowsFormsApp
 
         private void nextButton_Click(object sender, EventArgs e)
         {
-            var newQuestionText = (this.newQuestionText.Text);
-            var newQuestionAnswer = (this.newQuestionAnswer.Text);
-            if (!(int.TryParse(newQuestionAnswer, out var answerInt)))
+
+            var parced = InputValidator.TryParseToNumber(newQuestionAnswer.Text, out int userAnswer, out string errorMessage);
+            if(!parced)
             {
-                MessageBox.Show("Пожалуйста, введите число");
+                MessageBox.Show(errorMessage);
                 return;
             }
 
-            var newQuestion = new Questions(newQuestionText, Int32.Parse(newQuestionAnswer));
+            var newQuestion = new Questions(newQuestionText.Text, userAnswer);
             QuestionsStorage.Add(newQuestion);
 
             string resultsMessage = "Хотите добавить ещё один вопрос?";
