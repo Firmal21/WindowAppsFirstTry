@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7656655D-B128-4A46-81A7-7FD4C7DF47D5}</ProjectGuid>
+    <ProjectGuid>{81B71A72-B74C-44A3-98D8-0597A5D6431D}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>GenyiIdiotWindowsFormsApp</RootNamespace>
-    <AssemblyName>GenyiIdiotWindowsFormsApp</AssemblyName>
+    <RootNamespace>_2048WindowsFormsApp</RootNamespace>
+    <AssemblyName>2048WindowsFormsApp</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -46,68 +46,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddQuestionForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AddQuestionForm.Designer.cs">
-      <DependentUpon>AddQuestionForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="AdminForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AdminForm.Designer.cs">
-      <DependentUpon>AdminForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DeleteQuestionsForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="DeleteQuestionsForm.Designer.cs">
-      <DependentUpon>DeleteQuestionsForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="MenuForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MenuForm.Designer.cs">
-      <DependentUpon>MenuForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="NameForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="NameForm.Designer.cs">
-      <DependentUpon>NameForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UserResultsForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UserResultsForm.Designer.cs">
-      <DependentUpon>UserResultsForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UsersActions.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="AddQuestionForm.resx">
-      <DependentUpon>AddQuestionForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AdminForm.resx">
-      <DependentUpon>AdminForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DeleteQuestionsForm.resx">
-      <DependentUpon>DeleteQuestionsForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MenuForm.resx">
-      <DependentUpon>MenuForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="NameForm.resx">
-      <DependentUpon>NameForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -117,11 +65,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="UserResultsForm.resx">
-      <DependentUpon>UserResultsForm.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -134,18 +78,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\GeniyIdiotClassLibrary\GeniyIdiotClassLibrary.csproj">
-      <Project>{3b0c5664-6f0f-4228-9273-15d7cadf7969}</Project>
-      <Name>GeniyIdiotClassLibrary</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\71a3bb30bf9b3d9665e98813e420c046.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="bin\Debug\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
