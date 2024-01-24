@@ -117,7 +117,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
+  <data name="label1.Text" xml:space="preserve">
+    <value>В 2048 ваша цель — объединить блоки с числами, чтобы получить блок со значением 2048 и победить в игре. Игровое поле представляет собой квадратную сетку, на которой размещены блоки. Каждый блок может перемещаться по горизонтали или вертикали и складываться с другими блоками, если они имеют одинаковое значение. После каждого хода на свободной позиции на поле появляется новый блок со значением 2 или 4.
+</value>
+  </data>
 </root>

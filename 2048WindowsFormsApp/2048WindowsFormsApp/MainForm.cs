@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Text;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,6 +26,7 @@ namespace _2048WindowsFormsApp
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            
             InitMap();
             GenerateNumber();
             ShowScore();
@@ -60,8 +62,17 @@ namespace _2048WindowsFormsApp
                 var indexColumn = randomNumberLable % mapSize;
                 if (labelsMap[indexRow, indexColumn].Text == string.Empty)
                 {
-                    //либо 2 либо 4 генерировать надо
-                    labelsMap[indexRow, indexColumn].Text = "2";
+                    int chance = random.Next(0, 100) + 1;
+                    if (chance >= 75)
+                    {
+                        labelsMap[indexRow, indexColumn].Text = "4";  
+                    }
+                    if (chance <= 75)
+                    {
+                        labelsMap[indexRow, indexColumn].Text = "2";
+                    }
+                    
+
                     break;
                 }
 
@@ -80,6 +91,110 @@ namespace _2048WindowsFormsApp
             label.Location = new Point(x, y);
             return label;
         }
+
+        bool t = true;
+
+        private bool GameOver()
+        {
+            while(t = true)
+            {
+                //right
+                for (int i = 0; i < mapSize; i++)
+                {
+                    for (int j = mapSize - 1; j >= 0; j--)
+                    {
+                        if (labelsMap[i, j].Text != string.Empty)
+                        {
+                            for (int k = j - 1; k >= 0; k--)
+                            {
+                                if (labelsMap[i, k].Text != string.Empty)
+                                {
+                                    if (labelsMap[i, j].Text == labelsMap[i, k].Text)
+                                    {
+                                        t = true;
+                                        return true;
+                                    }
+                                }
+                            }
+
+                        }
+                    }
+                }
+                
+            }
+            //left
+            for (int i = 0; i < mapSize; i++)
+            {
+                for (int j = 0; j <= mapSize - 1; j++)
+                {
+                    if (labelsMap[i, j].Text != string.Empty)
+                    {
+                        for (int k = j + 1; k <= mapSize - 1; k++)
+                        {
+                            if (labelsMap[i, k].Text != string.Empty)
+                            {
+                                if (labelsMap[i, j].Text == labelsMap[i, k].Text)
+                                {
+                                    t = true;
+                                    return true;
+                                }
+                                
+                            }
+                        }
+
+                    }
+                }
+            }
+            //up
+            for (int j = 0; j < mapSize; j++)
+            {
+                for (int i = 0; i < mapSize; i++)
+                {
+
+                    if (labelsMap[i, j].Text != string.Empty)
+                    {
+                        for (int k = i + 1; k < mapSize; k++)
+                        {
+                            if (labelsMap[k, j].Text != string.Empty)
+                            {
+                                if (labelsMap[i, j].Text == labelsMap[k, j].Text)
+                                {
+                                    t=true;
+                                    return true;
+                                }
+                            }
+                        }
+
+                    }
+                }
+            }
+            //down
+            for (int j = 0; j < mapSize; j++)
+            {
+                for (int i = mapSize - 1; i >= 0; i--)
+                {
+
+                    if (labelsMap[i, j].Text != string.Empty)
+                    {
+                        for (int k = i - 1; k >= 0; k--)
+                        {
+                            if (labelsMap[k, j].Text != string.Empty)
+                            {
+                                if (labelsMap[i, j].Text == labelsMap[k, j].Text)
+                                {
+                                    t = true;
+                                    return true;
+                                }
+                            }
+                        }
+
+                    }
+                }
+            }
+            return false;
+        }
+        //up
+
 
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
         {
@@ -282,6 +397,61 @@ namespace _2048WindowsFormsApp
 
             GenerateNumber();
             ShowScore();
+            if(GameOver()==false)
+            {
+                MessageBox.Show("Игра окончена");
+            }
         }
+
+        private void GameRulesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RulesForm rulesForm = new RulesForm();
+            rulesForm.ShowDialog();
+        }
+
+        private bool MessageBoxShowDialog(string message)
+        {
+            string resultsCaption = "";
+            MessageBoxButtons resultsButtons = MessageBoxButtons.YesNo;
+            DialogResult showResult;
+            showResult = MessageBox.Show(message, resultsCaption, resultsButtons);
+            if (showResult == DialogResult.Yes)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private void RestartToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string message = "Вы уверены что хотите перезапустить игру?";
+            var messageResult = MessageBoxShowDialog(message);
+
+            if (messageResult == true)
+            {
+                Application.Restart();
+            }
+
+            this.Close();
+            
+        }
+
+        private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string message = "Вы уверены что хотите выйти из игры?";
+            var messageResult = MessageBoxShowDialog(message);
+
+            if (messageResult == true)
+            {
+                Application.Exit();
+            }
+
+            this.Close();
+
+
+        }
+
+       
+
     }
 }
