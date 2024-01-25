@@ -12,18 +12,19 @@ namespace _2048WindowsFormsApp
 {
     public partial class WelcomeForm : Form
     {
+        public static string UserName = "sd";
         public WelcomeForm()
         {
             InitializeComponent();
         }
 
-        private void WelcomeForm_Load(object sender, EventArgs e)
+        public void WelcomeForm_Load(object sender, EventArgs e)
         {
-            string name = nameTextBox.Text;
-            User user = new User(name);
+
+            UserName = nameTextBox.Text;
         }
 
-        private void nextButton_Click(object sender, EventArgs e)
+        public void nextButton_Click(object sender, EventArgs e)
         {
             this.Hide();
             MainForm mainForm = new MainForm();

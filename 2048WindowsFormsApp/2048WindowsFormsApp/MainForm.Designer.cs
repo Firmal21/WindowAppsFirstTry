@@ -35,6 +35,7 @@
             this.GameRulesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.RestartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.nameLabel = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -79,29 +80,38 @@
             // GameRulesToolStripMenuItem
             // 
             this.GameRulesToolStripMenuItem.Name = "GameRulesToolStripMenuItem";
-            this.GameRulesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.GameRulesToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.GameRulesToolStripMenuItem.Text = "Правила игры";
             this.GameRulesToolStripMenuItem.Click += new System.EventHandler(this.GameRulesToolStripMenuItem_Click);
             // 
             // RestartToolStripMenuItem
             // 
             this.RestartToolStripMenuItem.Name = "RestartToolStripMenuItem";
-            this.RestartToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.RestartToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.RestartToolStripMenuItem.Text = "Рестарт";
             this.RestartToolStripMenuItem.Click += new System.EventHandler(this.RestartToolStripMenuItem_Click);
             // 
             // ExitToolStripMenuItem
             // 
             this.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem";
-            this.ExitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.ExitToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.ExitToolStripMenuItem.Text = "Выход";
             this.ExitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
+            // 
+            // nameLabel
+            // 
+            this.nameLabel.AutoSize = true;
+            this.nameLabel.Location = new System.Drawing.Point(119, 9);
+            this.nameLabel.Name = "nameLabel";
+            this.nameLabel.Size = new System.Drawing.Size(0, 13);
+            this.nameLabel.TabIndex = 3;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(316, 378);
+            this.Controls.Add(this.nameLabel);
             this.Controls.Add(this.scoreLabel);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.menuStrip1);
@@ -126,6 +136,7 @@
         private System.Windows.Forms.ToolStripMenuItem GameRulesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem RestartToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ExitToolStripMenuItem;
+        private System.Windows.Forms.Label nameLabel;
     }
 }
 

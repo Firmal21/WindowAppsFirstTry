@@ -18,7 +18,7 @@ namespace _2048WindowsFormsApp
         private Label[,] labelsMap;
         private static Random random = new Random();
         private int score = 0;
-
+        
         public MainForm()
         {
             InitializeComponent();
@@ -26,7 +26,10 @@ namespace _2048WindowsFormsApp
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            var user = new User(WelcomeForm.UserName);
             
+            nameLabel.Text = ("Привет," + user.Name);
+
             InitMap();
             GenerateNumber();
             ShowScore();
@@ -86,41 +89,58 @@ namespace _2048WindowsFormsApp
             label.Font = new Font("Microsoft Sans Serif", 18F, FontStyle.Bold, GraphicsUnit.Point, ((byte)(204)));
             label.Size = new Size(70, 70);
             label.TextAlign = ContentAlignment.MiddleCenter;
+            label.Text = string.Empty;
             int x = 10 + indexColumn * (76);
             int y = 70 + indexRow * (76);
             label.Location = new Point(x, y);
             return label;
         }
 
-        bool t = true;
 
         private bool GameOver()
         {
-            while(t = true)
-            {
-                //right
-                for (int i = 0; i < mapSize; i++)
-                {
-                    for (int j = mapSize - 1; j >= 0; j--)
-                    {
-                        if (labelsMap[i, j].Text != string.Empty)
-                        {
-                            for (int k = j - 1; k >= 0; k--)
-                            {
-                                if (labelsMap[i, k].Text != string.Empty)
-                                {
-                                    if (labelsMap[i, j].Text == labelsMap[i, k].Text)
-                                    {
-                                        t = true;
-                                        return true;
-                                    }
-                                }
-                            }
 
+            bool clearLabels = true;
+            bool mergeChance = true;
+
+            //Проверка остались ли свободные ячейки
+
+            for (int i = 0; i < mapSize; i++)
+            {
+                for (int j = 0; j < mapSize; j++)
+                {
+                    if (labelsMap[i, j].Text == string.Empty)
+                    {
+                        clearLabels = true;
+                        break;
+                    }
+                    clearLabels = false;
+                }
+            }
+            return clearLabels;
+            //Проверка на возможность соединения ячеек
+            //right
+            for (int i = 0; i < mapSize; i++)
+            {
+                for (int j = mapSize - 1; j >= 0; j--)
+                {
+                    if (labelsMap[i, j].Text != string.Empty)
+                    {
+                        for (int k = j - 1; k >= 0; k--)
+                        {
+                            if (labelsMap[i, k].Text != string.Empty)
+                            {
+                                if (labelsMap[i, j].Text == labelsMap[i, k].Text)
+                                {
+                                    mergeChance = true;
+                                    
+                                }
+
+                            }
                         }
+                        break;
                     }
                 }
-                
             }
             //left
             for (int i = 0; i < mapSize; i++)
@@ -135,13 +155,12 @@ namespace _2048WindowsFormsApp
                             {
                                 if (labelsMap[i, j].Text == labelsMap[i, k].Text)
                                 {
-                                    t = true;
-                                    return true;
+                                    mergeChance = true;
+                                    break;
                                 }
-                                
                             }
                         }
-
+                        break;
                     }
                 }
             }
@@ -159,12 +178,12 @@ namespace _2048WindowsFormsApp
                             {
                                 if (labelsMap[i, j].Text == labelsMap[k, j].Text)
                                 {
-                                    t=true;
-                                    return true;
+                                    mergeChance = true;
+                                    
                                 }
                             }
                         }
-
+                        break;
                     }
                 }
             }
@@ -182,18 +201,24 @@ namespace _2048WindowsFormsApp
                             {
                                 if (labelsMap[i, j].Text == labelsMap[k, j].Text)
                                 {
-                                    t = true;
-                                    return true;
+                                    mergeChance = true;
+                                   
                                 }
+                                
                             }
                         }
-
+                        break;
                     }
                 }
             }
-            return false;
+
+            if (clearLabels != true && mergeChance != true)
+            {
+                return false;
+            }
+            else return true;
         }
-        //up
+        
 
 
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
@@ -397,9 +422,11 @@ namespace _2048WindowsFormsApp
 
             GenerateNumber();
             ShowScore();
-            if(GameOver()==false)
+
+            if(!GameOver())
             {
-                MessageBox.Show("Игра окончена");
+                MessageBox.Show("Конец игры");
+                //UserResults.SaveTestResults();
             }
         }
 
