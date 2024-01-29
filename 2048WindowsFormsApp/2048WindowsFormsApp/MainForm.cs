@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+
 using System.Drawing;
-using System.Drawing.Text;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 using System.Windows.Forms;
 
 namespace _2048WindowsFormsApp
@@ -18,6 +12,7 @@ namespace _2048WindowsFormsApp
         private Label[,] labelsMap;
         private static Random random = new Random();
         private int score = 0;
+        public User user;
         
         public MainForm()
         {
@@ -26,9 +21,9 @@ namespace _2048WindowsFormsApp
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            var user = new User(WelcomeForm.UserName);
+            user = new User(WelcomeForm.UserName);
             
-            nameLabel.Text = ("Привет," + user.Name);
+            nameLabel.Text = ("Привет, " + user.Name + " !");
 
             InitMap();
             GenerateNumber();
@@ -38,6 +33,10 @@ namespace _2048WindowsFormsApp
         private void ShowScore()
         {
             scoreLabel.Text = score.ToString();
+
+            var highscore = UserResults.GetHighScore();
+            if(highscore <= score) { highscore = score; }
+            highScoreLabel.Text = ("лучший результат:" + highscore);
         }
 
         private void InitMap()
@@ -73,9 +72,7 @@ namespace _2048WindowsFormsApp
                     if (chance <= 75)
                     {
                         labelsMap[indexRow, indexColumn].Text = "2";
-                    }
-                    
-
+                    }         
                     break;
                 }
 
@@ -426,7 +423,28 @@ namespace _2048WindowsFormsApp
             if(!GameOver())
             {
                 MessageBox.Show("Конец игры");
-                //UserResults.SaveTestResults();
+                user.Score = score;
+                UserResults.SaveTestResults(user);
+
+                //string restartMessage = "Хотите начать игру снова?";
+                //var messageResult = MessageBoxShowDialog(restartMessage);
+
+                //if (messageResult == true)
+                //{
+                //    Application.Restart();
+                //}
+
+                //string userResultsMessage = "Хотите увидеть предыдущие результаты?";
+                //var userResultsMessageResult = MessageBoxShowDialog(userResultsMessage);
+                
+                //if (userResultsMessageResult == true)
+                //{
+                //    this.Hide();
+                //    var userResultsForm = new UserRestultsForm();
+                //    userResultsForm.Show();
+                //}
+
+
             }
         }
 
@@ -458,9 +476,7 @@ namespace _2048WindowsFormsApp
             {
                 Application.Restart();
             }
-
             this.Close();
-            
         }
 
         private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -472,13 +488,14 @@ namespace _2048WindowsFormsApp
             {
                 Application.Exit();
             }
-
             this.Close();
-
-
         }
 
-       
-
+        private void ShowResultsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            var userResultsForm = new UserRestultsForm();
+            userResultsForm.Show();
+        }
     }
 }

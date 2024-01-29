@@ -28,7 +28,6 @@ namespace GeniyIdiotClassLibrary
                 return new List<User>();
             }
 
-            //var value = FileProvider.GetValue("Questions.txt");
             var fileData = FileProvider.GetValue(Path);
             var userResults = JsonConvert.DeserializeObject<List<User>>(fileData);
 
