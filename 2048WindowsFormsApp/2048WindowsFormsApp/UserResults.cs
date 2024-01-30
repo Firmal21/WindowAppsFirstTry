@@ -1,10 +1,5 @@
 ﻿using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml;
 
 
 namespace _2048WindowsFormsApp
@@ -43,19 +38,6 @@ namespace _2048WindowsFormsApp
         public static int GetHighScore()
         {
             int highScore = 0;
-            int usersCount = 0;
-            //var results = UserResults.GetUserResults();
-
-            //foreach (var result in results)
-            //{
-
-            //    (result.Score);
-            //}
-
-
-
-
-
             var results = UserResults.GetUserResults();
 
             foreach (var result in results)
@@ -66,18 +48,6 @@ namespace _2048WindowsFormsApp
                 }
             }
 
-            //foreach (var result in results)
-            //{
-            //    usersCount++;
-            //    //(result.Score);
-            //}
-            //for (int i = 1; i != usersCount; i++)
-            //{
-            //    if (results[i].Score >= highScore)
-            //    {
-            //      highScore = results[i].Score;
-            //    }
-            //}
             return  highScore;
         }
       

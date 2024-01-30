@@ -1,7 +1,6 @@
 ﻿using System;
 
 using System.Drawing;
-
 using System.Windows.Forms;
 
 namespace _2048WindowsFormsApp
@@ -54,6 +53,72 @@ namespace _2048WindowsFormsApp
             }
         }
 
+
+        private void ChangeLabelColor(Label labelsMap, string number)
+        {
+            switch (number)
+            {
+                case "2": labelsMap.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(183)))), ((int)(((byte)(177))))); ; break;
+
+
+
+                    //if ((labelsMap[i, j].Text) == string.Empty)
+                    //{
+                    //    labelsMap[i, j].BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(183)))), ((int)(((byte)(177)))));
+                    //}
+
+                    //if ((labelsMap[i, j].Text) == "2")
+                    //{
+                    //    labelsMap[i, j].BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(71)))), ((int)(((byte)(58)))));
+                    //}
+
+                    //if ((labelsMap[i, j].Text) == "4")
+                    //{
+                    //    labelsMap[i, j].BackColor = Color.Aquamarine;
+                    //}
+                    //if ((labelsMap[i, j].Text) == "8")
+                    //{
+                    //    labelsMap[i, j].BackColor = Color.Aqua;
+                    //}
+                    //if ((labelsMap[i, j].Text) == "16")
+                    //{
+                    //    labelsMap[i, j].BackColor = Color.AntiqueWhite;
+                    //}
+                    //if ((labelsMap[i, j].Text) == "32")
+                    //{
+                    //    labelsMap[i, j].BackColor = Color.AliceBlue;
+                    //}
+                    //if ((labelsMap[i, j].Text) == "64")
+                    //{
+                    //    labelsMap[i, j].BackColor = Color.DarkRed;
+                    //}
+                    //if ((labelsMap[i, j].Text) == "128")
+                    //{
+                    //    labelsMap[i, j].BackColor = Color.DimGray;
+                    //}
+                    //if ((labelsMap[i, j].Text) == "256")
+                    //{
+                    //    labelsMap[i, j].BackColor = Color.DimGray;
+                    //}
+                    //if ((labelsMap[i, j].Text) == "512")
+                    //{
+                    //    labelsMap[i, j].BackColor = Color.DimGray;
+                    //}
+                    //if ((labelsMap[i, j].Text) == "1024")
+                    //{
+                    //    labelsMap[i, j].BackColor = Color.DimGray;
+                    //}
+                    //if ((labelsMap[i, j].Text) == "2048")
+                    //{
+                    //    labelsMap[i, j].BackColor = Color.DimGray;
+                    //}
+            }
+            
+                    
+               
+            
+        }
+        
         private void GenerateNumber()
         {
             // попробовать избавиться бы(детерминировать)
@@ -78,11 +143,12 @@ namespace _2048WindowsFormsApp
 
             }
         }
-
+        
         private Label CreateLable(int indexRow, int indexColumn)
         {
             var label = new Label();
-            label.BackColor =SystemColors.ButtonShadow;
+            label.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(183)))), ((int)(((byte)(177)))));
+
             label.Font = new Font("Microsoft Sans Serif", 18F, FontStyle.Bold, GraphicsUnit.Point, ((byte)(204)));
             label.Size = new Size(70, 70);
             label.TextAlign = ContentAlignment.MiddleCenter;
@@ -216,8 +282,6 @@ namespace _2048WindowsFormsApp
             else return true;
         }
         
-
-
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
         {
 
@@ -239,6 +303,7 @@ namespace _2048WindowsFormsApp
                                         score += number * 2;
                                         labelsMap[i,j].Text = number.ToString();
                                         labelsMap[i, k].Text = string.Empty;
+                                        ChangeLabelColor(labelsMap[i,j],number.ToString());
                                     }
                                     break;
                                 }
@@ -416,11 +481,12 @@ namespace _2048WindowsFormsApp
                     }
                 }
             }
-
+            
             GenerateNumber();
+            //ChangeLabelColor();
             ShowScore();
-
-            if(!GameOver())
+            
+            if (!GameOver())
             {
                 MessageBox.Show("Конец игры");
                 user.Score = score;
@@ -467,6 +533,8 @@ namespace _2048WindowsFormsApp
             return false;
         }
 
+
+        //Кнопки меню
         private void RestartToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string message = "Вы уверены что хотите перезапустить игру?";
@@ -476,7 +544,7 @@ namespace _2048WindowsFormsApp
             {
                 Application.Restart();
             }
-            this.Close();
+            
         }
 
         private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -488,7 +556,7 @@ namespace _2048WindowsFormsApp
             {
                 Application.Exit();
             }
-            this.Close();
+            
         }
 
         private void ShowResultsToolStripMenuItem_Click(object sender, EventArgs e)

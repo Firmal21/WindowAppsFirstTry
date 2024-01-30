@@ -33,11 +33,11 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.менюToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.GameRulesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ShowResultsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.RestartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nameLabel = new System.Windows.Forms.Label();
             this.highScoreLabel = new System.Windows.Forms.Label();
-            this.ShowResultsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -87,6 +87,13 @@
             this.GameRulesToolStripMenuItem.Text = "Правила игры";
             this.GameRulesToolStripMenuItem.Click += new System.EventHandler(this.GameRulesToolStripMenuItem_Click);
             // 
+            // ShowResultsToolStripMenuItem
+            // 
+            this.ShowResultsToolStripMenuItem.Name = "ShowResultsToolStripMenuItem";
+            this.ShowResultsToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
+            this.ShowResultsToolStripMenuItem.Text = "Посмотреть результаты ";
+            this.ShowResultsToolStripMenuItem.Click += new System.EventHandler(this.ShowResultsToolStripMenuItem_Click);
+            // 
             // RestartToolStripMenuItem
             // 
             this.RestartToolStripMenuItem.Name = "RestartToolStripMenuItem";
@@ -118,17 +125,11 @@
             this.highScoreLabel.TabIndex = 4;
             this.highScoreLabel.Text = "0";
             // 
-            // ShowResultsToolStripMenuItem
-            // 
-            this.ShowResultsToolStripMenuItem.Name = "ShowResultsToolStripMenuItem";
-            this.ShowResultsToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
-            this.ShowResultsToolStripMenuItem.Text = "Посмотреть результаты ";
-            this.ShowResultsToolStripMenuItem.Click += new System.EventHandler(this.ShowResultsToolStripMenuItem_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(183)))), ((int)(((byte)(177)))));
             this.ClientSize = new System.Drawing.Size(316, 378);
             this.Controls.Add(this.highScoreLabel);
             this.Controls.Add(this.nameLabel);
