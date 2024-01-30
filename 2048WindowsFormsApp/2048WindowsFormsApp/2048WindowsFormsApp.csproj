@@ -49,7 +49,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FileProvider.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -64,14 +63,12 @@
     <Compile Include="RulesForm.Designer.cs">
       <DependentUpon>RulesForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="User.cs" />
     <Compile Include="UserRestultsForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UserRestultsForm.Designer.cs">
       <DependentUpon>UserRestultsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserResults.cs" />
     <Compile Include="WelcomeForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -112,6 +109,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GameClassLibrary\GameClassLibrary.csproj">
+      <Project>{ecfa36de-459b-40d7-95de-3ad31d3e6f81}</Project>
+      <Name>GameClassLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
