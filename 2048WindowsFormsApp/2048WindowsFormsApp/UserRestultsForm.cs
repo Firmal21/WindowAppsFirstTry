@@ -23,7 +23,6 @@ namespace _2048WindowsFormsApp
             
             foreach (var result in results)
             {
-
                 userResultsDataGridView.Rows.Add(result.Name, result.Score);
             }
 
