@@ -7,10 +7,16 @@ namespace _2048WindowsFormsApp
 {
     public partial class MainForm : Form
     {
+        public const int labelSize = 70;
+        public const int padding = 6;
+        private const int startX = 10;
+        private const int startY = 70;
+
         private int mapSize = WelcomeForm.MapSize;
         private Label[,] labelsMap;
         private static Random random = new Random();
         private int score = 0;
+        
         public User user;
 
         public MainForm()
@@ -40,6 +46,8 @@ namespace _2048WindowsFormsApp
 
         private void InitMap()
         {
+            this.ClientSize = new Size(startX + (labelSize + padding) * mapSize, startY + (labelSize + padding) * mapSize);
+
             labelsMap = new Label[mapSize, mapSize];
 
             for(int i = 0; i<mapSize; i++)
@@ -54,32 +62,7 @@ namespace _2048WindowsFormsApp
         }
 
 
-        private void ChangeLabelColor()
-        {
-
-            for (int i = 0; i < mapSize; i++)
-            {
-                for (int j = 0; j < mapSize; j++)
-                {
-                    switch (labelsMap[i, j].Text)
-                    {
-                        case "": labelsMap[i, j].BackColor = System.Drawing.SystemColors.ButtonShadow; ; break;
-                        case "2": labelsMap[i, j].BackColor = System.Drawing.Color.LightCoral;  break;
-                        case "4": labelsMap[i, j].BackColor = System.Drawing.Color.RosyBrown;  break;
-                        case "8": labelsMap[i, j].BackColor = System.Drawing.Color.IndianRed;  break;
-                        case "16": labelsMap[i, j].BackColor = System.Drawing.Color.Brown; break;
-                        case "32": labelsMap[i, j].BackColor = System.Drawing.Color.Firebrick; break;
-                        case "64": labelsMap[i, j].BackColor = System.Drawing.Color.Maroon; break;
-                        case "128": labelsMap[i, j].BackColor = System.Drawing.Color.LightGreen; break;
-                        case "256": labelsMap[i, j].BackColor = System.Drawing.Color.LimeGreen; break;
-                        case "512": labelsMap[i, j].BackColor = System.Drawing.Color.ForestGreen; break;
-                        case "1024": labelsMap[i, j].BackColor = System.Drawing.Color.DarkGreen; break;
-                        case "2048": labelsMap[i, j].BackColor = System.Drawing.Color.Fuchsia; break;
-
-                    }
-                }
-            }
-        }
+       
 
         private void GenerateNumber()
         {
@@ -112,18 +95,37 @@ namespace _2048WindowsFormsApp
             label.BackColor = System.Drawing.SystemColors.ButtonShadow;
 
             label.Font = new Font("Microsoft Sans Serif", 18F, FontStyle.Bold, GraphicsUnit.Point, ((byte)(204)));
-            label.Size = new Size(70, 70);
+            label.Size = new Size(labelSize, labelSize);
             label.TextAlign = ContentAlignment.MiddleCenter;
             label.Text = string.Empty;
-            int x = 10 + indexColumn * (76);
-            int y = 70 + indexRow * (76);
+            int x = startX + indexColumn * (labelSize + padding);
+            int y = startY + indexRow * (labelSize + padding);
             label.Location = new Point(x, y);
+
+            label.TextChanged += LabelTextChanged;
             return label;
         }
 
+        private void LabelTextChanged(object sender, EventArgs e)
+        {
+            var label = (Label)sender;
 
-       
-
+            switch (label.Text)
+            {
+                case "": label.BackColor = System.Drawing.SystemColors.ButtonShadow; ; break;
+                case "2": label.BackColor = System.Drawing.Color.LightCoral; break;
+                case "4": label.BackColor = System.Drawing.Color.RosyBrown; break;
+                case "8": label.BackColor = System.Drawing.Color.IndianRed; break;
+                case "16": label.BackColor = System.Drawing.Color.Brown; break;
+                case "32": label.BackColor = System.Drawing.Color.Firebrick; break;
+                case "64": label.BackColor = System.Drawing.Color.Maroon; break;
+                case "128": label.BackColor = System.Drawing.Color.LightGreen; break;
+                case "256": label.BackColor = System.Drawing.Color.LimeGreen; break;
+                case "512": label.BackColor = System.Drawing.Color.ForestGreen; break;
+                case "1024": label.BackColor = System.Drawing.Color.DarkGreen; break;
+                case "2048": label.BackColor = System.Drawing.Color.Fuchsia; break;
+            }
+        }
 
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
         {
@@ -153,9 +155,9 @@ namespace _2048WindowsFormsApp
             }
 
             GenerateNumber();
-            ChangeLabelColor();
             ShowScore();
-            
+            // ChangeLabelColor();
+
             if (GameOver())
             {
                 if(Win())
@@ -241,7 +243,6 @@ namespace _2048WindowsFormsApp
             return false;
         }
 
-
         private void GameRulesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             RulesForm rulesForm = new RulesForm();
@@ -262,7 +263,7 @@ namespace _2048WindowsFormsApp
         }
 
 
-        //Кнопки меню
+        //Меню
         private void RestartToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string message = "Вы уверены что хотите перезапустить игру?";
@@ -493,6 +494,34 @@ namespace _2048WindowsFormsApp
                 }
             }
         }
+
+        //         //private void ChangeLabelColor()
+        //        {
+
+        //            for (int i = 0; i<mapSize; i++)
+        //            {
+        //                for (int j = 0; j<mapSize; j++)
+        //                {
+        //                    switch (labelsMap[i, j].Text)
+        //                    {
+        //                        case "": labelsMap[i, j].BackColor = System.Drawing.SystemColors.ButtonShadow; ; break;
+        //                        case "2": labelsMap[i, j].BackColor = System.Drawing.Color.LightCoral;  break;
+        //                        case "4": labelsMap[i, j].BackColor = System.Drawing.Color.RosyBrown;  break;
+        //                        case "8": labelsMap[i, j].BackColor = System.Drawing.Color.IndianRed;  break;
+        //                        case "16": labelsMap[i, j].BackColor = System.Drawing.Color.Brown; break;
+        //                        case "32": labelsMap[i, j].BackColor = System.Drawing.Color.Firebrick; break;
+        //                        case "64": labelsMap[i, j].BackColor = System.Drawing.Color.Maroon; break;
+        //                        case "128": labelsMap[i, j].BackColor = System.Drawing.Color.LightGreen; break;
+        //                        case "256": labelsMap[i, j].BackColor = System.Drawing.Color.LimeGreen; break;
+        //                        case "512": labelsMap[i, j].BackColor = System.Drawing.Color.ForestGreen; break;
+        //                        case "1024": labelsMap[i, j].BackColor = System.Drawing.Color.DarkGreen; break;
+        //                        case "2048": labelsMap[i, j].BackColor = System.Drawing.Color.Fuchsia; break;
+        //                    }
+        //}
+        //            }
+        //        }
+
+
     }
 
 }

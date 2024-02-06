@@ -66,8 +66,9 @@
             this.comboBox1.Items.AddRange(new object[] {
             "2х2",
             "4х4",
-            "8х8",
-            "16х16"});
+            "5х5",
+            "6х6",
+            "8х8"});
             this.comboBox1.Location = new System.Drawing.Point(28, 139);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(123, 21);
