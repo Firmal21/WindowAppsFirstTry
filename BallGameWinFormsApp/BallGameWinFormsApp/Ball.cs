@@ -11,8 +11,12 @@ namespace BallGameWinFormsApp
     public class Ball
     {
         private MainForm form;
+        private int vx = 1;
+        private int vy = 1;
         protected int x = 150;
         protected int y = 150;
+        
+
         protected int size = 70;
         public Ball(MainForm form)
         {
@@ -25,13 +29,29 @@ namespace BallGameWinFormsApp
             var rectangle = new Rectangle(x, y, size, size);
             graphics.FillEllipse(brush, rectangle);
         }
-
-        public void Go() 
+        public void Move()
         {
-            x += 10;
-            y += 10;
+            Clear();
+            Go();
             Show();
         }
+
+        private void Go() 
+        {
+            x += vx;
+            y += vy;
+            Show();
+        }
+
+        private void Clear()
+        {
+            var graphics = form.CreateGraphics();
+            var brush = Brushes.White;
+            var rectangle = new Rectangle(x, y, size, size);
+            graphics.FillEllipse(brush, rectangle);
+        }
+
+      
     }
 
 }
