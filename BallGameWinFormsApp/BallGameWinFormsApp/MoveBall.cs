@@ -7,7 +7,7 @@ using Timer = System.Windows.Forms.Timer;
 
 namespace BallGameWinFormsApp
 {
-    public class MoveBall: RandomPointBall
+    public class MoveBall: Ball
     {
         private Timer _timer;
         public MoveBall(MainForm form): base(form)

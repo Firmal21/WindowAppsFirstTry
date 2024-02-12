@@ -13,8 +13,8 @@ namespace BallGameWinFormsApp
 {
     public partial class MainForm : Form
     {
-        RandomSizeAndPointBall moveBall;
-        PointBall pointBall;
+        //RandomSizeAndPointBall moveBall;
+        //PointBall pointBall;
         List<MoveBall> moveBalls;
         int ballsCount = 6;
         public int CatchBallsCount;
@@ -23,42 +23,7 @@ namespace BallGameWinFormsApp
         {
             InitializeComponent();
         }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            var ball = new Ball(this);
-            ball.Show();
-        }
-
-        private void createRandomBallButton_Click(object sender, EventArgs e)
-        {
-            moveBall = new RandomSizeAndPointBall(this);
-            moveBall.Show();
-        }
-
-        private void MainForm_MouseDown(object sender, MouseEventArgs e)
-        {
-            pointBall = new PointBall(this, e.X, e.Y);
-            pointBall.Show();
-        }
-
-        private void moveBallButton_Click(object sender, EventArgs e)
-        {
-
-            pointBall.Move();
-        }
-        private void moveButton_Click(object sender, EventArgs e)
-        {
-
-            moveBall.Move();
-        }
-
         private void MainForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void timer_Tick(object sender, EventArgs e)
         {
 
         }
@@ -75,14 +40,6 @@ namespace BallGameWinFormsApp
             }
         }
 
-        private void ClearGameArea()
-        {
-            var graphics = this.CreateGraphics();
-            var brush = Brushes.White;
-            var rectangle = new Rectangle(0, 0, this.ClientSize.Width, this.ClientSize.Height);
-            graphics.FillRectangle(brush, rectangle);
-        }
-
         private void stopButton_Click(object sender, EventArgs e)
         {
             for(int i = 0; i  < ballsCount; i ++)
@@ -94,8 +51,22 @@ namespace BallGameWinFormsApp
             MessageBox.Show(CatchBallsCount.ToString());
             CatchBallsCount = 0;
             ClearGameArea();
-
-
         }
+
+        private void ClearGameArea()
+        {
+            var graphics = this.CreateGraphics();
+            var brush = Brushes.White;
+            var rectangle = new Rectangle(0, 0, this.ClientSize.Width, this.ClientSize.Height);
+            graphics.FillRectangle(brush, rectangle);
+        }
+
+
+        //private void MainForm_MouseDown(object sender, MouseEventArgs e)
+        //{
+        //    pointBall = new PointBall(this, e.X, e.Y);
+        //    pointBall.Show();
+        //}
+
     }
 }

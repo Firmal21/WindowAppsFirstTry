@@ -29,75 +29,31 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            createRandomBallButton = new Button();
-            moveBallButton = new Button();
-            moveButton = new Button();
-            button1 = new Button();
             timer = new System.Windows.Forms.Timer(components);
             manyBallsButton = new Button();
             stopButton = new Button();
             SuspendLayout();
             // 
-            // createRandomBallButton
-            // 
-            createRandomBallButton.Location = new Point(429, 1);
-            createRandomBallButton.Name = "createRandomBallButton";
-            createRandomBallButton.Size = new Size(157, 23);
-            createRandomBallButton.TabIndex = 0;
-            createRandomBallButton.Text = "Создать в рандомном месте";
-            createRandomBallButton.UseVisualStyleBackColor = true;
-            createRandomBallButton.Click += createRandomBallButton_Click;
-            // 
-            // moveBallButton
-            // 
-            moveBallButton.Location = new Point(82, 1);
-            moveBallButton.Name = "moveBallButton";
-            moveBallButton.Size = new Size(160, 23);
-            moveBallButton.TabIndex = 1;
-            moveBallButton.Text = "Двигать шар от мыши";
-            moveBallButton.UseVisualStyleBackColor = true;
-            moveBallButton.Click += moveBallButton_Click;
-            // 
-            // moveButton
-            // 
-            moveButton.Location = new Point(248, 1);
-            moveButton.Name = "moveButton";
-            moveButton.Size = new Size(175, 23);
-            moveButton.TabIndex = 2;
-            moveButton.Text = "Двигать рандомный";
-            moveButton.UseVisualStyleBackColor = true;
-            moveButton.Click += moveButton_Click;
-            // 
-            // button1
-            // 
-            button1.Location = new Point(1, 1);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 3;
-            button1.Text = "Создать";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
-            // 
             // timer
             // 
             timer.Interval = 15;
-            timer.Tick += timer_Tick;
+            
             // 
             // manyBallsButton
             // 
-            manyBallsButton.Location = new Point(344, 30);
+            manyBallsButton.Location = new Point(684, 1);
             manyBallsButton.Name = "manyBallsButton";
-            manyBallsButton.Size = new Size(160, 23);
+            manyBallsButton.Size = new Size(119, 23);
             manyBallsButton.TabIndex = 4;
-            manyBallsButton.Text = "Много шариков";
+            manyBallsButton.Text = "Создать шарики";
             manyBallsButton.UseVisualStyleBackColor = true;
             manyBallsButton.Click += manyBallsButton_Click;
             // 
             // stopButton
             // 
-            stopButton.Location = new Point(263, 30);
+            stopButton.Location = new Point(0, 1);
             stopButton.Name = "stopButton";
-            stopButton.Size = new Size(75, 23);
+            stopButton.Size = new Size(115, 23);
             stopButton.TabIndex = 5;
             stopButton.Text = "Остановить шарики";
             stopButton.UseVisualStyleBackColor = true;
@@ -111,23 +67,14 @@
             ClientSize = new Size(805, 383);
             Controls.Add(stopButton);
             Controls.Add(manyBallsButton);
-            Controls.Add(button1);
-            Controls.Add(moveButton);
-            Controls.Add(moveBallButton);
-            Controls.Add(createRandomBallButton);
             Name = "MainForm";
             Text = "MainForm";
             Load += MainForm_Load;
-            MouseDown += MainForm_MouseDown;
+            //MouseDown += MainForm_MouseDown;
             ResumeLayout(false);
         }
 
         #endregion
-
-        private Button createRandomBallButton;
-        private Button moveBallButton;
-        private Button moveButton;
-        private Button button1;
         private System.Windows.Forms.Timer timer;
         private Button manyBallsButton;
         private Button stopButton;

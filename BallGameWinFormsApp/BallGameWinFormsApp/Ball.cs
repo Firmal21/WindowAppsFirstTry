@@ -12,10 +12,10 @@ namespace BallGameWinFormsApp
     {
         private MainForm form;
 
-        protected int x = 150;
-        protected int y = 150;
+        protected int x;
+        protected int y;
         protected Brush brush;
-        protected int size = 70;
+        protected int size;
 
         Random random = new Random();
 
@@ -23,7 +23,9 @@ namespace BallGameWinFormsApp
         {
             this.form = form;
             size = random.Next(10, 80);
-            
+            x = random.Next(0, form.ClientSize.Width);
+            y = random.Next(10, form.ClientSize.Height);
+
         }
         public void Show()
         {
