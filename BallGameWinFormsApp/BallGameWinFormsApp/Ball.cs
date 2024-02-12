@@ -11,24 +11,35 @@ namespace BallGameWinFormsApp
     public class Ball
     {
         private MainForm form;
-        private int vx = 1;
-        private int vy = 1;
+
         protected int x = 150;
         protected int y = 150;
-        
-
+        protected Brush brush;
         protected int size = 70;
+
+        Random random = new Random();
+
         public Ball(MainForm form)
         {
             this.form = form;
+            size = random.Next(10, 80);
+            
         }
-        public void Show ()
+        public void Show()
         {
             var graphics = form.CreateGraphics();
-            var brush = Brushes.Aqua;
+            brush = Brushes.Aqua;
             var rectangle = new Rectangle(x, y, size, size);
             graphics.FillEllipse(brush, rectangle);
         }
+
+        public void ColorBall(int x,int y,int size, Brush brush)
+        {
+            var graphics = form.CreateGraphics();
+            var rectangle = new Rectangle(x, y, size, size);
+            graphics.FillEllipse(brush, rectangle);
+        }
+
         public void Move()
         {
             Clear();
@@ -38,8 +49,8 @@ namespace BallGameWinFormsApp
 
         private void Go() 
         {
-            x += vx;
-            y += vy;
+            x += random.Next(-20, +20);
+            y += random.Next(-20, +20);
             Show();
         }
 
@@ -50,7 +61,28 @@ namespace BallGameWinFormsApp
             var rectangle = new Rectangle(x, y, size, size);
             graphics.FillEllipse(brush, rectangle);
         }
-
+       
+        public void CalculationStoppedBalls(List<MoveBall> moveBalls, int i)
+        {
+            
+            List<MoveBall> balls = moveBalls;
+            
+            if (form.ClientSize.Width >= balls[i].x + balls[i].size &&
+                    form.ClientSize.Height >= balls[i].y + balls[i].size &&
+                    balls[i].x > 0 && balls[i].y > 0)
+                {
+                    this.form.CatchBallsCount++;
+                    balls[i].brush = Brushes.Green;
+                    ColorBall(balls[i].x, balls[i].y, balls[i].size, balls[i].brush);
+                }
+            else
+            {
+                balls[i].brush = Brushes.Red;
+                ColorBall(balls[i].x, balls[i].y, balls[i].size, balls[i].brush);
+            }
+            
+            
+        }
       
     }
 

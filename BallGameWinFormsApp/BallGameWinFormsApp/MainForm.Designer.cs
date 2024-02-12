@@ -40,7 +40,7 @@
             // 
             // createRandomBallButton
             // 
-            createRandomBallButton.Location = new Point(631, 12);
+            createRandomBallButton.Location = new Point(429, 1);
             createRandomBallButton.Name = "createRandomBallButton";
             createRandomBallButton.Size = new Size(157, 23);
             createRandomBallButton.TabIndex = 0;
@@ -50,7 +50,7 @@
             // 
             // moveBallButton
             // 
-            moveBallButton.Location = new Point(195, 12);
+            moveBallButton.Location = new Point(82, 1);
             moveBallButton.Name = "moveBallButton";
             moveBallButton.Size = new Size(160, 23);
             moveBallButton.TabIndex = 1;
@@ -60,7 +60,7 @@
             // 
             // moveButton
             // 
-            moveButton.Location = new Point(407, 12);
+            moveButton.Location = new Point(248, 1);
             moveButton.Name = "moveButton";
             moveButton.Size = new Size(175, 23);
             moveButton.TabIndex = 2;
@@ -70,7 +70,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(12, 12);
+            button1.Location = new Point(1, 1);
             button1.Name = "button1";
             button1.Size = new Size(75, 23);
             button1.TabIndex = 3;
@@ -85,7 +85,7 @@
             // 
             // manyBallsButton
             // 
-            manyBallsButton.Location = new Point(422, 64);
+            manyBallsButton.Location = new Point(344, 30);
             manyBallsButton.Name = "manyBallsButton";
             manyBallsButton.Size = new Size(160, 23);
             manyBallsButton.TabIndex = 4;
@@ -95,7 +95,7 @@
             // 
             // stopButton
             // 
-            stopButton.Location = new Point(307, 62);
+            stopButton.Location = new Point(263, 30);
             stopButton.Name = "stopButton";
             stopButton.Size = new Size(75, 23);
             stopButton.TabIndex = 5;
@@ -108,7 +108,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(805, 383);
             Controls.Add(stopButton);
             Controls.Add(manyBallsButton);
             Controls.Add(button1);
