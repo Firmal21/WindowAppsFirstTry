@@ -7,7 +7,7 @@ namespace AimTrainer
     public partial class MainForm : Form
     {
         List<BallMovment> Balls;
-        public int BallsCount = 10;
+        private int _ballsCount = 10;
         public int CatchBallsCount;
 
         public MainForm()
@@ -20,15 +20,64 @@ namespace AimTrainer
         {
             Balls = new List<BallMovment>();
 
-            for (int i = 0; i < BallsCount; i++)
+            for (int i = 0; i < _ballsCount; i++)
             {
                 var moveBall = new BallMovment(this);
                 Balls.Add(moveBall);
                 moveBall.Start();
             }
         }
-       
 
+        private void MainForm_MouseDown_1(object sender, MouseEventArgs e)
+        {
+            var mouseX = e.X;
+            var mouseY = e.Y;
+
+            for (int i = 0; i < _ballsCount; i++)
+            {
+                Balls[i].CatchBall(Balls, i, mouseX, mouseY);
+            }
+
+            CathedBallsCountLabel.Text = CatchBallsCount.ToString();
+        }
+
+        private void StopButton_Click_1(object sender, EventArgs e)
+        {
+            MessageBox.Show("Вы поймали: " + CatchBallsCount.ToString() + GetString(CatchBallsCount));
+
+            CatchBallsCount = 0;
+
+            for (int i = 0; i < _ballsCount; i++)
+            {
+                Balls[i].Stop();
+            }
+            Application.Restart();
+            //ClearGameArea();
+        }
+
+        private string GetString(int catchBallsCount)
+        {
+            if (catchBallsCount % 100 >= 11 && catchBallsCount % 100 <= 19)
+            {
+                return " шаров";
+            }
+            else
+            {
+                var i = catchBallsCount % 10;
+                switch (i)
+                {
+                    case (1):
+                        return " шар";
+
+                    case (2):
+                    case (3):
+                    case (4):
+                        return " шара";
+                    default:
+                        return " шаров";
+                }
+            }
+        }
         private void ClearGameArea()
         {
             var graphics = this.CreateGraphics();
@@ -37,55 +86,9 @@ namespace AimTrainer
             graphics.FillRectangle(brush, rectangle);
         }
 
-        private void MainForm_MouseDown_1(object sender, MouseEventArgs e)
+        private void MainForm_Load(object sender, EventArgs e)
         {
-            var mouseX = e.X;
-            var mouseY = e.Y;
 
-            for (int i = 0; i < BallsCount; i++)
-            {
-                Balls[i].CatchBall(Balls, i, mouseX, mouseY);
-                
-            }
-            CathedBallsCountLabel.Text = CatchBallsCount.ToString();
-        }
-
-        private void StopButton_Click_1(object sender, EventArgs e)
-        {
-            MessageBox.Show("Вы поймали: " + CatchBallsCount.ToString() + GetString(CatchBallsCount));
-            
-            CatchBallsCount = 0;
-
-            for (int i = 0; i < BallsCount; i++)
-            {
-                Balls[i].Stop();
-            }
-            Application.Restart();
-                //ClearGameArea();
-        }
-
-        private string GetString(int catchBallsCount)
-        {
-            if (catchBallsCount % 100 >= 11 && catchBallsCount % 100 <= 19)
-            {
-                return "шаров";
-            }
-            else
-            {
-                var i = catchBallsCount % 10;
-                switch (i)
-                {
-                    case (1):
-                        return "шар";
-
-                    case (2):
-                    case (3):
-                    case (4):
-                        return "шара";
-                    default:
-                        return "шаров";
-                }
-            }
         }
     }
 }

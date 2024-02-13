@@ -110,7 +110,7 @@
             Controls.Add(CreateBallsButton);
             Name = "MainForm";
             Text = "Form1";
-            //Load += Form1_Load;
+            Load += MainForm_Load;
             MouseDown += MainForm_MouseDown_1;
             ResumeLayout(false);
             PerformLayout();
