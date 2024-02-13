@@ -48,7 +48,7 @@ namespace BallGameWinFormsApp
                 moveBalls[i].CalculationStoppedBalls(moveBalls, i);
             }
 
-            MessageBox.Show(CatchBallsCount.ToString());
+            MessageBox.Show("Вы поймали: " + CatchBallsCount.ToString() + "шариков");
             CatchBallsCount = 0;
             ClearGameArea();
         }
@@ -62,11 +62,11 @@ namespace BallGameWinFormsApp
         }
 
 
-        //private void MainForm_MouseDown(object sender, MouseEventArgs e)
-        //{
-        //    pointBall = new PointBall(this, e.X, e.Y);
-        //    pointBall.Show();
-        //}
+        private void MainForm_MouseDown(object sender, MouseEventArgs e)
+        {
+            var mouseX = e.X;
+            var mouseY = e.Y;
+        }
 
     }
 }

@@ -19,7 +19,7 @@ namespace BallGameWinFormsApp
 
         Random random = new Random();
 
-        public Ball(MainForm form)
+        public Ball(MainForm form) 
         {
             this.form = form;
             size = random.Next(10, 80);
