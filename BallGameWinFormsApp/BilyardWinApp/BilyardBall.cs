@@ -8,21 +8,38 @@ using BallsCommon;
 
 namespace BilyardWinApp
 {
-    internal class BilyardBall : RandomMoveBall
+    internal partial class BilyardBall : RandomMoveBall
     {
+
+        public event EventHandler<HitEventArgs> OnHited;
         public BilyardBall(Form form) : base(form)
         {
         }
         protected override void Go()
         {
             base.Go();
-            if (centerX <= LeftSide() || centerX >= RightSide())
+            if (centerX <= LeftSide())
             {
                 vX = -vX;
+                OnHited.Invoke(this, new HitEventArgs(Side.Left));
             }
-            if (centerY <= TopSide() || centerY >= DownSide())
+
+            if(centerX >= RightSide())
+            {
+                vX = -vX;
+                OnHited.Invoke(this, new HitEventArgs(Side.Right));
+            }
+
+            if (centerY <= TopSide())
             {
                 vY = -vY;
+                OnHited.Invoke(this, new HitEventArgs(Side.Top));
+            }
+
+            if(centerY >= DownSide())
+            {
+                vY = -vY;
+                OnHited.Invoke(this, new HitEventArgs(Side.Down));
             }
         }
 
