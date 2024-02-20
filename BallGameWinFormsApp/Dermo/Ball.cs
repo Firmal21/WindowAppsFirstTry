@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Timer = System.Windows.Forms.Timer;
 
-namespace BallGameWinFormsApp
+namespace BallsCommon
 {
     public class Ball
     {
@@ -59,11 +56,12 @@ namespace BallGameWinFormsApp
             Draw(brush);
         }
 
-        private void Go() 
+        protected virtual void Go() 
         {
             centerX += vX; //random.Next(-20, 20);
             centerY += vY;
-            Show();
+            
+            
         }
 
         public void Clear()
@@ -161,7 +159,7 @@ namespace BallGameWinFormsApp
                 }
             }
         }
-        private void _timer_Tick(object? sender, EventArgs e)
+        private void _timer_Tick(object sender, EventArgs e)
         {
             Move();
         }

@@ -6,5 +6,11 @@ namespace BilyardWinApp
         {
             InitializeComponent();
         }
+
+        private void MainFrom_Load(object sender, EventArgs e)
+        {
+            var ball = new BilyardBall(this);
+            ball.Start();
+        }
     }
 }

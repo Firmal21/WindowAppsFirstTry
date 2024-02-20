@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Timer = System.Windows.Forms.Timer;
+using System.Windows.Forms;
 
-namespace BallGameWinFormsApp
+namespace BallsCommon
 {
     public class BallMovment: Ball
     {

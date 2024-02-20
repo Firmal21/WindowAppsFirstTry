@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CatchMeGame", "CatchMeGame\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BilyardWinApp", "BilyardWinApp\BilyardWinApp.csproj", "{D485E1C6-DF18-4B61-BCC0-F747F4BF3BCF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BallsCommon", "Dermo\BallsCommon.csproj", "{EB6873C8-9293-4C59-B0CF-1E7CBC409714}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{D485E1C6-DF18-4B61-BCC0-F747F4BF3BCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D485E1C6-DF18-4B61-BCC0-F747F4BF3BCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D485E1C6-DF18-4B61-BCC0-F747F4BF3BCF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB6873C8-9293-4C59-B0CF-1E7CBC409714}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB6873C8-9293-4C59-B0CF-1E7CBC409714}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB6873C8-9293-4C59-B0CF-1E7CBC409714}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB6873C8-9293-4C59-B0CF-1E7CBC409714}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
