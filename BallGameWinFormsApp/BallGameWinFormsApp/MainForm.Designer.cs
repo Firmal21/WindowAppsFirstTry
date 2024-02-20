@@ -32,12 +32,12 @@
             timer = new System.Windows.Forms.Timer(components);
             manyBallsButton = new Button();
             stopButton = new Button();
+            clearButton = new Button();
             SuspendLayout();
             // 
             // timer
             // 
             timer.Interval = 15;
-            
             // 
             // manyBallsButton
             // 
@@ -59,18 +59,28 @@
             stopButton.UseVisualStyleBackColor = true;
             stopButton.Click += stopButton_Click;
             // 
+            // clearButton
+            // 
+            clearButton.Location = new Point(420, 9);
+            clearButton.Name = "clearButton";
+            clearButton.Size = new Size(75, 23);
+            clearButton.TabIndex = 6;
+            clearButton.Text = "button1";
+            clearButton.UseVisualStyleBackColor = true;
+            clearButton.Click += clearButton_Click;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(805, 383);
+            Controls.Add(clearButton);
             Controls.Add(stopButton);
             Controls.Add(manyBallsButton);
             Name = "MainForm";
             Text = "MainForm";
             Load += MainForm_Load;
-            //MouseDown += MainForm_MouseDown;
             ResumeLayout(false);
         }
 
@@ -78,5 +88,6 @@
         private System.Windows.Forms.Timer timer;
         private Button manyBallsButton;
         private Button stopButton;
+        private Button clearButton;
     }
 }

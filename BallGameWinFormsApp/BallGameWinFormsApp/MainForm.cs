@@ -12,10 +12,8 @@ using System.Windows.Forms;
 namespace BallGameWinFormsApp
 {
     public partial class MainForm : Form
-    {
-        //RandomSizeAndPointBall moveBall;
-        //PointBall pointBall;
-        List<MoveBall> moveBalls;
+    {       
+        List<RandomMoveBall> moveBalls;
         int ballsCount = 6;
         public int CatchBallsCount;
 
@@ -25,42 +23,46 @@ namespace BallGameWinFormsApp
         }
         private void MainForm_Load(object sender, EventArgs e)
         {
-
+            manyBallsButton.Enabled = true;
+            stopButton.Enabled = false;
+            clearButton.Enabled = false;
         }
 
         private void manyBallsButton_Click(object sender, EventArgs e)
         {
-            moveBalls = new List<MoveBall>();
+            moveBalls = new List<RandomMoveBall>();
+
+            manyBallsButton.Enabled = false;
+            stopButton.Enabled = true;
+            clearButton.Enabled = false;
 
             for (int i = 0; i < ballsCount; i++)
             {
-                var moveBall = new MoveBall(this);
-                moveBalls.Add(moveBall); 
+                var moveBall = new RandomMoveBall(this);
+                moveBalls.Add(moveBall);
                 moveBall.Start();
             }
         }
 
         private void stopButton_Click(object sender, EventArgs e)
         {
-            for(int i = 0; i  < ballsCount; i ++)
+            manyBallsButton.Enabled = false;
+            stopButton.Enabled = false;
+            clearButton.Enabled = true;
+
+            for (int i = 0; i < ballsCount; i++)
             {
                 moveBalls[i].Stop();
-                moveBalls[i].CalculationStoppedBalls(moveBalls, i);
+                if(moveBalls[i].CalculationStoppedBalls(moveBalls, i))
+                {
+                    CatchBallsCount++;
+                }
+                
             }
 
-            MessageBox.Show("Вы поймали: " + CatchBallsCount.ToString() + "шариков");
-            CatchBallsCount = 0;
-            ClearGameArea();
+            MessageBox.Show("Вы поймали: " + CatchBallsCount.ToString() + moveBalls[0].GetString(CatchBallsCount));
+            CatchBallsCount = 0;         
         }
-
-        private void ClearGameArea()
-        {
-            var graphics = this.CreateGraphics();
-            var brush = Brushes.White;
-            var rectangle = new Rectangle(0, 0, this.ClientSize.Width, this.ClientSize.Height);
-            graphics.FillRectangle(brush, rectangle);
-        }
-
 
         private void MainForm_MouseDown(object sender, MouseEventArgs e)
         {
@@ -68,5 +70,16 @@ namespace BallGameWinFormsApp
             var mouseY = e.Y;
         }
 
+        private void clearButton_Click(object sender, EventArgs e)
+        {
+            manyBallsButton.Enabled = true;
+            stopButton.Enabled = false;
+            clearButton.Enabled = false;
+
+            foreach (var ball in moveBalls)
+            {
+                ball.Clear();
+            }
+        }
     }
 }
