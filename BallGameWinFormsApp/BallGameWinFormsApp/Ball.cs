@@ -5,13 +5,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Timer = System.Windows.Forms.Timer;
 
 namespace BallGameWinFormsApp
 {
     public class Ball
     {
+        private Timer _timer;
         private Form form;
+
         public int CatchBallsCount;
+
         protected int centerX;
         protected int centerY;
         protected int vX;
@@ -28,8 +32,13 @@ namespace BallGameWinFormsApp
             centerX = random.Next(LeftSide(), RightSide());
             centerY = random.Next(TopSide(), DownSide());
 
+            _timer = new Timer();
+            _timer.Interval = 50;
+            _timer.Tick += _timer_Tick;
+
         }
-        
+      
+
         public void ColorBall(int x,int y,int size, Brush brush)
         {
             var graphics = form.CreateGraphics();
@@ -95,7 +104,7 @@ namespace BallGameWinFormsApp
             } 
         }
 
-        public bool CatchBall(List<RandomMoveBall> Balls, int i, int mouseX, int mouseY)
+        public bool CatchBall(List<Ball> Balls, int i, int mouseX, int mouseY)
         {
             var dx = mouseX - centerX;
             var dy = mouseY - centerY;
@@ -109,19 +118,6 @@ namespace BallGameWinFormsApp
                 return true;
             }
             return false;
-
-            //var x0 = Balls[i].centerX + Balls[i].radius / 2;
-            //var y0 = Balls[i].centerY + Balls[i].radius / 2;
-
-            //if (OnForm() && Math.Pow(mouseX - x0, 2) + Math.Pow(mouseY - y0, 2) <= Math.Pow(Balls[i].radius, 2))
-            //{
-
-            //    Balls[i].Stop();
-            //    Balls[i].brush = Brushes.Green;
-            //    Draw(Balls[i].brush);
-            //    return true;
-            //}
-            //return false;
         }
 
         public int LeftSide()
@@ -165,8 +161,20 @@ namespace BallGameWinFormsApp
                 }
             }
         }
+        private void _timer_Tick(object? sender, EventArgs e)
+        {
+            Move();
+        }
 
-        
+        public bool IsMovable()
+        {
+            return _timer.Enabled;
+        }
+
+        public void Start() { _timer.Start(); }
+        public void Stop() { _timer.Stop(); }
+
+
     }
 
 }

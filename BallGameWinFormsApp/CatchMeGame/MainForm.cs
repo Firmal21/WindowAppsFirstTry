@@ -4,7 +4,7 @@ namespace CatchMeGame
 {
     public partial class MainForm : Form
     {
-        private List<RandomMoveBall> moveBalls;
+        private List<Ball> balls;
         private int ballsCount = 15;
         private int _cathBallCount;
         public MainForm()
@@ -18,12 +18,12 @@ namespace CatchMeGame
             stopButton.Enabled = true;
             clearButton.Enabled = false;
 
-            moveBalls = new List<RandomMoveBall>();
+            balls = new List<Ball>();
 
             for (int i = 0; i < ballsCount; i++)
             {
                 var moveBall = new RandomMoveBall(this);
-                moveBalls.Add(moveBall);
+                balls.Add(moveBall);
                 moveBall.Start();
             }
         }
@@ -41,7 +41,7 @@ namespace CatchMeGame
             stopButton.Enabled = false;
             clearButton.Enabled = false;
 
-            foreach (var ball in moveBalls)
+            foreach (var ball in balls)
             {
                 ball.Clear();
             }
@@ -53,11 +53,11 @@ namespace CatchMeGame
             stopButton.Enabled = false;
             clearButton.Enabled = true;
 
-            foreach (var ball in moveBalls)
+            foreach (var ball in balls)
             {
                 ball.Stop();
             }
-            MessageBox.Show("Вы поймали: " + _cathBallCount.ToString() + moveBalls[0].GetString(_cathBallCount));
+            MessageBox.Show("Вы поймали: " + _cathBallCount.ToString() + balls[0].GetString(_cathBallCount));
             _cathBallCount = 0;
 
         }
@@ -70,14 +70,14 @@ namespace CatchMeGame
 
         private void MainForm_MouseDown(object sender, MouseEventArgs e)
         {
-            if(moveBalls != null) 
+            if(balls != null) 
             {
                 var mouseX = e.X;
                 var mouseY = e.Y;
 
                 for (int i = 0; i < ballsCount; i++)
                 {
-                    if (moveBalls[i].IsMovable() && moveBalls[i].CatchBall(moveBalls, i, mouseX, mouseY))
+                    if (balls[i].IsMovable() && balls[i].CatchBall(balls, i, mouseX, mouseY))
                     { _cathBallCount++; }
                 }
             }

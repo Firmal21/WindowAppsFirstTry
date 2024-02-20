@@ -13,8 +13,8 @@ namespace BallGameWinFormsApp
         {
             //vX = random.Next(LeftSide(), RightSide()); 
             //vY = random.Next(TopSide(), DownSide());
-            vX = random.Next(-5, 5);
-            vY = random.Next(-2,2);
+            vX = random.Next(-10, 10);
+            vY = random.Next(-10,10);
         }
     }
 }
