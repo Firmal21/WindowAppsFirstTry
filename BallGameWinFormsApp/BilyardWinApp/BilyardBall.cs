@@ -15,31 +15,62 @@ namespace BilyardWinApp
         public BilyardBall(Form form) : base(form)
         {
         }
+        public void SetBallCollor()
+        {
+            
+
+        }
+
         protected override void Go()
         {
             base.Go();
-            if (centerX <= LeftSide())
+            if (centerX <= LeftSide() && brush == Brushes.Red)
             {
                 vX = -vX;
-                OnHited.Invoke(this, new HitEventArgs(Side.Left));
+                OnHited.Invoke(this, new HitEventArgs(Side.LeftRed));
             }
 
-            if(centerX >= RightSide())
+            if (centerX <= LeftSide() && brush == Brushes.Green)
             {
                 vX = -vX;
-                OnHited.Invoke(this, new HitEventArgs(Side.Right));
+                OnHited.Invoke(this, new HitEventArgs(Side.LeftGreen));
             }
 
-            if (centerY <= TopSide())
+
+            if (centerX >= RightSide() && brush == Brushes.Red)
             {
-                vY = -vY;
-                OnHited.Invoke(this, new HitEventArgs(Side.Top));
+                vX = -vX;
+                OnHited.Invoke(this, new HitEventArgs(Side.RightRed));
             }
 
-            if(centerY >= DownSide())
+            if (centerX >= RightSide() && brush == Brushes.Green)
+            {
+                vX = -vX;
+                OnHited.Invoke(this, new HitEventArgs(Side.RightGreen));
+            }
+
+            if (centerY <= TopSide() && brush == Brushes.Red)
             {
                 vY = -vY;
-                OnHited.Invoke(this, new HitEventArgs(Side.Down));
+                OnHited.Invoke(this, new HitEventArgs(Side.TopRed));
+            }
+
+            if (centerY <= TopSide() && brush == Brushes.Green)
+            {
+                vY = -vY;
+                OnHited.Invoke(this, new HitEventArgs(Side.TopGreen));
+            }
+
+            if (centerY >= DownSide() && brush == Brushes.Red)
+            {
+                vY = -vY;
+                OnHited.Invoke(this, new HitEventArgs(Side.DownRed));
+            }
+
+            if (centerY >= DownSide() && brush == Brushes.Green)
+            {
+                vY = -vY;
+                OnHited.Invoke(this, new HitEventArgs(Side.DownGreen));
             }
         }
 

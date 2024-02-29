@@ -4,10 +4,14 @@
     {
         public enum Side
         {
-            Left,
-            Right,
-            Top,
-            Down
+            LeftRed,
+            LeftGreen,
+            RightRed,
+            RightGreen,
+            TopRed,
+            TopGreen,
+            DownRed,
+            DownGreen,
         }
 
 

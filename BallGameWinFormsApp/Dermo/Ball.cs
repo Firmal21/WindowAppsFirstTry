@@ -13,8 +13,8 @@ namespace BallsCommon
 
         public int CatchBallsCount;
 
-        protected int centerX;
-        protected int centerY;
+        public int centerX;
+        public int centerY;
         protected int vX;
         protected int vY;
         protected Brush brush;
@@ -47,27 +47,28 @@ namespace BallsCommon
         {
             Clear();
             Go();
-            Show();
+            Draw(brush);
+            
         }
 
-        public void Show()
+        public void SetBallColor(Brush ballColor)
         {
-            brush = Brushes.Aqua;
-            Draw(brush);
+            brush = ballColor;
+            
+           //Draw(brush);
         }
 
         protected virtual void Go() 
         {
             centerX += vX; //random.Next(-20, 20);
             centerY += vY;
-            
-            
         }
 
         public void Clear()
         {
-             brush = new SolidBrush(form.BackColor);
-            Draw(brush);   
+            //brush = new SolidBrush(form.BackColor);
+            var cleanBrush = new SolidBrush(form.BackColor);
+            Draw(cleanBrush);   
         }
 
         private void Draw(Brush brush)
@@ -109,7 +110,6 @@ namespace BallsCommon
 
             if (dx * dx + dy * dy <= radius * radius && OnForm())
             {
-
                 Balls[i].Stop();
                 Balls[i].brush = Brushes.Green;
                 Draw(Balls[i].brush);
