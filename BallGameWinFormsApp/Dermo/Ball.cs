@@ -18,7 +18,7 @@ namespace BallsCommon
         protected int vX;
         protected int vY;
         protected Brush brush;
-        protected int radius;
+        public int radius;
 
         Random random = new Random();
 

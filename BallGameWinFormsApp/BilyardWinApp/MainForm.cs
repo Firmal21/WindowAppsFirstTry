@@ -22,7 +22,7 @@ namespace BilyardWinApp
                 ball.OnHited += Ball_OnHited;
                 ball.Start();
                 ball.SetBallColor(Brushes.Green);
-                ball.centerX = random.Next(ball.LeftSide(), this.ClientSize.Width/2);
+                ball.centerX = random.Next(ball.radius, this.ClientSize.Width/2 - ball.radius);
                 
             }
 
@@ -32,7 +32,7 @@ namespace BilyardWinApp
                 ball.OnHited += Ball_OnHited;
                 ball.Start();
                 ball.SetBallColor(Brushes.Red);
-                ball.centerX = random.Next(this.ClientSize.Width / 2, ball.RightSide());
+                ball.centerX = random.Next(this.ClientSize.Width / 2 + ball.radius, this.ClientSize.Width -ball.radius );
             }
         }
 
